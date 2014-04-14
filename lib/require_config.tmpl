@@ -1,0 +1,15 @@
+var __config__;
+var require = {
+   config: function( obj ) {
+      __config__ = obj;
+   }
+};
+var requirejs = require;
+
+<% _.each( globals, function( k ) { %>
+var <%= k %> = globals[ '<%= k %>' ];
+<% } ); %>
+
+<%= requireConfig %>
+
+return __config__ || require;
