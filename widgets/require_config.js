@@ -79,7 +79,7 @@ var require = {
 
       // LaxarJS Core Testing:
       jasmine: 'bower_components/jasmine/lib/jasmine-core/jasmine',
-      q: 'bower_components/q/q',
+      q_mock: 'bower_components/q_mock/q',
 
       // LaxarJS Core Legacy:
       text: 'bower_components/requirejs-plugins/lib/text',
