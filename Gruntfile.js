@@ -38,7 +38,7 @@ module.exports = function( grunt ) {
          options: {
             commitMessage: 'release v%VERSION%',
             tagName: 'v%VERSION%',
-            tagMessage: 'Version %VERSION%',
+            tagMessage: 'version %VERSION%',
             pushTo: 'origin'
          }
       }
