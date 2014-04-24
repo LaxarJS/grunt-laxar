@@ -8,8 +8,9 @@ module.exports = function( grunt ) {
    'use strict';
 
    var _ = grunt.util._;
-   var q = require( 'q' );
    var path = require( 'path' );
+   var q = require( 'q' );
+   var async = require( 'async' );
 
    // Injected into the WidgetCollector, this uses grunt to read the file
    // and returns the expected { data: }-object
@@ -54,8 +55,6 @@ module.exports = function( grunt ) {
          var files = this.files;
          var done = this.async();
 
-         var flows = [];
-
          var config = require( '../lib/require_config' )( options.requireConfig, options );
          var paths = require( '../lib/laxar_paths' )( config, options );
 
@@ -65,7 +64,7 @@ module.exports = function( grunt ) {
          grunt.verbose.writeln( 'Portal Angular dependencies: initializing widget collector' );
          widgetCollector.init( q, httpClient(), path.relative( config.baseUrl, paths.WIDGETS ) );
 
-         files.forEach( function( file ) {
+         async.each( files, function( file, done ) {
             var promises = [];
             var dependencies = {};
 
@@ -78,14 +77,11 @@ module.exports = function( grunt ) {
                } ) );
             } );
 
-            flows.push(
-               q.all( promises ).then( function() {
-                  grunt.file.write( file.dest, generateBootstrapCode( dependencies.requires ) );
-                  grunt.log.ok( 'Created Angular dependencies in "' + file.dest + '".' );
-               } ).catch( grunt.fail.fatal )
-            );
-         } );
-
-         q.all( flows ).then( done );
+            q.all( promises ).then( function() {
+               grunt.file.write( file.dest, generateBootstrapCode( dependencies.requires ) );
+               grunt.log.ok( 'Created Angular dependencies in "' + file.dest + '".' );
+               done();
+            } ).catch( grunt.fail.fatal )
+         }, done );
       } );
 };
