@@ -1,46 +1,50 @@
 {
-   "name": "grunt-laxar",
-   "version": "0.2.0-pre",
-   "description": "Grunt tasks for LaxarJS",
-   "repository": {
-      "type": "git",
-      "url": "https://github.com/LaxarJS/grunt-laxar.git"
-   },
-   "authors": [],
-   "license": "MIT",
-   "scripts": {
-      "test": "grunt test"
-   },
-   "keywords": [
-      "gruntplugin",
-      "laxar"
-   ],
-   "dependencies": {
-      "requirejs": "~2.1.11",
-      "lodash": "~2.4.1",
-      "async": "~0.7.0",
-      "q": "~1.0.0",
-      "minimatch": "~0.2.14",
-      "connect-xcors": "~0.5.2",
-      "laxar_dox": "git+ssh://git/git/mirror/github.com/LaxarJS/laxar_dox.git",
-      "karma-laxar": "git+ssh://git/git/mirror/github.com/LaxarJS/karma-laxar.git",
-      "karma-junit-reporter": "~0.2.1",
-      "karma-phantomjs-launcher": "~0.1.2",
-      "grunt-contrib-connect": "~0.7.1",
-      "grunt-contrib-jshint": "~0.10.0",
-      "grunt-contrib-requirejs": "~0.4.3",
-      "grunt-karma": "~0.8.2",
-      "karma": "~0.12.1"
-   },
-   "peerDependencies": {
-      "grunt": ">=0.4"
-   },
-   "devDependencies": {
-      "grunt": "~0.4.2",
-      "grunt-cli": "~0.1.13",
-      "grunt-contrib-jshint": "~0.9.2",
-      "grunt-bump": "~0.0.13",
-      "grunt-npm": "~0.0.2",
-      "grunt-auto-release": "~0.0.6"
-   }
+  "name": "grunt-laxar",
+  "version": "0.2.0-pre",
+  "description": "Grunt tasks for LaxarJS",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LaxarJS/grunt-laxar.git"
+  },
+  "authors": [],
+  "license": "MIT",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "keywords": [
+    "gruntplugin",
+    "laxar"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.11",
+    "lodash": "~2.4.1",
+    "async": "~0.7.0",
+    "q": "~1.0.0",
+    "minimatch": "~0.2.14",
+    "connect-xcors": "~0.5.2",
+    "laxar_dox": "git+ssh://git/git/mirror/github.com/LaxarJS/laxar_dox.git",
+    "karma-laxar": "git+ssh://git/git/mirror/github.com/LaxarJS/karma-laxar.git",
+    "karma-junit-reporter": "~0.2.1",
+    "karma-phantomjs-launcher": "~0.1.2",
+    "grunt-contrib-connect": "~0.7.1",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-requirejs": "~0.4.3",
+    "grunt-karma": "~0.8.2",
+    "karma": "~0.12.1"
+  },
+  "peerDependencies": {
+    "grunt": ">=0.4"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-cli": "~0.1.13",
+    "grunt-contrib-jshint": "~0.9.2",
+    "grunt-bump": "~0.0.13",
+    "grunt-npm": "~0.0.2",
+    "grunt-auto-release": "~0.0.6"
+  },
+  "contributors": [
+    "LaxarJS <info@laxarjs.org>",
+    "Michael Kurze <mkurze@aixigo.de>"
+  ]
 }
