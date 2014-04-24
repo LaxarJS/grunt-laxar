@@ -81,7 +81,7 @@ module.exports = function( grunt ) {
                grunt.file.write( file.dest, generateBootstrapCode( dependencies.requires ) );
                grunt.log.ok( 'Created Angular dependencies in "' + file.dest + '".' );
                done();
-            } ).catch( grunt.fail.fatal )
+            } ).catch( grunt.fail.fatal );
          }, done );
       } );
 };
