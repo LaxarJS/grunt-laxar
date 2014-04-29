@@ -19,6 +19,7 @@
       "requirejs": "~2.1.11",
       "lodash": "~2.4.1",
       "async": "~0.7.0",
+      "findup": "~0.1.5",
       "q": "~1.0.0",
       "minimatch": "~0.2.14",
       "connect-xcors": "~0.5.2",
