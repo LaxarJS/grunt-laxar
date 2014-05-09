@@ -3,7 +3,6 @@
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
-/*jshint node: true*/
 module.exports = function( grunt ) {
    'use strict';
 
@@ -81,7 +80,7 @@ module.exports = function( grunt ) {
                grunt.file.write( file.dest, generateBootstrapCode( dependencies.requires ) );
                grunt.log.ok( 'Created Angular dependencies in "' + file.dest + '".' );
                done();
-            } ).catch( grunt.fail.fatal )
+            } ).catch( grunt.fail.fatal );
          }, done );
       } );
 };
