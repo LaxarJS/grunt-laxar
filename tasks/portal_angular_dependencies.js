@@ -3,7 +3,6 @@
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
-/*jshint node: true*/
 module.exports = function( grunt ) {
    'use strict';
 
