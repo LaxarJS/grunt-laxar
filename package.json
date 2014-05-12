@@ -39,9 +39,10 @@
    "devDependencies": {
       "grunt": "~0.4.2",
       "grunt-cli": "~0.1.13",
-      "grunt-contrib-jshint": "~0.9.2",
+      "grunt-contrib-clean": "~0.5.0",
+      "grunt-contrib-jshint": "~0.10.0",
+      "grunt-mocha-cli": "~1.8.0",
       "grunt-bump": "~0.0.13",
-      "grunt-npm": "~0.0.2",
-      "grunt-auto-release": "~0.0.6"
+      "expectations": "~0.2.5"
    }
 }
