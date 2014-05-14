@@ -9,6 +9,9 @@ module.exports = function( grunt ) {
    var pkg = grunt.file.readJSON( 'package.json' );
 
    grunt.initConfig({
+      clean: {
+         test: [ 'tmp' ]
+      },
       jshint: {
          options: {
             jshintrc: '.jshintrc'
@@ -56,7 +59,7 @@ module.exports = function( grunt ) {
    grunt.loadNpmTasks( 'grunt-mocha-cli' );
    grunt.loadNpmTasks( 'grunt-bump' );
 
-   grunt.registerTask( 'test', [ 'mochacli', 'jshint' ] );
+   grunt.registerTask( 'test', [ 'clean', 'mochacli', 'jshint' ] );
    grunt.registerTask( 'default', ['test'] );
 
    grunt.registerTask( 'release', 'Test, bump and publish to NPM.', function( type ) {
