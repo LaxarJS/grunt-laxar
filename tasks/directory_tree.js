@@ -7,6 +7,7 @@ module.exports = function( grunt ) {
    'use strict';
 
    var fs = require( 'fs' );
+   var path = require( 'path' );
    var async = require( 'async' );
    var mktree = require( '../lib/mktree' );
 
@@ -17,14 +18,21 @@ module.exports = function( grunt ) {
          base: '.'
       } );
       var files = this.files;
+      var base = options.base;
       var done = this.async();
 
       async.each( files, function( file, done ) {
-         grunt.verbose.writeln( 'Directory tree: making tree of ' + file.src.length + ' files.' );
-         mktree( file.src, function( err, tree ) {
+         var srcs = file.src.map( function( file ) {
+            return path.relative( base, file );
+         } );
+         var dest = file.dest;
+
+         grunt.verbose.writeln( 'Directory tree: making tree of ' + srcs.length + ' files.' );
+
+         mktree( base, srcs, function( err, tree ) {
             if( !err ) {
-               grunt.file.write( file.dest, JSON.stringify( tree ) );
-               grunt.log.ok( 'Created directory tree mapping in "' + file.dest + '".' );
+               grunt.file.write( dest, JSON.stringify( tree ) );
+               grunt.log.ok( 'Created directory tree mapping in "' + dest + '".' );
             }
             done( err );
          } );
