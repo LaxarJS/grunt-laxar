@@ -16,15 +16,15 @@ module.exports = function( grunt ) {
          options: {
             jshintrc: '.jshintrc'
          },
-         gruntfile: {
-            src: 'Gruntfile.js'
-         },
-         lib: {
-            src: 'lib/**/*.js'
-         },
-         tasks: {
-            src: 'tasks/**/*.js'
-         }
+         gruntfile: [
+            __filename
+         ],
+         lib: [
+            'lib/**/*.js'
+         ],
+         tasks: [
+            'tasks/**/*.js'
+         ]
       },
       mochacli: {
          options: {
