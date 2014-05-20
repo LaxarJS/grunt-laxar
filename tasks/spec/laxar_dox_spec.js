@@ -27,9 +27,13 @@ describe( 'the laxar_dox task', function() {
 
       beforeEach( helper.runMultiTaskWithConfig.bind( null, task, config ) );
 
+      it( 'creates the file specified as destination', function() {
+         expect( grunt.file.exists( config.dest ) ).toBeTruthy();
+      } );
+
       it( 'creates Markdown formatted API documentation', function() {
-         var actual = grunt.file.read(dir.actual + '/laxar_dox_single.md');
-         var expected = grunt.file.read(dir.expected + '/laxar_dox_single.md');
+         var actual = grunt.file.read( config.dest );
+         var expected = grunt.file.read( dir.expected + '/laxar_dox_single.md' );
 
          expect( actual ).toEqual( expected );
       } );
@@ -46,9 +50,13 @@ describe( 'the laxar_dox task', function() {
 
       beforeEach( helper.runMultiTaskWithConfig.bind( null, task, config ) );
 
+      it( 'creates the file specified as destination', function() {
+         expect( grunt.file.exists( config.dest ) ).toBeTruthy();
+      } );
+
       it( 'creates Markdown formatted API documentation', function() {
-         var actual = grunt.file.read(dir.actual + '/laxar_dox_multiple.md');
-         var expected = grunt.file.read(dir.expected + '/laxar_dox_multiple.md');
+         var actual = grunt.file.read( config.dest );
+         var expected = grunt.file.read( dir.expected + '/laxar_dox_multiple.md' );
 
          expect( actual ).toEqual( expected );
       } );

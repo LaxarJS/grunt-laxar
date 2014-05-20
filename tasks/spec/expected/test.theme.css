@@ -1,0 +1,8 @@
+body {
+   background-color: green;
+};
+@charset "UTF-8";
+
+.test-widget {
+   background-color: magenta;
+}

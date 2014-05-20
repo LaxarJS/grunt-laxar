@@ -23,7 +23,8 @@ module.exports = function( grunt ) {
             'lib/*.js'
          ],
          tasks: [
-            'tasks/*.js'
+            'tasks/*.js',
+            'tasks/lib/*.js'
          ],
          spec: [
             'lib/spec/*.js',

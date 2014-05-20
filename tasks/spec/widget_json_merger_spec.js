@@ -17,24 +17,24 @@ describe( 'the widget_json_merger task', function() {
       actual: 'tmp'
    };
 
-   describe( 'when using the default configuration', function() {
+   describe( 'when using the `base`, `output` and `requireConfig` options', function() {
       var config = {
          options: {
             base: dir.fixtures,
             output: dir.actual,
             requireConfig: dir.fixtures + '/require_config.js'
-         },
-         src: [
-            dir.fixtures + '/**/*.js'
-         ],
-         dest: dir.actual + '/directory_tree_default.json'
+         }
       };
 
       beforeEach( helper.runMultiTaskWithConfig.bind( null, task, config ) );
 
-      it( 'creates a widgets.js file in the output directory', function() {
-         var actual = grunt.file.read(dir.actual + '/widgets.js');
-         var expected = grunt.file.read(dir.expected + '/widgets.js');
+      it( 'creates a `widgets.js` file in the output directory', function() {
+         expect( grunt.file.exists( dir.actual + '/widgets.js' ) ).toBeTruthy();
+      } );
+
+      it( 'writes the expected RequireJS modules to the `widgets.js` file', function() {
+         var actual = grunt.file.read( dir.actual + '/widgets.js' );
+         var expected = grunt.file.read( dir.expected + '/widgets.js' );
 
          expect( actual ).toEqual( expected );
       } );

@@ -20,16 +20,20 @@ describe( 'the directory_tree task', function() {
    describe( 'when using the default configuration', function() {
       var config = {
          src: [
-            dir.fixtures + '/**/*.js'
+            dir.fixtures + '/libs/**/*.js'
          ],
          dest: dir.actual + '/directory_tree_default.json'
       };
 
       beforeEach( helper.runMultiTaskWithConfig.bind( null, task, config ) );
 
+      it( 'creates the file specified as destination', function() {
+         expect( grunt.file.exists( config.dest ) ).toBeTruthy();
+      } );
+
       it( 'creates a json file containing the requested mapping', function() {
-         var actual = grunt.file.readJSON(dir.actual + '/directory_tree_default.json');
-         var expected = grunt.file.readJSON(dir.expected + '/directory_tree_default.json');
+         var actual = grunt.file.readJSON( config.dest );
+         var expected = grunt.file.readJSON( dir.expected + '/directory_tree_default.json' );
 
          expect( actual ).toEqual( expected );
       } );
@@ -42,16 +46,20 @@ describe( 'the directory_tree task', function() {
             base: dir.fixtures
          },
          src: [
-            dir.fixtures + '/**/*.js'
+            dir.fixtures + '/libs/**/*.js'
          ],
          dest: dir.actual + '/directory_tree_basedir.json'
       };
 
       beforeEach( helper.runMultiTaskWithConfig.bind( null, task, config ) );
 
+      it( 'creates the file specified as destination', function() {
+         expect( grunt.file.exists( config.dest ) ).toBeTruthy();
+      } );
+
       it( 'creates a json file containing the requested mapping', function() {
-         var actual = grunt.file.readJSON(dir.actual + '/directory_tree_basedir.json');
-         var expected = grunt.file.readJSON(dir.expected + '/directory_tree_basedir.json');
+         var actual = grunt.file.readJSON( dir.actual + '/directory_tree_basedir.json' );
+         var expected = grunt.file.readJSON( dir.expected + '/directory_tree_basedir.json' );
 
          expect( actual ).toEqual( expected );
       } );

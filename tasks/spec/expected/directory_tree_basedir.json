@@ -1,1 +1,1 @@
-{"libs":{"test_lib":{"test.js":"file"}},"widgets":{"default":{"test_widget":{"spec":{"spec_runner.js":"file","test_widget_spec.js":"file"},"test_widget.js":"file"}}},"require_config.js":"file"}
+{"libs":{"test_lib":{"test.js":"file"}}}
