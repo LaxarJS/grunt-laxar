@@ -21,13 +21,14 @@ module.exports = function( grunt ) {
       var config = require( '../lib/require_config' )( options.requireConfig, options );
       var paths = require( '../lib/laxar_paths' )( config, options );
       var output = options.output + '/widgets.js';
+      var pathToWidgets = path.resolve( paths.WIDGETS );
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
       var allWidgetSpecifications = {};
 
-      grunt.file.expand( paths.WIDGETS +  '/*/*/widget.json' ).forEach( function( widgetJson ) {
-         var name = widgetJson.replace( '/widget.json', '' ).replace( paths.WIDGETS + '/', '' );
+      grunt.file.expand( pathToWidgets +  '/*/*/widget.json' ).forEach( function( widgetJson ) {
+         var name = widgetJson.replace( '/widget.json', '' ).replace( pathToWidgets + '/', '' );
          var widgetSpecification = grunt.file.readJSON( widgetJson );
          allWidgetSpecifications[ name ] = removeDescriptions( widgetSpecification );
       } );

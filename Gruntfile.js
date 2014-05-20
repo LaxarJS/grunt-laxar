@@ -20,10 +20,14 @@ module.exports = function( grunt ) {
             __filename
          ],
          lib: [
-            'lib/**/*.js'
+            'lib/*.js'
          ],
          tasks: [
-            'tasks/**/*.js'
+            'tasks/*.js'
+         ],
+         spec: [
+            'lib/spec/*.js',
+            'tasks/spec/*.js'
          ]
       },
       mochacli: {
