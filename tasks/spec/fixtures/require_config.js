@@ -18,6 +18,8 @@ require.config( {
       }
    ],
    paths: {
+      json: 'requirejs-plugins/src/json',
+      text: 'requirejs-plugins/lib/text',
       test_lib: '../libs/test_lib/test',
 
       'laxar-path-root': '..',
