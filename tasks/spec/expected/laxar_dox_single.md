@@ -3,10 +3,10 @@
 ## Test( name )
 This is a test class.
 ### Parameters
-- **name {String}**:
+- **name {String}**: 
 
 
 ## Test#getName()
 This is a test method.
 ### Returns
-- **{String}**:
+- **{String}**: 
