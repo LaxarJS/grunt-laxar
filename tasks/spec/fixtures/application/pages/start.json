@@ -1,0 +1,17 @@
+{
+   "layout": "start",
+   "areas": {
+      "content": [
+         {
+            "widget": "default/test_widget",
+            "features": {
+            }
+         },
+         {
+            "widget": "default/test_widget",
+            "features": {
+            }
+         }
+      ]
+   }
+}

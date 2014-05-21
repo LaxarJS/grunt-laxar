@@ -3,7 +3,6 @@
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
-/*jshint node: true*/
 module.exports = function( grunt ) {
    'use strict';
 
@@ -19,12 +18,10 @@ module.exports = function( grunt ) {
          get: function( url ) {
             var deferred = q.defer();
 
-            grunt.verbose.writeln( 'Portal Angular dependencies: reading "' + url + '"' );
-
-            setTimeout( function() {
-               var data = grunt.file.readJSON( url );
-               deferred.resolve( { data: data } );
-            }, 0 );
+            process.nextTick( function() {
+               grunt.verbose.writeln( 'Portal Angular dependencies: reading "' + url + '"' );
+               deferred.resolve( { data: grunt.file.readJSON( url ) } );
+            } );
 
             return deferred.promise;
          }
@@ -56,13 +53,24 @@ module.exports = function( grunt ) {
          var done = this.async();
 
          var config = require( '../lib/require_config' )( options.requireConfig, options );
+         var requirejs = require( 'requirejs' ).config( config );
          var paths = require( '../lib/laxar_paths' )( config, options );
 
-         grunt.verbose.writeln( 'Portal Angular dependencies: loading widget collector' );
-         var widgetCollector = require( '../lib/widget_collector' )( config, options );
+         grunt.verbose.writeln( 'Portal Angular dependencies: loading page loader' );
+         var PageLoader = requirejs( 'laxar/lib/portal/portal_assembler/page_loader' );
+         var WidgetCollector = require( '../lib/widget_collector' );
+
+         var client = httpClient();
+
+         grunt.verbose.writeln( 'Portal Angular dependencies: page loader' );
+         var pageLoader = PageLoader.create( q, client, paths.PAGES );
 
          grunt.verbose.writeln( 'Portal Angular dependencies: initializing widget collector' );
-         widgetCollector.init( q, httpClient(), path.relative( config.baseUrl, paths.WIDGETS ) );
+         var widgetCollector = WidgetCollector.create(
+            client,
+            path.relative( config.baseUrl, paths.WIDGETS ),
+            pageLoader
+         );
 
          async.each( files, function( file, done ) {
             var promises = [];
@@ -71,7 +79,7 @@ module.exports = function( grunt ) {
             grunt.verbose.writeln( 'Portal Angular dependencies: ' + file.dest );
 
             file.src.forEach( function( flow ) {
-               var promise = widgetCollector.gatherWidgetsAndControls( paths.PAGES, paths.WIDGETS, flow );
+               var promise = widgetCollector.gatherWidgetsAndControls( paths.WIDGETS, flow );
                promises.push( promise.then( function( result ) {
                   _.merge( dependencies, result );
                } ) );
@@ -81,7 +89,7 @@ module.exports = function( grunt ) {
                grunt.file.write( file.dest, generateBootstrapCode( dependencies.requires ) );
                grunt.log.ok( 'Created Angular dependencies in "' + file.dest + '".' );
                done();
-            } ).catch( grunt.fail.fatal )
+            } ).catch( grunt.fail.fatal );
          }, done );
       } );
 };
