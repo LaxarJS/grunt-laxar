@@ -1,0 +1,14 @@
+{
+   "name": "TestWidget",
+   "description": "A test widget for grunt-laxar",
+   "version": {
+      "spec": "0.1.0"
+   },
+
+   "integration": {
+      "type": "angular"
+   },
+
+   "features": {
+   }
+}

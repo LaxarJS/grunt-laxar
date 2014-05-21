@@ -1,0 +1,10 @@
+{
+   "name": "grunt_laxar_test_fixtures",
+   "dependencies": {
+      "requirejs": "jrburke/requirejs#2.1.x",
+      "requirejs-plugins": "millermedeiros/requirejs-plugins#1.0.x",
+      "laxar": "LaxarJS/laxar#0.x",
+      "laxar_uikit": "LaxarJS/laxar_uikit#0.x",
+      "laxar_patterns": "LaxarJS/laxar_patterns#0.x"
+   }
+}

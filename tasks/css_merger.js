@@ -3,7 +3,6 @@
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
-/*jshint node: true*/
 module.exports = function( grunt ) {
    'use strict';
 
@@ -23,6 +22,9 @@ module.exports = function( grunt ) {
 
       var config = require( '../lib/require_config' )( options.requireConfig, options );
       var paths = require( '../lib/laxar_paths' )( config, options );
+      var pathToThemes = path.resolve( paths.THEMES );
+      var pathToLayouts = path.resolve( paths.LAYOUTS );
+      var pathToWidgets = path.resolve( paths.WIDGETS );
 
       grunt.file.mkdir( options.output );
 
@@ -30,8 +32,8 @@ module.exports = function( grunt ) {
          var css = fixUrls( grunt.file.read( theme.mainFile ), theme.mainFile, options.output );
          var output = options.output + '/' + theme.name + '.css';
 
-         css += readLayouts( theme, paths.LAYOUTS );
-         css += readWidgets( theme, paths.WIDGETS );
+         css += readLayouts( theme, pathToLayouts );
+         css += readWidgets( theme, pathToWidgets );
 
          grunt.file.write( output, css );
          grunt.log.ok( 'Created merged css file in "' + output + '".' );
@@ -41,11 +43,11 @@ module.exports = function( grunt ) {
 
       function collectThemes() {
          var themes = [];
-         grunt.file.expand( paths.THEMES + '/*.theme' ).forEach( function( dir ) {
+         grunt.file.expand( pathToThemes + '/*.theme' ).forEach( function( dir ) {
             var cssMainFile = dir + '/css/theme.css';
             if( grunt.file.exists( cssMainFile ) ) {
                themes.push( {
-                  name: dir.replace( paths.THEMES + '/', '' ),
+                  name: dir.replace( pathToThemes + '/', '' ),
                   mainFile: cssMainFile
                } );
             }
