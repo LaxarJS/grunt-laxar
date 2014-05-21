@@ -10,7 +10,8 @@ module.exports = function( grunt ) {
 
    grunt.initConfig({
       clean: {
-         test: [ 'tmp' ]
+         test: [ 'tmp' ],
+         fixtures: [ 'tasks/spec/fixtures/bower_components' ]
       },
       jshint: {
          options: {
@@ -64,7 +65,7 @@ module.exports = function( grunt ) {
    grunt.loadNpmTasks( 'grunt-mocha-cli' );
    grunt.loadNpmTasks( 'grunt-bump' );
 
-   grunt.registerTask( 'test', [ 'clean', 'mochacli', 'jshint' ] );
+   grunt.registerTask( 'test', [ 'clean', 'fixtures', 'mochacli', 'jshint' ] );
    grunt.registerTask( 'default', ['test'] );
 
    grunt.registerTask( 'release', 'Test, bump and publish to NPM.', function( type ) {
@@ -73,5 +74,20 @@ module.exports = function( grunt ) {
          'bump:#{type || \'patch\'}'
       // 'npm-publish'
       ] );
+   } );
+
+   grunt.registerTask( 'fixtures', 'Setup the test fixtures', function() {
+      var bower = require.resolve( 'bower/bin/bower' );
+      var done = this.async();
+      var dir = 'tasks/spec/fixtures';
+
+      grunt.log.ok( 'Installing bower packages in ' + dir );
+      grunt.util.spawn( {
+         cmd: bower,
+         args: [ 'install' ],
+         opts: {
+            cwd: dir
+         }
+      }, done );
    } );
 };
