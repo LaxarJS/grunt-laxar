@@ -28,12 +28,11 @@ To use this plugin, your first need to install it using [NPM](https://npmjs.org)
 $ npm install
 ```
 
-After that, load it's tasks from your Gruntfile:
+After that, load its tasks from your Gruntfile:
 
 ```js
 grunt.loadNpmTasks( 'grunt-laxar' );
 ```
-
 
 ## Included tasks
 
