@@ -18,7 +18,21 @@ $ grunt directory_tree portal_angular_dependencies connect karma watch
 
 ## Getting started
 
-This plugin requires Grunt `~0.4.4`.
+This plugin requires Grunt `~0.4.4`. In case you have not used Grunt before, be
+sure to have a look at the [Getting Started](http://gruntjs.com/getting-started)
+guide.
+
+To use this plugin, your first need to install it using [NPM](https://npmjs.org):
+
+```console
+$ npm install
+```
+
+After that, load it's tasks from your Gruntfile:
+
+```js
+grunt.loadNpmTasks( 'grunt-laxar' );
+```
 
 
 ## Included tasks
