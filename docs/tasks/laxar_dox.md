@@ -1,9 +1,9 @@
 # The "laxar_dox" task
 
-The `laxar_dox` task uses [laxar_dox][] to output API documentation in markdown
+The `laxar_dox` task uses [laxar_dox][axdox] to output API documentation in markdown
 format.
 
-[laxar_dox] https://github.com/LaxarJS/laxar_dox
+[axdox]: https://github.com/LaxarJS/laxar_dox
   "laxar_dox: A JavaScript API doc generator using dox to output markdown files"
 
 ## Overview
