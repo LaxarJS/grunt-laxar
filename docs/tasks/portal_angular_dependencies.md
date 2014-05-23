@@ -4,7 +4,7 @@ The `portal_angular_dependencies` task parses an application's
 flow, resolves the pages and determines the widgets and controls
 used in those pages.
 From the list of widgets and controls it creates a *RequireJS* module
-that consists of a list of all the required module's names.
+that consists of a list of all the required modules' names.
 
 ## Overview
 
