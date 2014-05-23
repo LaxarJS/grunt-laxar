@@ -39,7 +39,7 @@ module.exports = function( grunt ) {
    }
 
    grunt.registerMultiTask( 'portal_angular_dependencies',
-      'Generate a requirejs configuration to bootstrap Angular.',
+      'Generate a RequireJS module to bootstrap Angular.',
       function() {
 
          var options = this.options( {
