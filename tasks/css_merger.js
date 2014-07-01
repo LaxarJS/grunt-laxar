@@ -22,6 +22,9 @@ module.exports = function( grunt ) {
 
       var config = require( '../lib/require_config' )( options.requireConfig, options );
       var paths = require( '../lib/laxar_paths' )( config, options );
+
+      var base = options.base;
+      var pathToDefaultTheme = path.resolve( paths.DEFAULT_THEME );
       var pathToThemes = path.resolve( paths.THEMES );
       var pathToLayouts = path.resolve( paths.LAYOUTS );
       var pathToWidgets = path.resolve( paths.WIDGETS );
@@ -43,15 +46,18 @@ module.exports = function( grunt ) {
 
       function collectThemes() {
          var themes = [];
-         grunt.file.expand( pathToThemes + '/*.theme' ).forEach( function( dir ) {
+         function processThemeDir( dir, themeName ) {
             var cssMainFile = dir + '/css/theme.css';
             if( grunt.file.exists( cssMainFile ) ) {
                themes.push( {
-                  name: dir.replace( pathToThemes + '/', '' ),
+                  name: themeName || dir.replace( pathToThemes + '/', '' ),
                   mainFile: cssMainFile
                } );
             }
-         } );
+         }
+         processThemeDir( pathToDefaultTheme, options.defaultTheme );
+         grunt.file.expand( pathToThemes + '/*.theme' ).forEach( processThemeDir );
+
          return themes;
       }
 
@@ -128,11 +134,16 @@ module.exports = function( grunt ) {
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
       function fixUrls( css, sourceFileName, destinationDirectory ) {
-         var sourceDirectory = sourceFileName.replace( /\/[^\/]*\.css$/, '' );
+         var sourceDirectory = path.relative( base, sourceFileName.replace( /\/[^\/]*\.css$/, '' ) );
          var destinationFragments = destinationDirectory.replace( /\/$/, '' ).split( '/' );
          var pathPrefix = new Array( destinationFragments.length + 1 ).join( '../' );
 
-         return css.replace( /url\(([^\)]*)\)/g, function( fullMatch, url, index ) {
+         var urlMatcher = /url\(([^\)]*)\)/g;
+         var schemeMatcher = /^['"]?[a-zA-Z]+[:]\/\/.*/;
+         return css.replace( urlMatcher, function( fullMatch, url, index ) {
+            if( schemeMatcher.test( url ) ) {
+               return fullMatch;
+            }
             var fixedUrl = pathPrefix + path.join( sourceDirectory, url.replace( /["']/g, '' ) );
             return 'url("' + fixedUrl + '")';
          } );

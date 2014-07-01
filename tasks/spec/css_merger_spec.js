@@ -32,6 +32,10 @@ describe( 'the css_merger task', function() {
          expect( grunt.file.exists( dir.actual + '/test.theme.css' ) ).toBeTruthy();
       } );
 
+      it( 'creates a `.css` file for the laxar_uikit default.theme', function() {
+         expect( grunt.file.exists( dir.actual + '/default.theme.css' ) ).toBeTruthy();
+      } );
+
       it( 'writes the expected stylesheets to the `default.theme.css` file', function() {
          var actual = grunt.file.read( dir.actual + '/test.theme.css' );
          var expected = grunt.file.read( dir.expected + '/test.theme.css' );
