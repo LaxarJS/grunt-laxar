@@ -29,7 +29,7 @@ module.exports = function( grunt ) {
 
          grunt.verbose.writeln( 'Directory tree: making tree of ' + srcs.length + ' files.' );
 
-         mktree( base, srcs, function( err, tree ) {
+         mktree( base, srcs, options.embedContents, function( err, tree ) {
             if( !err ) {
                grunt.file.write( dest, JSON.stringify( tree ) );
                grunt.log.ok( 'Created directory tree mapping in "' + dest + '".' );
