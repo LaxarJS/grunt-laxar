@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+## v0.3.0
 - [#4](https://github.com/LaxarJS/grunt-laxar/issues/4): directory_tree: allowed to embed files into listings using option embedContents
   NEW FEATURE: see ticket for details
 - [#5](https://github.com/LaxarJS/grunt-laxar/issues/5): css_merger: fixed default.theme handling (laxar_uikit) and absolute css urls
