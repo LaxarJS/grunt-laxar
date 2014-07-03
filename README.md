@@ -16,7 +16,7 @@ $ grunt directory_tree portal_angular_dependencies connect karma watch
   5) wait for changes
 ```
 
-## Getting started
+## Getting started äöü
 
 This plugin requires Grunt `~0.4.4`. In case you have not used Grunt before, be
 sure to have a look at the [Getting Started](http://gruntjs.com/getting-started)
