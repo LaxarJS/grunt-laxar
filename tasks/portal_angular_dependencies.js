@@ -17,12 +17,10 @@ module.exports = function( grunt ) {
       return {
          get: function( url ) {
             var deferred = q.defer();
-
             process.nextTick( function() {
                grunt.verbose.writeln( 'Portal Angular dependencies: reading "' + url + '"' );
                deferred.resolve( { data: grunt.file.readJSON( url ) } );
             } );
-
             return deferred.promise;
          }
       };
@@ -74,19 +72,19 @@ module.exports = function( grunt ) {
 
          async.each( files, function( file, done ) {
             var promises = [];
-            var dependencies = {};
+            var results = {};
 
             grunt.verbose.writeln( 'Portal Angular dependencies: ' + file.dest );
 
             file.src.forEach( function( flow ) {
                var promise = widgetCollector.gatherWidgetsAndControls( paths.WIDGETS, flow );
                promises.push( promise.then( function( result ) {
-                  _.merge( dependencies, result );
+                  _.merge( results, result );
                } ) );
             } );
 
             q.all( promises ).then( function() {
-               grunt.file.write( file.dest, generateBootstrapCode( dependencies.requires ) );
+               grunt.file.write( file.dest, generateBootstrapCode( results.widgets.concat( results.controls ) ) );
                grunt.log.ok( 'Created Angular dependencies in "' + file.dest + '".' );
                done();
             } ).catch( grunt.fail.fatal );
