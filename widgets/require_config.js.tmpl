@@ -1,0 +1,71 @@
+/*global -require*/
+var require = {
+   baseUrl: '<%= baseUrl %>',
+   deps: [<%
+   for( var i = 0; i < deps.length; i++ ) {
+      if( i ) { %>,<% } %>
+      '<%= deps[ i ] %>'<%
+   } %>
+   ],
+   shim: {
+      angular: {
+         deps: [
+            'jquery'
+         ],
+         exports: 'angular'
+      },
+      'angular-mocks': {
+         deps: [
+            'angular'
+         ],
+         init: function ( angular ) {
+            'use strict';
+            return angular.mock;
+         }
+      },
+      'angular-route': {
+         deps: [
+            'angular'
+         ],
+         init: function ( angular ) {
+            'use strict';
+            return angular.route;
+         }
+      },
+      'angular-sanitize': {
+         deps: [
+            'angular'
+         ],
+         init: function ( angular ) {
+            'use strict';
+            return angular;
+         }
+      },
+      underscore: {
+         exports: '_'
+      }
+   },
+   packages: [<%
+   for( var i = 0; i < packages.length; i++ ) {
+      if( i ) { %>,<% } %>
+      {
+         name: '<%= packages[ i ].name %>',
+         location: '<%= packages[ i ].location || packages[ i ].name %>',
+         main: '<%= packages[ i ].main || packages[ i ].name %>'
+      }<%
+   } %>
+   ],
+   paths: {<%
+   for( var p in paths ) {%>
+      '<%= p %>': '<%= paths[p] %>',<%
+   } %>
+      // App Parts:
+      'laxar-path-root': '..',
+      'laxar-path-layouts': '../application/layouts',
+      'laxar-path-pages': '../application/pages',
+      'laxar-path-widgets': '../widgets',
+      'laxar-path-themes': '../themes',
+      'laxar-path-flow': '../application/flow/flow.json'
+   }
+};
+
