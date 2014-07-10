@@ -1,6 +1,7 @@
 # Changelog
 
 ## Last Changes
+- [#7](https://github.com/LaxarJS/grunt-laxar/issues/7): css_merger: fixed theme processing for widgets and controls
 
 ## v0.3.0
 - [#4](https://github.com/LaxarJS/grunt-laxar/issues/4): directory_tree: allowed to embed files into listings using option embedContents

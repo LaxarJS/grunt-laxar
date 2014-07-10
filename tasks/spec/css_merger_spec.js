@@ -23,12 +23,15 @@ describe( 'the css_merger task', function() {
             base: dir.fixtures,
             output: dir.actual,
             requireConfig: dir.fixtures + '/require_config.js'
-         }
+         },
+         src: [
+            dir.fixtures + '/application/flow/flow.json'
+         ]
       };
 
       beforeEach( helper.runMultiTaskWithConfig.bind( null, task, config ) );
 
-      it( 'creates one `.css` file in per theme in the output directory', function() {
+      it( 'creates one `.css` file per theme in the output directory', function() {
          expect( grunt.file.exists( dir.actual + '/test.theme.css' ) ).toBeTruthy();
       } );
 
