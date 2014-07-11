@@ -60,7 +60,9 @@ function addComponent( config, component ) {
    if( staticConfig.shims.hasOwnProperty( name ) ) {
       config.paths[ name ] = main;
    } else if( staticConfig.deps.indexOf( main ) >= 0 ) {
-      config.deps.push( main );
+      if( config.deps.indexOf( main ) < 0 ) {
+         config.deps.push( main );
+      }
    } else if( !config.paths.hasOwnProperty( name ) ) {
       var names = config.packages.map( function( pkg ) {
          return pkg.name;
