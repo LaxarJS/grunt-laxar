@@ -1,6 +1,7 @@
 # Changelog
 
 ## Last Changes
+- [#8](https://github.com/LaxarJS/grunt-laxar/issues/8): widget tests: automatically generate a *RequireJS* configuration (instead of using a static one)
 
 ## v0.3.0
 - [#4](https://github.com/LaxarJS/grunt-laxar/issues/4): directory_tree: allowed to embed files into listings using option embedContents
