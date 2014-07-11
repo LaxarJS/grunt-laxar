@@ -7,13 +7,18 @@ var require = {
       '<%= deps[ i ] %>'<%
    } %>
    ],
-   shim: {
-      angular: {
+   shim: {<%
+   if( paths[ 'angular' ] ) { %>
+      angular: {<%
+      if( paths[ 'jquery' ] ) { %>
          deps: [
             'jquery'
-         ],
+         ],<%
+      } %>
          exports: 'angular'
-      },
+      },<%
+   }
+   if( paths[ 'angular-mocks' ] ) { %>
       'angular-mocks': {
          deps: [
             'angular'
@@ -22,7 +27,9 @@ var require = {
             'use strict';
             return angular.mock;
          }
-      },
+      },<%
+   }
+   if( paths[ 'angular-route' ] ) { %>
       'angular-route': {
          deps: [
             'angular'
@@ -31,7 +38,9 @@ var require = {
             'use strict';
             return angular.route;
          }
-      },
+      },<%
+   }
+   if( paths[ 'angular-sanitize' ] ) { %>
       'angular-sanitize': {
          deps: [
             'angular'
@@ -40,10 +49,18 @@ var require = {
             'use strict';
             return angular;
          }
-      },
+      },<%
+   }
+   if( paths[ 'jquery' ] ) { %>
+      jquery: {
+         exports: '$'
+      },<%
+   }
+   if( paths[ 'underscore' ] ) { %>
       underscore: {
          exports: '_'
-      }
+      },<%
+   } %>
    },
    packages: [<%
    for( var i = 0; i < packages.length; i++ ) {

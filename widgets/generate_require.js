@@ -8,26 +8,30 @@
 
 var path = require( 'path' );
 
+var staticConfig = {
+   deps: [
+      'es5-shim/es5-shim',
+      'json2/json2',
+      'modernizr/modernizr'
+   ],
+   shims: {
+      'angular': {},
+      'angular-mocks': {},
+      'angular-route': {},
+      'angular-sanitize': {},
+      'jquery': {},
+      'underscore': {}
+   }
+};
+
 function defaultConfig( baseUrl ) {
    return {
       baseUrl: baseUrl,
-      deps: [
-         'es5-shim/es5-shim',
-         'modernizr/modernizr'
-      ],
-      shims: {
-         'angular': {},
-         'jquery': {},
-         'underscore': {}
-      },
+      deps: [],
+      shims: {},
       paths: {
          // LaxarJS Core:
          'requirejs': 'requirejs/require',
-         'jquery': 'jquery/dist/jquery',
-         'angular': 'angular/angular',
-         'angular-mocks': 'angular-mocks/angular-mocks',
-         'angular-route': 'angular-route/angular-route',
-         'angular-sanitize': 'angular-sanitize/angular-sanitize',
 
          // LaxarJS Core Testing:
          'jasmine': 'jasmine/lib/jasmine-core/jasmine',
@@ -38,8 +42,6 @@ function defaultConfig( baseUrl ) {
          'json': 'requirejs-plugins/src/json',
 
          // UIKit:
-         'jquery_ui': 'jquery_ui',
-         'trunk8': 'trunk8/trunk8',
          'bootstrap-tooltip': 'bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tooltip'
       },
       packages: []
@@ -47,7 +49,7 @@ function defaultConfig( baseUrl ) {
 }
 
 /**
- * Add one component
+ * Add a single component
  */
 function addComponent( config, component ) {
    var pkg = component.pkgMeta;
@@ -55,10 +57,11 @@ function addComponent( config, component ) {
    var location = path.relative( config.baseUrl, component.canonicalDir );
    var main = typeof pkg.main === 'string' ? path.join( location, pkg.main ).replace( /\.js$/, '' ) : path.join( location, name );
 
-   if( config.shims.hasOwnProperty( name ) ) {
+   if( staticConfig.shims.hasOwnProperty( name ) ) {
       config.paths[ name ] = main;
-   } else if( config.deps.indexOf( main ) < 0 &&
-              !config.paths.hasOwnProperty( name ) ) {
+   } else if( staticConfig.deps.indexOf( main ) >= 0 ) {
+      config.deps.push( main );
+   } else if( !config.paths.hasOwnProperty( name ) ) {
       var names = config.packages.map( function( pkg ) {
          return pkg.name;
       } );
@@ -75,7 +78,7 @@ function addComponent( config, component ) {
 }
 
 /**
- * Add the given bower components
+ * Add a list of bower components
  */
 function addComponents( config, components ) {
    for( var component in components ) {
@@ -85,7 +88,9 @@ function addComponents( config, components ) {
    }
 }
 
-
+/**
+ * Add the dependencies of a single bower component
+ */
 function addDependencies( config, component ) {
    var dependencies = component.dependencies;
    var len = config.packages.length;
