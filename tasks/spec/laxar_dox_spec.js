@@ -62,4 +62,13 @@ describe( 'the laxar_dox task', function() {
       } );
    } );
 
+   describe( 'example1', function() {
+
+      beforeEach( helper.runTaskWithConfigFromMarkdown.bind( null, 'laxar_dox', 'docs/tasks/laxar_dox.md', 'One markdown file' ) );
+
+      it( 'does something', function() {
+      } );
+
+   } );
+
 } );

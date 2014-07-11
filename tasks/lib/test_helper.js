@@ -6,6 +6,8 @@
 'use strict';
 
 var grunt = require( 'grunt' );
+var fs = require( 'fs' );
+var mdCodeStream = require( 'md-code-stream' );
 
 function noop() {}
 
@@ -43,7 +45,40 @@ function runMultiTaskWithConfig( task, config, done ) {
    grunt.task.start( { asyncDone: true } );
 }
 
+function runTaskWithConfigFromMarkdown( task, file, section, done ) {
+  fs.createReadStream( file )
+    .pipe( mdCodeStream() )
+    .on( 'entry', function( entry ) {
+      if( section === entry.section[entry.section.length-1] ) {
+         return;
+      }
+      evalStream( entry );
+    });
+
+  function evalStream( stream ) {
+    var data = [];
+    stream.on('data', data.push.bind(data));
+    stream.on('error', done );
+    stream.on('end', function() {
+      try {
+        var evaluator = new Function( 'grunt', Buffer.concat(data) );
+        evaluator( {
+          initConfig: function(config) {
+            setupTaskWithConfig( task, config, done );
+            grunt.task.run( task );
+            grunt.task.start( { asyncDone: true } );
+          }
+        } );
+      }
+      catch( err ) {
+        done( err );
+      }
+    } );
+  }
+}
+
 module.exports = {
    runTaskWithConfig: runTaskWithConfig,
-   runMultiTaskWithConfig: runMultiTaskWithConfig
+   runMultiTaskWithConfig: runMultiTaskWithConfig,
+   runTaskWithConfigFromMarkdown: runTaskWithConfigFromMarkdown
 };
