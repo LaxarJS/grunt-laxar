@@ -46,35 +46,37 @@ function runMultiTaskWithConfig( task, config, done ) {
 }
 
 function runTaskWithConfigFromMarkdown( task, file, section, done ) {
-  fs.createReadStream( file )
-    .pipe( mdCodeStream() )
-    .on( 'entry', function( entry ) {
-      if( section === entry.section[entry.section.length-1] ) {
-         return;
-      }
-      evalStream( entry );
-    });
+   fs.createReadStream( file )
+      .pipe( mdCodeStream() )
+      .on( 'entry', function( entry ) {
+         if( section === entry.section[entry.section.length-1] ) {
+            return;
+         }
+         evalStream( entry );
+      });
 
-  function evalStream( stream ) {
-    var data = [];
-    stream.on('data', data.push.bind(data));
-    stream.on('error', done );
-    stream.on('end', function() {
-      try {
-        var evaluator = new Function( 'grunt', Buffer.concat(data) );
-        evaluator( {
-          initConfig: function(config) {
-            setupTaskWithConfig( task, config, done );
-            grunt.task.run( task );
-            grunt.task.start( { asyncDone: true } );
-          }
-        } );
-      }
-      catch( err ) {
-        done( err );
-      }
-    } );
-  }
+   function evalStream( stream ) {
+      var data = [];
+      stream.on('data', data.push.bind(data));
+      stream.on('error', done );
+      stream.on('end', function() {
+         try {
+            // Trust me, JSHint, I know what I'm doing.
+            /*jshint -W054*/
+            var evaluator = new Function( 'grunt', Buffer.concat(data) );
+            evaluator( {
+               initConfig: function(config) {
+                  setupTaskWithConfig( task, config, done );
+                  grunt.task.run( task );
+                  grunt.task.start( { asyncDone: true } );
+               }
+            } );
+         }
+         catch( err ) {
+            done( err );
+         }
+      } );
+   }
 }
 
 module.exports = {
