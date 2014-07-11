@@ -44,6 +44,7 @@
       "grunt-contrib-jshint": "~0.10.0",
       "grunt-mocha-cli": "~1.8.0",
       "grunt-bump": "~0.0.13",
-      "expectations": "~0.2.5"
+      "expectations": "~0.2.5",
+      "md-code-stream": "~0.1.0"
    }
 }
