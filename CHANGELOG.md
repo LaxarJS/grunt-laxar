@@ -1,6 +1,7 @@
 # Changelog
 
 ## Last Changes
+- [#3](https://github.com/LaxarJS/grunt-laxar/issues/3): add some documentation
 - [#8](https://github.com/LaxarJS/grunt-laxar/issues/8): widget tests: automatically generate a *RequireJS* configuration (instead of using a static one)
 - [#7](https://github.com/LaxarJS/grunt-laxar/issues/7): css_merger: fixed theme processing for widgets and controls
 
