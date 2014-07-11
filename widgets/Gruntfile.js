@@ -7,30 +7,62 @@
 module.exports = function (grunt) {
    'use strict';
 
-   var bower = grunt.file.readJSON( 'bower.json' );
-   var widget = bower.name.replace( /^widgets\./, '' ).replace( /\./g, '/' );
+   var bower = require( 'bower' );
+   var generate = require( './generate_require' );
 
-   var port = Math.floor( Math.random() * 10000 ) + 10000;
-   var proxies = {};
+   grunt.registerInitTask( 'autoinit', function() {
+      var done = this.async();
 
-   proxies[ '/base/widgets/' + widget ] = proxies[ '/base' ] = 'http://localhost:' + port;
+      grunt.log.ok( 'Querying Bower dependencies…' );
+
+      bower.commands.list()
+         .on( 'error', done )
+         .on( 'end', function( list ) {
+            var requireConfig = 'require_config.js';
+            var name = list.endpoint.name;
+            var widget = name.replace( /^widgets\./, '' )
+                             .replace( /\./g, '/' );
+            var proxies = grunt.config( [ 'karma', 'options', 'proxies' ] )
+
+            proxies[ '/base/widgets/' + widget ] = proxies[ '/base' ];
+
+            var template = grunt.file.read( __dirname + '/require_config.js.tmpl' );
+            var config = grunt.template.process( template, {
+               data: generate( bower.config.directory, list )
+            } );
+            grunt.file.write( requireConfig, config );
+
+            grunt.log.ok( 'Generated ' + grunt.log.wordlist( [ requireConfig ] ) );
+
+            grunt.config( [ 'karma', 'options', 'proxies' ], proxies );
+            grunt.config( [ 'karma', 'options', 'laxar', 'requireConfig' ], requireConfig );
+
+            grunt.log.ok( 'Applied Grunt configuration for ' + grunt.log.wordlist( [ widget ] ) );
+
+            grunt.loadNpmTasks( 'grunt-laxar' );
+
+            done();
+         } );
+   } );
 
    grunt.initConfig( {
       connect: {
          options: {
-            port: port
+            hostname: '*',
+            port: Math.floor( Math.random() * 10000 ) + 10000
          },
          default: {}
       },
       karma: {
          options: {
-            reporters: ['junit', 'progress'],
-            proxies: proxies
+            reporters: [ 'junit', 'progress' ],
+            proxies: {
+               '/base': 'http://localhost:<%= connect.options.port %>'
+            }
          },
          default: {
             laxar: {
-               specRunner: 'spec/spec_runner.js',
-               requireConfig: __dirname + '/require_config.js'
+               specRunner: 'spec/spec_runner.js'
             },
             junitReporter: {
                outputFile: 'junit.xml'
@@ -41,16 +73,10 @@ module.exports = function (grunt) {
          default: {
             src: [ '*.js', '!(bower_components|node_modules)/**/*.js' ]
          }
-      },
-      watch: {
-         default: {
-            files: [ '*', '!(bower_components|node_modules)/**' ],
-            tasks: [ 'karma', 'jshint' ]
-         }
       }
    } );
 
-   grunt.loadNpmTasks( 'grunt-laxar' );
+   grunt.task.run( 'autoinit' );
 
    grunt.registerTask( 'test', [ 'connect', 'karma', 'jshint' ] );
    grunt.registerTask( 'default', [ 'test' ] );
