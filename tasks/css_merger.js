@@ -51,7 +51,9 @@ module.exports = function( grunt ) {
       function collectThemes() {
          var themes = [];
          processThemeDir( pathToDefaultTheme, options.defaultTheme );
-         grunt.file.expand( pathToThemes + '/*.theme' ).forEach( processThemeDir );
+         grunt.file.expand( pathToThemes + '/*.theme' ).forEach( function( dir ) {
+            processThemeDir( dir );
+         } );
          return themes;
 
          /////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,6 +1,7 @@
 # Changelog
 
 ## Last Changes
+- [#10](https://github.com/LaxarJS/grunt-laxar/issues/10): Fixed processing of multiple non-default themes
 
 ## v0.3.1
 - [#3](https://github.com/LaxarJS/grunt-laxar/issues/3): add some documentation
