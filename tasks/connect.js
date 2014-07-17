@@ -16,10 +16,14 @@ module.exports = function( grunt ) {
    grunt.config( 'watch.options.livereload', livereload );
    grunt.config( 'connect.options', _.defaults( {
       middleware: function( connect, options, middlewares ) {
+         var directory = options.directory || options.base[options.base.length - 1];
          // IMPORTANT: Don't touch the order in which the middleware modules are loaded unless you really
          // know what you're doing. Otherwise things like setting CORS headers might break.
          return [
-            xcors( {} )
+            xcors( {} ),
+
+            // (#11) overwriting the directory configuration from grunt-contrib-connect with better options
+            connect.directory(directory, { view: 'details', icons: true } )
          ].concat( middlewares );
       }
    }, options, {
