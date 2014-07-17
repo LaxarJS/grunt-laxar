@@ -1,6 +1,7 @@
 # Changelog
 
 ## Last Changes
+- [#11](https://github.com/LaxarJS/grunt-laxar/issues/11): Improved readability of directory listing for connect task.
 - [#10](https://github.com/LaxarJS/grunt-laxar/issues/10): Fixed processing of multiple non-default themes
 - [#3](https://github.com/LaxarJS/grunt-laxar/issues/3): add some documentation
 - [#8](https://github.com/LaxarJS/grunt-laxar/issues/8): widget tests: automatically generate a *RequireJS* configuration (instead of using a static one)
