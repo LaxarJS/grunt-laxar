@@ -20,7 +20,8 @@ var staticConfig = {
       'angular-route': {},
       'angular-sanitize': {},
       'jquery': {},
-      'underscore': {}
+      'underscore': {},
+      'json-patch': {}
    }
 };
 
@@ -41,8 +42,11 @@ function defaultConfig( baseUrl ) {
          'text': 'requirejs-plugins/lib/text',
          'json': 'requirejs-plugins/src/json',
 
-         // UIKit:
-         'bootstrap-tooltip': 'bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tooltip'
+         // LaxarJS UIKit:
+         'bootstrap-tooltip': 'bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tooltip',
+
+         // LaxarJS Patterns:
+         'json-patch': 'fast-json-patch/src/json-patch-duplex'
       },
       packages: []
    };
