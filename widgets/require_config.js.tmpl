@@ -60,6 +60,11 @@ var require = {
       underscore: {
          exports: '_'
       },<%
+   }
+   if( paths[ 'json-patch' ] ) { %>
+      'json-patch': {
+         exports: 'jsonpatch'
+      },<%
    } %>
    },
    packages: [<%

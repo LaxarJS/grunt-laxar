@@ -1,6 +1,7 @@
 # Changelog
 
 ## Last Changes
+- [#13](https://github.com/LaxarJS/grunt-laxar/issues/13): the `require_config.js`, that is generated for widgets, now contains the proper configuration for JSON-patch.
 
 ## v0.4.0
 - [#11](https://github.com/LaxarJS/grunt-laxar/issues/11): Improved readability of directory listing for connect task.
