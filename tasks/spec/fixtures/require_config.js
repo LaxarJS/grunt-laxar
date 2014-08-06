@@ -23,6 +23,10 @@ require.config( {
 
       test_lib: '../libs/test_lib/test',
 
+      jjv: 'jjv/lib/jjv',
+      jjve: 'jjve/jjve',
+      'json-patch': 'fast-json-patch/src/json-patch-duplex',
+
       underscore: 'underscore/underscore',
       q: 'q/q',
 
