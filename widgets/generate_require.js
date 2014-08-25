@@ -46,7 +46,10 @@ function defaultConfig( baseUrl ) {
          'bootstrap-tooltip': 'bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tooltip',
 
          // LaxarJS Patterns:
-         'json-patch': 'fast-json-patch/src/json-patch-duplex'
+         'json-patch': 'fast-json-patch/src/json-patch-duplex',
+
+         // LaxarJS/grunt-laxar#15
+         'marked': 'marked/lib/marked'
       },
       packages: []
    };
