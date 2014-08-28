@@ -21,6 +21,7 @@ module.exports = function( grunt ) {
       plugins: [
          require( 'karma-phantomjs-launcher' ),
          require( 'karma-junit-reporter' ),
+         require( 'karma-coverage' ),
          require( 'karma-laxar' )
      ].concat( options.plugins || [] ),
      frameworks: [
