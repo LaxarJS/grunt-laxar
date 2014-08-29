@@ -17,6 +17,12 @@ module.exports = function( grunt ) {
             laxar: {
                specRunner: path + '/spec/spec_runner.js',
                requireConfig: 'require_config.js'
+            },
+            junitReporter: {
+               outputFile: path + '/test/test-results.xml'
+            },
+            coverageReporter: {
+               dir: path + '/test'
             }
          },
          jshint: {}
