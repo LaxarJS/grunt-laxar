@@ -65,7 +65,7 @@ module.exports = function (grunt) {
                specRunner: 'spec/spec_runner.js'
             },
             junitReporter: {
-               outputFile: 'junit.xml'
+               outputFile: 'test-results.xml'
             }
          }
       },
