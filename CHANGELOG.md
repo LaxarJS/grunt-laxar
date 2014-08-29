@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#18](https://github.com/LaxarJS/grunt-laxar/issues/18): there is a new script `bin/fixinstall` to fix the PhantomJS installation if it's broken.
 - [#16](https://github.com/LaxarJS/grunt-laxar/issues/16): the karma-task is now configured to easily create coverage reports.
 - [#15](https://github.com/LaxarJS/grunt-laxar/issues/15): the `require_config.js`, that is generated for widgets, now contains static configuration for Marked.
 - [#13](https://github.com/LaxarJS/grunt-laxar/issues/13): the `require_config.js`, that is generated for widgets, now contains the proper configuration for JSON-patch.
