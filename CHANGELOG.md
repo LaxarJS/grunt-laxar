@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#19](https://github.com/LaxarJS/grunt-laxar/issues/19): we're now using our own _Karma_ and _grunt-karma_ forks so that we can respond to issues more quickly.
 - [#18](https://github.com/LaxarJS/grunt-laxar/issues/18): there is a new script `bin/fixinstall` to fix the PhantomJS installation if it's broken.
 - [#17](https://github.com/LaxarJS/grunt-laxar/issues/17): there are two new tasks to merge `test-results.xml` and `lcov.info` files.  
   NEW FEATURE: see ticket for details
