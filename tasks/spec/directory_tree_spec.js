@@ -4,13 +4,12 @@
  * http://laxarjs.org/license
  */
 var grunt = require( 'grunt' );
-var helper = require( '../lib/test_helper' );
+var runTask = require( 'grunt-run-task' );
 
 describe( 'the directory_tree task', function() {
 
    'use strict';
 
-   var task = 'directory_tree';
    var dir = {
       fixtures: 'tasks/spec/fixtures',
       expected: 'tasks/spec/expected',
@@ -24,8 +23,10 @@ describe( 'the directory_tree task', function() {
          ],
          dest: dir.actual + '/directory_tree_default.json'
       };
+      var task = runTask.task( 'directory_tree', { default: config } );
 
-      beforeEach( helper.runMultiTaskWithConfig.bind( null, task, config ) );
+      before( task.run( 'default' ) );
+      after( task.clean() );
 
       it( 'creates the file specified as destination', function() {
          expect( grunt.file.exists( config.dest ) ).toBeTruthy();
@@ -50,8 +51,10 @@ describe( 'the directory_tree task', function() {
          ],
          dest: dir.actual + '/directory_tree_basedir.json'
       };
+      var task = runTask.task( 'directory_tree', { basedir: config } );
 
-      beforeEach( helper.runMultiTaskWithConfig.bind( null, task, config ) );
+      before( task.run( 'basedir' ) );
+      after( task.clean() );
 
       it( 'creates the file specified as destination', function() {
          expect( grunt.file.exists( config.dest ) ).toBeTruthy();

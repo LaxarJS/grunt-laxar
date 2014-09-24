@@ -4,13 +4,13 @@
  * http://laxarjs.org/license
  */
 var grunt = require( 'grunt' );
-var helper = require( '../lib/test_helper' );
+var runTask = require( 'grunt-run-task' );
 
 describe( 'the lcov_info_merger task', function() {
-
    'use strict';
 
-   var task = 'lcov_info_merger';
+   runTask.loadTasks( 'tasks' );
+
    var dir = {
       fixtures: 'tasks/spec/fixtures',
       expected: 'tasks/spec/expected',
@@ -21,8 +21,10 @@ describe( 'the lcov_info_merger task', function() {
       src: [ dir.fixtures + '/widgets/default/*/test/*/lcov.info' ],
       dest: dir.actual + '/lcov.info'
    };
+   var task = runTask.task( 'lcov_info_merger', { default: config } );
 
-   beforeEach( helper.runMultiTaskWithConfig.bind( null, task, config ) );
+   before( task.run( 'default' ) );
+   after( task.clean() );
 
    it( 'creates an `lcov.info` file containing all the input files\' coverage data', function() {
       expect( grunt.file.exists( dir.actual + '/lcov.info' ) ).toBeTruthy();

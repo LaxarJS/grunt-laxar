@@ -4,13 +4,13 @@
  * http://laxarjs.org/license
  */
 var grunt = require( 'grunt' );
-var helper = require( '../lib/test_helper' );
+var runTask = require( 'grunt-run-task' );
 
 describe( 'the css_merger task', function() {
-
    'use strict';
 
-   var task = 'css_merger';
+   runTask.loadTasks( 'tasks' );
+
    var dir = {
       fixtures: 'tasks/spec/fixtures',
       expected: 'tasks/spec/expected',
@@ -28,8 +28,9 @@ describe( 'the css_merger task', function() {
             dir.fixtures + '/application/flow/flow.json'
          ]
       };
+      var task = runTask.task( 'css_merger', config );
 
-      beforeEach( helper.runMultiTaskWithConfig.bind( null, task, config ) );
+      before( task.run() );
 
       it( 'creates one `.css` file per theme in the output directory', function() {
          expect( grunt.file.exists( dir.actual + '/test.theme.css' ) ).toBeTruthy();

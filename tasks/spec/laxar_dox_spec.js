@@ -4,13 +4,13 @@
  * http://laxarjs.org/license
  */
 var grunt = require( 'grunt' );
-var helper = require( '../lib/test_helper' );
+var runTask = require( 'grunt-run-task' );
 
 describe( 'the laxar_dox task', function() {
-
    'use strict';
 
-   var task = 'laxar_dox';
+   runTask.loadTasks( 'tasks' );
+
    var dir = {
       fixtures: 'tasks/spec/fixtures',
       expected: 'tasks/spec/expected',
@@ -24,8 +24,10 @@ describe( 'the laxar_dox task', function() {
          ],
          dest: dir.actual + '/laxar_dox_single.md'
       };
+      var task = runTask.task( 'laxar_dox', { single: config } );
 
-      beforeEach( helper.runMultiTaskWithConfig.bind( null, task, config ) );
+      before( task.run( 'single' ) );
+      after( task.clean() );
 
       it( 'creates the file specified as destination', function() {
          expect( grunt.file.exists( config.dest ) ).toBeTruthy();
@@ -47,8 +49,10 @@ describe( 'the laxar_dox task', function() {
          ],
          dest: dir.actual + '/laxar_dox_multiple.md'
       };
+      var task = runTask.task( 'laxar_dox', { multiple: config } );
 
-      beforeEach( helper.runMultiTaskWithConfig.bind( null, task, config ) );
+      before( task.run( 'multiple' ) );
+      after( task.clean() );
 
       it( 'creates the file specified as destination', function() {
          expect( grunt.file.exists( config.dest ) ).toBeTruthy();
@@ -60,15 +64,6 @@ describe( 'the laxar_dox task', function() {
 
          expect( actual ).toEqual( expected );
       } );
-   } );
-
-   describe( 'example1', function() {
-
-      beforeEach( helper.runTaskWithConfigFromMarkdown.bind( null, 'laxar_dox', 'docs/tasks/laxar_dox.md', 'One markdown file' ) );
-
-      it( 'does something', function() {
-      } );
-
    } );
 
 } );
