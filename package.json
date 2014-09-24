@@ -34,7 +34,7 @@
       "grunt-contrib-connect": "~0.7.1",
       "grunt-contrib-jshint": "~0.10.0",
       "grunt-contrib-requirejs": "~0.4.3",
-      "grunt-karma": "LaxarJS/grunt-karma#33d43ab3a78af0fe5c42c53aa8601ee447b15d61",
+      "grunt-karma": "LaxarJS/grunt-karma#8075438dc412358a5707245e14a3bfaf7ae97963",
       "karma": "LaxarJS/karma#f1363cc3fca25a87c5bb45970a7ca3afd207fb73"
    },
    "peerDependencies": {
