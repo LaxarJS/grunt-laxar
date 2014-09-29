@@ -4,13 +4,13 @@
  * http://laxarjs.org/license
  */
 var grunt = require( 'grunt' );
-var helper = require( '../lib/test_helper' );
+var runTask = require( 'grunt-run-task' );
 
 describe( 'the test_results_merger task', function() {
-
    'use strict';
 
-   var task = 'test_results_merger';
+   runTask.loadTasks( 'tasks' );
+
    var dir = {
       fixtures: 'tasks/spec/fixtures',
       expected: 'tasks/spec/expected',
@@ -21,8 +21,10 @@ describe( 'the test_results_merger task', function() {
       src: [ dir.fixtures + '/widgets/default/*/test/test-results.xml' ],
       dest: dir.actual + '/test-results.xml'
    };
+   var task = runTask.task( 'test_results_merger', { default: config } );
 
-   beforeEach( helper.runMultiTaskWithConfig.bind( null, task, config ) );
+   before( task.run( 'default' ) );
+   after( task.clean() );
 
    it( 'creates a `test-results.xml` file containing all the input files\' testsuites', function() {
       expect( grunt.file.exists( dir.actual + '/test-results.xml' ) ).toBeTruthy();

@@ -4,13 +4,13 @@
  * http://laxarjs.org/license
  */
 var grunt = require( 'grunt' );
-var helper = require( '../lib/test_helper' );
+var runTask = require( 'grunt-run-task' );
 
 describe( 'the widget_json_merger task', function() {
-
    'use strict';
 
-   var task = 'widget_json_merger';
+   runTask.loadTasks( 'tasks' );
+
    var dir = {
       fixtures: 'tasks/spec/fixtures',
       expected: 'tasks/spec/expected',
@@ -25,8 +25,10 @@ describe( 'the widget_json_merger task', function() {
             requireConfig: dir.fixtures + '/require_config.js'
          }
       };
+      var task = runTask.task( 'widget_json_merger', { default: config } );
 
-      beforeEach( helper.runMultiTaskWithConfig.bind( null, task, config ) );
+      before( task.run( 'default' ) );
+      after( task.clean() );
 
       it( 'creates a `widgets.js` file in the output directory', function() {
          expect( grunt.file.exists( dir.actual + '/widgets.js' ) ).toBeTruthy();

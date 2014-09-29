@@ -4,13 +4,13 @@
  * http://laxarjs.org/license
  */
 var grunt = require( 'grunt' );
-var helper = require( '../lib/test_helper' );
+var runTask = require( 'grunt-run-task' );
 
 describe( 'the portal_angular_dependencies task', function() {
-
    'use strict';
 
-   var task = 'portal_angular_dependencies';
+   runTask.loadTasks( 'tasks' );
+
    var dir = {
       fixtures: 'tasks/spec/fixtures',
       expected: 'tasks/spec/expected',
@@ -28,8 +28,10 @@ describe( 'the portal_angular_dependencies task', function() {
          ],
          dest: dir.actual + '/portal_angular_dependencies.js'
       };
+      var task = runTask.task( 'portal_angular_dependencies', { default: config } );
 
-      beforeEach( helper.runMultiTaskWithConfig.bind( null, task, config ) );
+      before( task.run( 'default' ) );
+      after( task.clean() );
 
       it( 'creates the file specified as destination', function() {
          expect( grunt.file.exists( config.dest ) ).toBeTruthy();
