@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#21](https://github.com/LaxarJS/grunt-laxar/issues/21): the Gruntfile provided for widget tests now create coverage reports.
+
 ## v0.5.0
 
 - [#19](https://github.com/LaxarJS/grunt-laxar/issues/19): we're now using our own _Karma_ and _grunt-karma_ forks so that we can respond to issues more quickly.
