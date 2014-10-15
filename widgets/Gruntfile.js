@@ -24,7 +24,7 @@ module.exports = function (grunt) {
                              .replace( /\./g, '/' );
             var proxies = grunt.config( [ 'karma', 'options', 'proxies' ] )
 
-            proxies[ '/base/widgets/' + widget ] = proxies[ '/base' ];
+            proxies[ '/base/widgets/' + widget ] = '/base';
 
             var template = grunt.file.read( __dirname + '/require_config.js.tmpl' );
             var config = grunt.template.process( template, {
@@ -46,39 +46,31 @@ module.exports = function (grunt) {
    } );
 
    grunt.initConfig( {
-      connect: {
-         options: {
-            hostname: '*',
-            port: Math.floor( Math.random() * 10000 ) + 10000
-         },
-         default: {}
-      },
       karma: {
          options: {
             reporters: [ 'junit', 'coverage', 'progress' ],
             preprocessors: {
-               '*.js': 'coverage'
+               '!(require_config).js': 'coverage',
+               '!(bower_components|node_modules|spec)/**/*.js': 'coverage'
             },
-            proxies: {
-               '/base': '/karma'
-            },
-            files: {
-               { pattern: 'bower_components/**', included: false },
-               { pattern: '!(bower_components|node_modules}/**', included: false },
-               { pattern: '*.*', included: false }
-            }
+            proxies: {},
+            files: [
+               { pattern: 'bower_components/**', included: false, watched: false },
+               { pattern: '!(bower_components|node_modules)/**', included: false, watched: false },
+               { pattern: '*.*', included: false, watched: false }
+            ]
          },
          default: {
             laxar: {
                specRunner: 'spec/spec_runner.js'
             },
             junitReporter: {
-               outputFile: 'spec/test-results.xml'
+               outputFile: 'test-results.xml'
             },
             coverageReporter: {
                type: 'lcovonly',
-               dir: 'spec',
-               file: 'lcov.info'
+               dir: '.',
+               file: '../lcov.info'
             }
          }
       },
@@ -86,23 +78,11 @@ module.exports = function (grunt) {
          default: {
             src: [ '*.js', '!(bower_components|node_modules)/**/*.js' ]
          }
-      },
-      test_results_merger: {
-         default: {
-            src: [ 'spec/test-results.xml' ],
-            dest: 'test-results.xml'
-         }
-      },
-      lcov_info_merger: {
-         default: {
-            src: [ 'spec/*/lcov.info' ],
-            dest: 'lcov.info'
-         }
-      },
+      }
    } );
 
    grunt.task.run( 'autoinit' );
 
-   grunt.registerTask( 'test', [ 'connect', 'karma', 'test_results_merger', 'lcov_info_merger', 'jshint' ] );
+   grunt.registerTask( 'test', [ 'karma', 'jshint' ] );
    grunt.registerTask( 'default', [ 'test' ] );
 };
