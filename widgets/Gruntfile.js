@@ -15,7 +15,7 @@ module.exports = function (grunt) {
 
       grunt.log.ok( 'Querying Bower dependencies…' );
 
-      bower.commands.list()
+      bower.commands.list( null, { offline: true } )
          .on( 'error', done )
          .on( 'end', function( list ) {
             var requireConfig = 'require_config.js';
@@ -55,9 +55,17 @@ module.exports = function (grunt) {
       },
       karma: {
          options: {
-            reporters: [ 'junit', 'progress' ],
+            reporters: [ 'junit', 'coverage', 'progress' ],
+            preprocessors: {
+               '*.js': 'coverage'
+            },
             proxies: {
-               '/base': 'http://localhost:<%= connect.options.port %>'
+               '/base': '/karma'
+            },
+            files: {
+               { pattern: 'bower_components/**', included: false },
+               { pattern: '!(bower_components|node_modules}/**', included: false },
+               { pattern: '*.*', included: false }
             }
          },
          default: {
@@ -65,7 +73,12 @@ module.exports = function (grunt) {
                specRunner: 'spec/spec_runner.js'
             },
             junitReporter: {
-               outputFile: 'test-results.xml'
+               outputFile: 'spec/test-results.xml'
+            },
+            coverageReporter: {
+               type: 'lcovonly',
+               dir: 'spec',
+               file: 'lcov.info'
             }
          }
       },
@@ -73,11 +86,23 @@ module.exports = function (grunt) {
          default: {
             src: [ '*.js', '!(bower_components|node_modules)/**/*.js' ]
          }
-      }
+      },
+      test_results_merger: {
+         default: {
+            src: [ 'spec/test-results.xml' ],
+            dest: 'test-results.xml'
+         }
+      },
+      lcov_info_merger: {
+         default: {
+            src: [ 'spec/*/lcov.info' ],
+            dest: 'lcov.info'
+         }
+      },
    } );
 
    grunt.task.run( 'autoinit' );
 
-   grunt.registerTask( 'test', [ 'connect', 'karma', 'jshint' ] );
+   grunt.registerTask( 'test', [ 'connect', 'karma', 'test_results_merger', 'lcov_info_merger', 'jshint' ] );
    grunt.registerTask( 'default', [ 'test' ] );
 };
