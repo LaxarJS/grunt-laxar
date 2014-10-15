@@ -43,7 +43,7 @@ function defaultConfig( baseUrl ) {
          'json': 'requirejs-plugins/src/json',
 
          // LaxarJS UIKit:
-         'bootstrap-tooltip': 'bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tooltip',
+         'bootstrap-tooltip': 'bootstrap-sass-official/assets/javascripts/bootstrap/tooltip',
 
          // LaxarJS Patterns:
          'json-patch': 'fast-json-patch/src/json-patch-duplex',
