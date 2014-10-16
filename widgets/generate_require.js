@@ -44,6 +44,7 @@ function defaultConfig( baseUrl ) {
 
          // LaxarJS UIKit:
          'bootstrap-tooltip': 'bootstrap-sass-official/assets/javascripts/bootstrap/tooltip',
+         'bootstrap-affix': 'bootstrap-sass-official/assets/javascripts/bootstrap/affix',
 
          // LaxarJS Patterns:
          'json-patch': 'fast-json-patch/src/json-patch-duplex',
