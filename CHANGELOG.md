@@ -2,13 +2,15 @@
 
 ## Last Changes
 
+- [#22](https://github.com/LaxarJS/grunt-laxar/issues/22): Added path to bootstrap affix control.
 - [#21](https://github.com/LaxarJS/grunt-laxar/issues/21): the Gruntfile provided for widget tests now create coverage reports.
+
 
 ## v0.5.0
 
 - [#19](https://github.com/LaxarJS/grunt-laxar/issues/19): we're now using our own _Karma_ and _grunt-karma_ forks so that we can respond to issues more quickly.
 - [#18](https://github.com/LaxarJS/grunt-laxar/issues/18): there is a new script `bin/fixinstall` to fix the PhantomJS installation if it's broken.
-- [#17](https://github.com/LaxarJS/grunt-laxar/issues/17): there are two new tasks to merge `test-results.xml` and `lcov.info` files.  
+- [#17](https://github.com/LaxarJS/grunt-laxar/issues/17): there are two new tasks to merge `test-results.xml` and `lcov.info` files.
   NEW FEATURE: see ticket for details
 - [#16](https://github.com/LaxarJS/grunt-laxar/issues/16): the karma-task is now configured to easily create coverage reports.
 - [#15](https://github.com/LaxarJS/grunt-laxar/issues/15): the `require_config.js`, that is generated for widgets, now contains static configuration for Marked.
@@ -26,7 +28,7 @@
 
 ## v0.3.0
 
-- [#4](https://github.com/LaxarJS/grunt-laxar/issues/4): directory_tree: allowed to embed files into listings using option embedContents  
+- [#4](https://github.com/LaxarJS/grunt-laxar/issues/4): directory_tree: allowed to embed files into listings using option embedContents
   NEW FEATURE: see ticket for details
 - [#5](https://github.com/LaxarJS/grunt-laxar/issues/5): css_merger: fixed default.theme handling (laxar_uikit) and absolute css urls
 - [#2](https://github.com/LaxarJS/grunt-laxar/issues/2): Finally, added a lot of tests
