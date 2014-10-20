@@ -14,15 +14,19 @@ module.exports = function( grunt ) {
    function widgetConfiguration( path, options, config ) {
       options = _.defaults( options, {
          karma: {
+            reporters: [ 'progress', 'junit' ],
             laxar: {
                specRunner: path + '/spec/spec_runner.js',
                requireConfig: 'require_config.js'
             },
             junitReporter: {
-               outputFile: path + '/test/test-results.xml'
+               outputFile: path + '/test-results.xml',
+               suite: path.replace( /\//g, '.' )
             },
             coverageReporter: {
-               dir: path + '/test'
+               type: 'lcovonly',
+               dir: path,
+               file: '../lcov.info'
             }
          },
          jshint: {}
