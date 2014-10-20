@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+## v0.5.1
+
 - [#23](https://github.com/LaxarJS/grunt-laxar/issues/23): the plugin provides a new Option `--continue` to keep running tasks after failures but keep a proper return code.
 - [#22](https://github.com/LaxarJS/grunt-laxar/issues/22): Added path to bootstrap affix control.
 - [#21](https://github.com/LaxarJS/grunt-laxar/issues/21): the Gruntfile provided for widget tests now create coverage reports.
