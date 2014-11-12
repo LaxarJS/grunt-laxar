@@ -9,8 +9,6 @@ var runTask = require( 'grunt-run-task' );
 describe( 'the portal_angular_dependencies task', function() {
    'use strict';
 
-   runTask.loadTasks( 'tasks' );
-
    var dir = {
       fixtures: 'tasks/spec/fixtures',
       expected: 'tasks/spec/expected',
@@ -28,9 +26,9 @@ describe( 'the portal_angular_dependencies task', function() {
          ],
          dest: dir.actual + '/portal_angular_dependencies.js'
       };
-      var task = runTask.task( 'portal_angular_dependencies', { default: config } );
+      var task = runTask.task( 'portal_angular_dependencies:default', { default: config } );
 
-      before( task.run( 'default' ) );
+      before( task.run() );
       after( task.clean() );
 
       it( 'creates the file specified as destination', function() {

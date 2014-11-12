@@ -9,8 +9,6 @@ var runTask = require( 'grunt-run-task' );
 describe( 'the lcov_info_merger task', function() {
    'use strict';
 
-   runTask.loadTasks( 'tasks' );
-
    var dir = {
       fixtures: 'tasks/spec/fixtures',
       expected: 'tasks/spec/expected',
@@ -21,9 +19,9 @@ describe( 'the lcov_info_merger task', function() {
       src: [ dir.fixtures + '/widgets/default/*/test/*/lcov.info' ],
       dest: dir.actual + '/lcov.info'
    };
-   var task = runTask.task( 'lcov_info_merger', { default: config } );
+   var task = runTask.task( 'lcov_info_merger:default', { default: config } );
 
-   before( task.run( 'default' ) );
+   before( task.run() );
    after( task.clean() );
 
    it( 'creates an `lcov.info` file containing all the input files\' coverage data', function() {

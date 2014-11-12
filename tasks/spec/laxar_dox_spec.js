@@ -9,8 +9,6 @@ var runTask = require( 'grunt-run-task' );
 describe( 'the laxar_dox task', function() {
    'use strict';
 
-   runTask.loadTasks( 'tasks' );
-
    var dir = {
       fixtures: 'tasks/spec/fixtures',
       expected: 'tasks/spec/expected',
@@ -24,9 +22,9 @@ describe( 'the laxar_dox task', function() {
          ],
          dest: dir.actual + '/laxar_dox_single.md'
       };
-      var task = runTask.task( 'laxar_dox', { single: config } );
+      var task = runTask.task( 'laxar_dox:single', { single: config } );
 
-      before( task.run( 'single' ) );
+      before( task.run() );
       after( task.clean() );
 
       it( 'creates the file specified as destination', function() {
@@ -49,9 +47,9 @@ describe( 'the laxar_dox task', function() {
          ],
          dest: dir.actual + '/laxar_dox_multiple.md'
       };
-      var task = runTask.task( 'laxar_dox', { multiple: config } );
+      var task = runTask.task( 'laxar_dox:multiple', { multiple: config } );
 
-      before( task.run( 'multiple' ) );
+      before( task.run() );
       after( task.clean() );
 
       it( 'creates the file specified as destination', function() {
