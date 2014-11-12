@@ -2,4 +2,5 @@ body {
    background-color: green;
    background-image: url(../images/test.png);
    background-image: url("http://example.com");
+   background-image: url("//example.com");
 };

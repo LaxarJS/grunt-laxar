@@ -247,7 +247,7 @@ module.exports = function( grunt ) {
          var pathPrefix = new Array( destinationFragments.length + 1 ).join( '../' );
 
          var urlMatcher = /url\(([^\)]*)\)/g;
-         var schemeMatcher = /^['"]?[a-zA-Z]+[:]\/\/.*/;
+         var schemeMatcher = /^['"]?([a-zA-Z]+[:])?\/\/.*/;
          return css.replace( urlMatcher, function( fullMatch, url ) {
             if( schemeMatcher.test( url ) ) {
                return fullMatch;
