@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v0.5.2
+
 - [#24](https://github.com/LaxarJS/grunt-laxar/issues/24): css_merger: fixed handling of protocol-relative URLs
 
 
