@@ -23,9 +23,9 @@ describe( 'the directory_tree task', function() {
          ],
          dest: dir.actual + '/directory_tree_default.json'
       };
-      var task = runTask.task( 'directory_tree', { default: config } );
+      var task = runTask.task( 'directory_tree:default', { default: config } );
 
-      before( task.run( 'default' ) );
+      before( task.run() );
       after( task.clean() );
 
       it( 'creates the file specified as destination', function() {
@@ -51,9 +51,9 @@ describe( 'the directory_tree task', function() {
          ],
          dest: dir.actual + '/directory_tree_basedir.json'
       };
-      var task = runTask.task( 'directory_tree', { basedir: config } );
+      var task = runTask.task( 'directory_tree:basedir', { basedir: config } );
 
-      before( task.run( 'basedir' ) );
+      before( task.run() );
       after( task.clean() );
 
       it( 'creates the file specified as destination', function() {

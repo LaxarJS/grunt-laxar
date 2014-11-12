@@ -9,8 +9,6 @@ var runTask = require( 'grunt-run-task' );
 describe( 'the widget_json_merger task', function() {
    'use strict';
 
-   runTask.loadTasks( 'tasks' );
-
    var dir = {
       fixtures: 'tasks/spec/fixtures',
       expected: 'tasks/spec/expected',
@@ -25,9 +23,9 @@ describe( 'the widget_json_merger task', function() {
             requireConfig: dir.fixtures + '/require_config.js'
          }
       };
-      var task = runTask.task( 'widget_json_merger', { default: config } );
+      var task = runTask.task( 'widget_json_merger:default', { default: config } );
 
-      before( task.run( 'default' ) );
+      before( task.run() );
       after( task.clean() );
 
       it( 'creates a `widgets.js` file in the output directory', function() {

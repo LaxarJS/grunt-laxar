@@ -9,8 +9,6 @@ var runTask = require( 'grunt-run-task' );
 describe( 'the css_merger task', function() {
    'use strict';
 
-   runTask.loadTasks( 'tasks' );
-
    var dir = {
       fixtures: 'tasks/spec/fixtures',
       expected: 'tasks/spec/expected',
@@ -28,7 +26,7 @@ describe( 'the css_merger task', function() {
             dir.fixtures + '/application/flow/flow.json'
          ]
       };
-      var task = runTask.task( 'css_merger', config );
+      var task = runTask.task( 'css_merger:default', { default: config } );
 
       before( task.run() );
 
