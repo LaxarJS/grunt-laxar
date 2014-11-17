@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#26](https://github.com/LaxarJS/grunt-laxar/issues/26): widgets: add jquery_ui require path
+
 
 ## v0.5.2
 
