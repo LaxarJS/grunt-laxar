@@ -118,7 +118,9 @@ module.exports = function( grunt ) {
          var collectAll = q.all( flowFiles.map( function( file ) {
             return q.all( file.src.map( function( flow ) {
                return widgetCollector.gatherWidgetsAndControls( paths.WIDGETS, flow ).then( function( result ) {
-                  widgets = widgets.concat( result.widgets.filter( uniqueWidget ) );
+                  Object.keys( result.widgets ).forEach( function( technology ) {
+                     widgets = widgets.concat( result.widgets[ technology ].filter( uniqueWidget ) );
+                  } );
                   controls = controls.concat( result.controls.filter( uniqueControl ) );
                   return q.when();
                } );
