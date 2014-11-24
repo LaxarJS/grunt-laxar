@@ -6,7 +6,6 @@
 module.exports = function( grunt ) {
    'use strict';
 
-   var _ = grunt.util._;
    var path = require( 'path' );
    var q = require( 'q' );
    var async = require( 'async' );
@@ -26,15 +25,43 @@ module.exports = function( grunt ) {
       };
    }
 
-   function generateBootstrapCode( dependencies ) {
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   function generateBootstrapCode( dependenciesByTechnology ) {
+
+      var dependencies = [];
+      var registryEntries = [];
+      Object.keys( dependenciesByTechnology )
+         .reduce( function( start, technology ) {
+            var end = start + dependenciesByTechnology[ technology].length;
+            [].push.apply( dependencies, dependenciesByTechnology[ technology ] );
+            registryEntries.push( '\'' + technology + '\': modules.slice( ' + start + ',' + end + ' )' );
+            return end;
+         }, 0 );
+
       var requireString = '[\n   \'' + dependencies.join( '\',\n   \'' ) + '\'\n]';
 
       return 'define( ' + requireString + ', function() {\n' +
          '   \'use strict\';\n' +
          '\n' +
-         '   return [].map.call( arguments, function( module ) { return module.name; } );\n' +
+         '   var modules = [].slice.call( arguments );\n' +
+         '   return {\n' +
+         '      ' + registryEntries.join( ',\n      ' ) + '\n' +
+         '   };\n' +
          '} );\n';
    }
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   function pushAllIfNotExists( arr, values ) {
+      values.forEach( function( value ) {
+         if( arr.indexOf( value ) === -1 ) {
+            arr.push( value );
+         }
+      } );
+   }
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    grunt.registerMultiTask( 'portal_angular_dependencies',
       'Generate a RequireJS module to bootstrap Angular.',
@@ -71,23 +98,39 @@ module.exports = function( grunt ) {
          );
 
          async.each( files, function( file, done ) {
-            var promises = [];
-            var results = {};
 
             grunt.verbose.writeln( 'Portal Angular dependencies: ' + file.dest );
 
-            file.src.forEach( function( flow ) {
-               var promise = widgetCollector.gatherWidgetsAndControls( paths.WIDGETS, flow );
-               promises.push( promise.then( function( result ) {
-                  _.merge( results, result );
-               } ) );
+            var promises = file.src.map( function( flow ) {
+               return widgetCollector.gatherWidgetsAndControls( paths.WIDGETS, flow );
             } );
 
-            q.all( promises ).then( function() {
-               grunt.file.write( file.dest, generateBootstrapCode( results.widgets.concat( results.controls ) ) );
-               grunt.log.ok( 'Created Angular dependencies in "' + file.dest + '".' );
-               done();
-            } ).catch( grunt.fail.fatal );
+            q.all( promises )
+               .then( function( results ) {
+                  var bucket = { angular: [] };
+                  results.forEach( function( result ) {
+                     console.log( result.controls );
+                     if( Array.isArray( result.controls ) ) {
+                        pushAllIfNotExists( bucket.angular, result.controls );
+                     }
+
+                     Object.keys( result.widgets ).forEach( function( type ) {
+                        if( !Array.isArray( bucket[ type ] ) ) {
+                           bucket[ type ] = [];
+                        }
+
+                        pushAllIfNotExists( bucket[ type ], result.widgets[ type ] );
+                     } );
+                  } );
+
+                  return bucket;
+               } )
+               .then( function( moduleData ) {
+                  grunt.file.write( file.dest, generateBootstrapCode( moduleData ) );
+                  grunt.log.ok( 'Created Angular dependencies in "' + file.dest + '".' );
+                  done();
+               } )
+               .catch( grunt.fail.fatal );
          }, done );
       } );
 };
