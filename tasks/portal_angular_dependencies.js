@@ -25,15 +25,33 @@ module.exports = function( grunt ) {
       };
    }
 
-   function generateBootstrapCode( dependencies ) {
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   function generateBootstrapCode( dependenciesByTechnology ) {
+
+      var dependencies = [];
+      var registryEntries = [];
+      Object.keys( dependenciesByTechnology )
+         .reduce( function( start, technology ) {
+            var end = start + dependenciesByTechnology[ technology].length;
+            [].push.apply( dependencies, dependenciesByTechnology[ technology ] );
+            registryEntries.push( '\'' + technology + '\': modules.slice( ' + start + ',' + end + ' )' );
+            return end;
+         }, 0 );
+
       var requireString = '[\n   \'' + dependencies.join( '\',\n   \'' ) + '\'\n]';
 
       return 'define( ' + requireString + ', function() {\n' +
          '   \'use strict\';\n' +
          '\n' +
-         '   return [].slice.call( arguments );\n' +
+         '   var modules = [].slice.call( arguments );\n' +
+         '   return {\n' +
+         '      ' + registryEntries.join( ',\n      ' ) + '\n' +
+         '   };\n' +
          '} );\n';
    }
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    function pushAllIfNotExists( arr, values ) {
       values.forEach( function( value ) {
@@ -42,6 +60,8 @@ module.exports = function( grunt ) {
          }
       } );
    }
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    grunt.registerMultiTask( 'portal_angular_dependencies',
       'Generate a RequireJS module to bootstrap Angular.',
@@ -106,7 +126,7 @@ module.exports = function( grunt ) {
                   return bucket;
                } )
                .then( function( moduleData ) {
-                  grunt.file.write( file.dest, generateBootstrapCode( moduleData.angular ) );
+                  grunt.file.write( file.dest, generateBootstrapCode( moduleData ) );
                   grunt.log.ok( 'Created Angular dependencies in "' + file.dest + '".' );
                   done();
                } )
