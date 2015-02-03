@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#30](https://github.com/LaxarJS/grunt-laxar/issues/30): directory_tree: better JSON syntax error reporting
 - [#27](https://github.com/LaxarJS/grunt-laxar/issues/27): widgets: removed marked configuration
 - [#26](https://github.com/LaxarJS/grunt-laxar/issues/26): widgets: add jquery_ui require path
 - [#24](https://github.com/LaxarJS/grunt-laxar/issues/24): css_merger: fixed handling of protocol-relative URLs
