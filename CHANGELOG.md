@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#31](https://github.com/LaxarJS/grunt-laxar/issues/31): portal_angular_dependencies: fixed handling of missing integration field
 - [#28](https://github.com/LaxarJS/grunt-laxar/issues/28): widgets: added support for more integration technologies.
     + **BREAKING CHANGE:** see ticket for details
 
