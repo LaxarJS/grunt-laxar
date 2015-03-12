@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#33](https://github.com/LaxarJS/grunt-laxar/issues/33): widget: jshint should ignore embedded projects
+
 
 ## v0.6.0
 
