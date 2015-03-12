@@ -39,7 +39,8 @@ module.exports = function( grunt ) {
          jshint: _.defaults( {}, config.jshint, {
             options: options.jshint,
             src: [ path + '/*.js',
-                   path + '/!(bower_components|node_modules)/**/*.js' ]
+                   path + '/!(bower_components|node_modules|var)/*.js',
+                   path + '/!(bower_components|node_modules|var)/!(bower_components|node_modules|var)/**/*.js' ]
          } )
       };
    }
