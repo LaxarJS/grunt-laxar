@@ -6,6 +6,7 @@
 - [#28](https://github.com/LaxarJS/grunt-laxar/issues/28): widgets: added support for more integration technologies.
     + **BREAKING CHANGE:** see ticket for details
 
+- [#32](https://github.com/LaxarJS/grunt-laxar/issues/32): widget dependencies: fixed URL generation for windows
 - [#34](https://github.com/LaxarJS/grunt-laxar/issues/34): widgets: fixed package configuration
 - [#33](https://github.com/LaxarJS/grunt-laxar/issues/33): widget: jshint should ignore embedded projects
 
