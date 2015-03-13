@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v0.7.0
+
 - [#32](https://github.com/LaxarJS/grunt-laxar/issues/32): widget dependencies: fixed URL generation for windows
 - [#34](https://github.com/LaxarJS/grunt-laxar/issues/34): widgets: fixed package configuration
 - [#33](https://github.com/LaxarJS/grunt-laxar/issues/33): widget: jshint should ignore embedded projects
