@@ -109,7 +109,6 @@ module.exports = function( grunt ) {
                .then( function( results ) {
                   var bucket = { angular: [] };
                   results.forEach( function( result ) {
-                     console.log( result.controls );
                      if( Array.isArray( result.controls ) ) {
                         pushAllIfNotExists( bucket.angular, result.controls );
                      }
