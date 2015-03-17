@@ -2,9 +2,12 @@
 
 ## Last Changes
 
+- [#35](https://github.com/LaxarJS/grunt-laxar/issues/35): widget dependencies: fixed URL generation for windows
 - [#31](https://github.com/LaxarJS/grunt-laxar/issues/31): portal_angular_dependencies: fixed handling of missing integration field
 - [#28](https://github.com/LaxarJS/grunt-laxar/issues/28): widgets: added support for more integration technologies.
     + **BREAKING CHANGE:** see ticket for details
+
+## v0.7.0
 
 - [#32](https://github.com/LaxarJS/grunt-laxar/issues/32): widget dependencies: fixed URL generation for windows
 - [#34](https://github.com/LaxarJS/grunt-laxar/issues/34): widgets: fixed package configuration
