@@ -2,7 +2,7 @@
 
 ## Last Changes
 
-- [#36](https://github.com/LaxarJS/grunt-laxar/issues/36): css_merger fix incorrect CSS output path for windows
+- [#36](https://github.com/LaxarJS/grunt-laxar/issues/36): css_merger fix incorrect CSS output path and `url()`s for windows
 
 ## v0.7.0
 
