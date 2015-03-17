@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#35](https://github.com/LaxarJS/grunt-laxar/issues/35): widget dependencies: fixed URL generation for windows
+
 
 ## v0.7.0
 
