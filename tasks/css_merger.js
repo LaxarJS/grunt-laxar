@@ -254,7 +254,13 @@ module.exports = function( grunt ) {
             if( schemeMatcher.test( url ) ) {
                return fullMatch;
             }
-            var fixedUrl = pathPrefix + path.join( sourceDirectory, url.replace( /["']/g, '' ) );
+
+            var fixedUrl = path.join(
+               pathPrefix,
+               sourceDirectory,
+               url.replace( /["']/g, '' )
+            ).split( path.sep ).join( '/' );
+
             return 'url("' + fixedUrl + '")';
          } );
       }
