@@ -44,7 +44,7 @@ module.exports = function( grunt ) {
             grunt.log.ok( 'Created merged css file in "' + outputFilePath + '".' );
             return q.when();
          } );
-      } ) ).then( done );
+      } ) ).then( done ).catch( done );
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -60,14 +60,16 @@ module.exports = function( grunt ) {
 
          function processThemeDir( dir, themeName ) {
             var cssMainFile = dir + '/css/theme.css';
+            var themeDir = path.resolve( dir );
             if( grunt.file.exists( cssMainFile ) ) {
                themes.push( {
-                  name: themeName || dir.replace( pathToThemes + '/', '' ),
-                  path: dir,
+                  name: themeName || themeDir.replace( pathToThemes + path.sep, '' ),
+                  path: themeDir,
                   mainFile: cssMainFile
                } );
             }
          }
+
       }
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
