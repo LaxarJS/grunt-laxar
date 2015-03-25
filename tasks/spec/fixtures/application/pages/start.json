@@ -11,6 +11,11 @@
             "widget": "default/test_widget",
             "features": {
             }
+         },
+         {
+            "widget": "default/local_widget",
+            "features": {
+            }
          }
       ]
    }

@@ -1,6 +1,6 @@
 {
-   "name": "TestWidget",
-   "description": "A regular test widget",
+   "name": "LocalWidget",
+   "description": "A widget with embedded test.theme styling",
    "version": {
       "spec": "0.1.0"
    },
