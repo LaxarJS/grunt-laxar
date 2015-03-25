@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v0.7.2
+
 - [#6](https://github.com/LaxarJS/grunt-laxar/issues/6): css_merger: fixed imports by URL
 
 
