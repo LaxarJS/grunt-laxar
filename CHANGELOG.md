@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#38](https://github.com/LaxarJS/grunt-laxar/issues/38): css_merger: find custom theme folders within widgets
 - [#6](https://github.com/LaxarJS/grunt-laxar/issues/6): css_merger: fixed imports by URL
 
 
