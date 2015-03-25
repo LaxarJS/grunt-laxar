@@ -4,11 +4,13 @@ body {
    background-image: url("../themes/test.theme/images/test.png");
    background-image: url( "http://example.com" );
    background-image: url("//example.com");
-};
+}
 @charset "UTF-8";
 
 
 
 .test-widget {
-   background-color: magenta;
+   background-color: yellow;
+}.local-widget {
+   color: green;
 }

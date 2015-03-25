@@ -38,7 +38,7 @@ describe( 'the css_merger task', function() {
          expect( grunt.file.exists( dir.actual + '/default.theme.css' ) ).toBeTruthy();
       } );
 
-      it( 'writes the expected stylesheets to the `default.theme.css` file', function() {
+      it( 'writes the expected stylesheets to the `test.theme.css` file', function() {
          var actual = grunt.file.read( dir.actual + '/test.theme.css' );
          var expected = grunt.file.read( dir.expected + '/test.theme.css' );
 
