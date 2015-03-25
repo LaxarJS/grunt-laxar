@@ -3,11 +3,16 @@
 ## Last Changes
 
 - [#6](https://github.com/LaxarJS/grunt-laxar/issues/6): css_merger: fixed imports by URL
+
+
+## v0.8.0
+
 - [#36](https://github.com/LaxarJS/grunt-laxar/issues/36): css_merger: fix incorrect CSS output path and `url()`s for windows
 - [#35](https://github.com/LaxarJS/grunt-laxar/issues/35): widget dependencies: fixed URL generation for windows
 - [#31](https://github.com/LaxarJS/grunt-laxar/issues/31): portal_angular_dependencies: fixed handling of missing integration field
 - [#28](https://github.com/LaxarJS/grunt-laxar/issues/28): widgets: added support for more integration technologies.
     + **BREAKING CHANGE:** see ticket for details
+
 
 ## v0.7.0
 
