@@ -1,6 +1,6 @@
 {
    "name": "grunt-laxar",
-   "version": "0.8.0-pre",
+   "version": "0.8.0",
    "description": "Grunt tasks for LaxarJS",
    "repository": {
       "type": "git",
