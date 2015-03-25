@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+- [#6](https://github.com/LaxarJS/grunt-laxar/issues/6): css_merger: fixed imports by URL
+
+
 ## v0.7.1
 
 - [#36](https://github.com/LaxarJS/grunt-laxar/issues/36): css_merger fix incorrect CSS output path and `url()`s for windows
