@@ -40,11 +40,25 @@ module.exports = function( grunt ) {
          var layoutCss = readLayouts( theme, pathToLayouts );
          return readWidgetsFromFlow( flowFiles, theme, pathToWidgets ).then( function( widgetCss ) {
             var outputFilePath = options.output + '/' + theme.name + '.css';
-            grunt.file.write( outputFilePath, [ mainCss ].concat( layoutCss ).concat( widgetCss ).join( '' ) );
+            var css = [ mainCss ].concat( layoutCss ).concat( widgetCss ).concat( '\n' ).join( '' );
+            grunt.file.write( outputFilePath, withImportsOnTop( css ) );
             grunt.log.ok( 'Created merged css file in "' + outputFilePath + '".' );
             return q.when();
          } );
       } ) ).then( done ).catch( done );
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function withImportsOnTop( css ) {
+         var imports = [];
+         // match plain imports and imports containing quoted strings using single or double quotes:
+         var matcher = /@import([^;"']*|[^;]*['][^']*['][^;]*|[^;]*["][^']*["][^;]*);/g;
+         var cssWithoutImports = css.replace( matcher, function( $0 ) {
+            imports.push( $0 );
+            return '';
+         } );
+         return imports.join( '\n' ) + '\n' + cssWithoutImports;
+      }
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -248,7 +262,7 @@ module.exports = function( grunt ) {
          var destinationFragments = destinationDirectory.replace( /\/$/, '' ).split( '/' );
          var pathPrefix = new Array( destinationFragments.length + 1 ).join( '../' );
 
-         var urlMatcher = /url\(([^\)]*)\)/g;
+         var urlMatcher = /url\(\s*([^\)]*)\s*\)/g;
          var schemeMatcher = /^['"]?([a-zA-Z]+[:])?\/\/.*/;
          return css.replace( urlMatcher, function( fullMatch, url ) {
             if( schemeMatcher.test( url ) ) {
