@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+@import url("http://example.com/") projection, tv;
+
 .test-widget {
    background-color: magenta;
 }
