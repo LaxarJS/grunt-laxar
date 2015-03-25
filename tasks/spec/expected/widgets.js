@@ -1,1 +1,1 @@
-define({"default/test_widget":{"name":"TestWidget","version":{"spec":"0.1.0"},"integration":{"type":"angular"},"features":{}}});
+define({"default/local_widget":{"name":"LocalWidget","version":{"spec":"0.1.0"},"integration":{"technology":"angular","type":"widget"},"features":{}},"default/test_widget":{"name":"TestWidget","version":{"spec":"0.1.0"},"integration":{"technology":"angular","type":"widget"},"features":{}}});

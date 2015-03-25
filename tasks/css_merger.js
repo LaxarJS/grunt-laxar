@@ -218,6 +218,7 @@ module.exports = function( grunt ) {
          var fragments = relativeWidgetPath.split( '/' );
          var widgetName = fragments[ fragments.length - 1 ];
          return getCandidate( [
+            path.join( pathToWidgets, relativeWidgetPath, theme.name, 'css', widgetName + '.css' ),
             path.join( theme.path, 'widgets', relativeWidgetPath, 'css', widgetName + '.css' ),
             path.join( pathToWidgets, relativeWidgetPath, options.defaultTheme, 'css', widgetName + '.css' )
          ] );

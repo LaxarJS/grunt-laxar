@@ -1,5 +1,6 @@
 define( [
-   '../widgets/default/test_widget/test_widget'
+   '../widgets/default/test_widget/test_widget',
+   '../widgets/default/local_widget/local_widget'
 ], function() {
    'use strict';
 
