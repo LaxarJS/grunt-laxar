@@ -164,7 +164,7 @@ module.exports = function( grunt ) {
 
          function setupWidgetCollector() {
             grunt.verbose.writeln( 'Css Merger: loading page loader' );
-            var PageLoader = requirejs( 'laxar/lib/portal/portal_assembler/page_loader' );
+            var PageLoader = requirejs( 'laxar/lib/loaders/page_loader' );
             var WidgetCollector = require( '../lib/widget_collector' );
             var client = httpClient();
 

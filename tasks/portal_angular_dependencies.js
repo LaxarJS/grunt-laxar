@@ -82,7 +82,7 @@ module.exports = function( grunt ) {
          var paths = require( '../lib/laxar_paths' )( config, options );
 
          grunt.verbose.writeln( 'Portal Angular dependencies: loading page loader' );
-         var PageLoader = requirejs( 'laxar/lib/portal/portal_assembler/page_loader' );
+         var PageLoader = requirejs( 'laxar/lib/loaders/page_loader' );
          var WidgetCollector = require( '../lib/widget_collector' );
 
          var client = httpClient();
