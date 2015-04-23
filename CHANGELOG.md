@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+- [#25](https://github.com/LaxarJS/grunt-laxar/issues/25): Removed the now obsolete widget_json_merger task.
+
+
 ## 1.0.0-alpha.3
 
 - [#40](https://github.com/LaxarJS/grunt-laxar/issues/40): portal_angular_dependencies, css_merger: refactored portal artifacts to runtime and loaders.
