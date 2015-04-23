@@ -16,6 +16,9 @@
             "widget": "default/local_widget",
             "features": {
             }
+         },
+         {
+            "widget": "default/plain_widget"
          }
       ]
    }

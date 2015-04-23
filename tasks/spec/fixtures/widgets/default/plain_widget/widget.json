@@ -1,0 +1,15 @@
+{
+   "name": "PlainWidget",
+   "description": "A plain widget",
+   "version": {
+      "spec": "0.1.0"
+   },
+
+   "integration": {
+      "technology": "plain",
+      "type": "widget"
+   },
+
+   "features": {
+   }
+}

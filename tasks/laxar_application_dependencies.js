@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 aixigo AG
+ * Copyright 2015 aixigo AG
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
@@ -17,7 +17,7 @@ module.exports = function( grunt ) {
          get: function( url ) {
             var deferred = q.defer();
             process.nextTick( function() {
-               grunt.verbose.writeln( 'Portal Angular dependencies: reading "' + url + '"' );
+               grunt.verbose.writeln( 'laxar_application_dependencies: reading "' + url + '"' );
                deferred.resolve( { data: grunt.file.readJSON( url ) } );
             } );
             return deferred.promise;
@@ -63,8 +63,8 @@ module.exports = function( grunt ) {
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-   grunt.registerMultiTask( 'portal_angular_dependencies',
-      'Generate a RequireJS module to bootstrap Angular.',
+   grunt.registerMultiTask( 'laxar_application_dependencies',
+      'Generate a RequireJS module to bootstrap a LaxarJS application with its widget modules.',
       function() {
 
          var options = this.options( {
@@ -81,16 +81,16 @@ module.exports = function( grunt ) {
          var requirejs = require( 'requirejs' ).config( config );
          var paths = require( '../lib/laxar_paths' )( config, options );
 
-         grunt.verbose.writeln( 'Portal Angular dependencies: loading page loader' );
+         grunt.verbose.writeln( 'laxar_application_dependencies: obtaining page loader from LaxarJS core' );
          var PageLoader = requirejs( 'laxar/lib/loaders/page_loader' );
          var WidgetCollector = require( '../lib/widget_collector' );
 
          var client = httpClient();
 
-         grunt.verbose.writeln( 'Portal Angular dependencies: page loader' );
+         grunt.verbose.writeln( 'laxar_application_dependencies: instantiating page loader' );
          var pageLoader = PageLoader.create( q, client, paths.PAGES );
 
-         grunt.verbose.writeln( 'Portal Angular dependencies: initializing widget collector' );
+         grunt.verbose.writeln( 'laxar_application_dependencies: instantiating widget collector' );
          var widgetCollector = WidgetCollector.create(
             client,
             path.relative( config.baseUrl, paths.WIDGETS ),
@@ -99,7 +99,7 @@ module.exports = function( grunt ) {
 
          async.each( files, function( file, done ) {
 
-            grunt.verbose.writeln( 'Portal Angular dependencies: ' + file.dest );
+            grunt.verbose.writeln( 'laxar_application_dependencies: ' + file.dest );
 
             var promises = file.src.map( function( flow ) {
                return widgetCollector.gatherWidgetsAndControls( paths.WIDGETS, flow );
@@ -126,7 +126,7 @@ module.exports = function( grunt ) {
                } )
                .then( function( moduleData ) {
                   grunt.file.write( file.dest, generateBootstrapCode( moduleData ) );
-                  grunt.log.ok( 'Created Angular dependencies in "' + file.dest + '".' );
+                  grunt.log.ok( 'Collected LaxarJS application dependencies in "' + file.dest + '".' );
                   done();
                } )
                .catch( grunt.fail.fatal );
