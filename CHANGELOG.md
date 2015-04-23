@@ -2,6 +2,12 @@
 
 ## Last Changes
 
+- [#29](https://github.com/LaxarJS/grunt-laxar/issues/29): portal_angular_dependencies: renamed to laxar_application_dependencies
+    + **BREAKING CHANGE:** see ticket for details
+
+
+## 1.0.0-alpha.4
+
 - [#25](https://github.com/LaxarJS/grunt-laxar/issues/25): Removed the now obsolete widget_json_merger task.
     + **BREAKING CHANGE:** see ticket for details
 

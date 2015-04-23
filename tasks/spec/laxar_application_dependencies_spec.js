@@ -6,7 +6,7 @@
 var grunt = require( 'grunt' );
 var runTask = require( 'grunt-run-task' );
 
-describe( 'the portal_angular_dependencies task', function() {
+describe( 'the laxar_application_dependencies task', function() {
    'use strict';
 
    var dir = {
@@ -24,20 +24,20 @@ describe( 'the portal_angular_dependencies task', function() {
          src: [
             dir.fixtures + '/application/flow/flow.json'
          ],
-         dest: dir.actual + '/portal_angular_dependencies.js'
+         dest: dir.actual + '/laxar_application_dependencies.js'
       };
-      var task = runTask.task( 'portal_angular_dependencies:default', { default: config } );
+      var task = runTask.task( 'laxar_application_dependencies:default', { default: config } );
 
       before( task.run() );
-      after( task.clean() );
+      // after( task.clean() );
 
       it( 'creates the file specified as destination', function() {
          expect( grunt.file.exists( config.dest ) ).toBeTruthy();
       } );
 
       it( 'writes the expected RequireJS module to the destination file', function() {
-         var actual = grunt.file.read( dir.actual + '/portal_angular_dependencies.js' );
-         var expected = grunt.file.read( config.dest );
+         var actual = grunt.file.read( dir.actual + '/laxar_application_dependencies.js' );
+         var expected = grunt.file.read( dir.expected + '/laxar_application_dependencies.js' );
 
          expect( actual ).toEqual( expected );
       } );

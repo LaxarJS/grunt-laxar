@@ -50,4 +50,5 @@ grunt.initConfig( {
          }
       }
    }
-
+} );
+```
