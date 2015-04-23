@@ -2,12 +2,12 @@
 
 > Grunt tasks for LaxarJS
 
-`grunt-laxar` provides a couple of custom tasks for *LaxarJS* applications
+`grunt-laxar` provides a couple of custom tasks for [LaxarJS](http://laxarjs.org) applications
 and default configurations for tasks from the Grunt community.
 
 ```console
-$ grunt directory_tree portal_angular_dependencies connect karma watch
-        └─1──────────┘ └─2───────────────────────┘ └─3───┘ └─4─┘ └─5─┘
+$ grunt directory_tree laxar_application_dependencies connect karma watch
+        └─1──────────┘ └─2──────────────────────────┘ └─3───┘ └─4─┘ └─5─┘
 
   1) create filesystem map in JSON
   2) collect dependencies for AngularJS
@@ -25,7 +25,7 @@ guide.
 To use this plugin, your first need to install it using [NPM](https://npmjs.org):
 
 ```console
-$ npm install
+$ npm install grunt-laxar
 ```
 
 After that, load its tasks from your Gruntfile:
@@ -42,7 +42,7 @@ grunt.loadNpmTasks( 'grunt-laxar' );
   Generate a JSON mapping of files inside a specific directory tree.
 - [`laxar_dox`](docs/tasks/laxar_dox.md):
   Create API documentation in Markdown.
-- [`portal_angular_dependencies`](docs/tasks/portal_angular_dependencies.md):
+- [`laxar_application_dependencies`](docs/tasks/laxar_application_dependencies.md):
   Generate a *RequireJS* module to bootstrap *AngularJS*.
 
 ### Third party tasks
