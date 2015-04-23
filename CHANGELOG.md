@@ -3,6 +3,7 @@
 ## Last Changes
 
 - [#25](https://github.com/LaxarJS/grunt-laxar/issues/25): Removed the now obsolete widget_json_merger task.
+    + **BREAKING CHANGE:** see ticket for details
 
 
 ## 1.0.0-alpha.3
