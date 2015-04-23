@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#39](https://github.com/LaxarJS/grunt-laxar/issues/39): widget: updated `karma-laxar` to automatically load `es5-shim`
+    + NEW FEATURE: see ticket for details
 - [#29](https://github.com/LaxarJS/grunt-laxar/issues/29): portal_angular_dependencies: renamed to laxar_application_dependencies
     + **BREAKING CHANGE:** see ticket for details
 - [#25](https://github.com/LaxarJS/grunt-laxar/issues/25): Removed the now obsolete widget_json_merger task.
