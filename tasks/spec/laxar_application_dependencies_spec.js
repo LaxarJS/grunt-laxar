@@ -29,7 +29,7 @@ describe( 'the laxar_application_dependencies task', function() {
       var task = runTask.task( 'laxar_application_dependencies:default', { default: config } );
 
       before( task.run() );
-      // after( task.clean() );
+      after( task.clean() );
 
       it( 'creates the file specified as destination', function() {
          expect( grunt.file.exists( config.dest ) ).toBeTruthy();

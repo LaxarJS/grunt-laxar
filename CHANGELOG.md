@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#42](https://github.com/LaxarJS/grunt-laxar/issues/42): laxar_application_dependencies: cleaned up some fallout of (#29)
+
 
 ## 1.0.0-alpha.4
 
