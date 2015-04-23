@@ -44,8 +44,6 @@ grunt.loadNpmTasks( 'grunt-laxar' );
   Create API documentation in Markdown.
 - [`portal_angular_dependencies`](docs/tasks/portal_angular_dependencies.md):
   Generate a *RequireJS* module to bootstrap *AngularJS*.
-- [`widget_json_merger`](docs/tasks/widget_json_merger.md):
-  Merge multiple `widget.json` files into one file.
 
 ### Third party tasks
 
