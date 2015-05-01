@@ -15,6 +15,11 @@ require.config( {
          name: 'laxar_uikit',
          location: 'laxar_uikit',
          main: 'laxar_uikit'
+      },
+      {
+         name: 'laxar-application',
+         location: '..',
+         main: 'init'
       }
    ],
    paths: {

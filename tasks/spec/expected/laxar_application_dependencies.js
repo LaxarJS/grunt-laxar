@@ -1,7 +1,7 @@
 define( [
-   '../widgets/default/test_widget/test_widget',
-   '../widgets/default/local_widget/local_widget',
-   '../widgets/default/plain_widget/plain_widget'
+   'laxar-application/widgets/default/test_widget/test_widget',
+   'laxar-application/widgets/default/local_widget/local_widget',
+   'laxar-application/widgets/default/plain_widget/plain_widget'
 ], function() {
    'use strict';
 

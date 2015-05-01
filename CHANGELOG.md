@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#44](https://github.com/LaxarJS/grunt-laxar/issues/44): laxar_application_dependencies: use laxar-application package to allow for using relative AMD-paths from widgets, even with plugins
+    + **BREAKING CHANGE:** see ticket for details
 - [#42](https://github.com/LaxarJS/grunt-laxar/issues/42): laxar_application_dependencies: cleaned up some fallout of (#29)
 
 
