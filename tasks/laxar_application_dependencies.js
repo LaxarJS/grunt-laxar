@@ -69,6 +69,7 @@ module.exports = function( grunt ) {
 
          var options = this.options( {
             base: '.',
+            applicationPackage: 'laxar-application',
             laxar: 'laxar',
             pages: 'laxar-path-pages',
             widgets: 'laxar-path-widgets',
@@ -93,7 +94,7 @@ module.exports = function( grunt ) {
          grunt.verbose.writeln( 'laxar_application_dependencies: instantiating widget collector' );
          var widgetCollector = WidgetCollector.create(
             client,
-            path.relative( config.baseUrl, paths.WIDGETS ),
+            path.join( options.applicationPackage, path.relative( options.base, paths.WIDGETS ) ),
             pageLoader
          );
 
