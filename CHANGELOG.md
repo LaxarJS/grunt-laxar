@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## 1.0.0-alpha.6
+
 - [#43](https://github.com/LaxarJS/grunt-laxar/issues/43): css_merger: load CSS from themes
     + NEW FEATURE: see ticket for details
 
