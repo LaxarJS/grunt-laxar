@@ -88,36 +88,55 @@ module.exports = function( grunt ) {
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      function readLayouts( theme, path ) {
-         var layoutsRead = [];
+      function readLayouts( theme, applicationLayoutsRoot ) {
+         // collect all possible layout references:
+         var themeLayoutsRoot = path.join( theme.path, 'layouts' );
+         var cssFilesByLayout = collectCssFiles( applicationLayoutsRoot, themeLayoutsRoot );
 
-         // Layouts are identified by collecting HTML files.
-         // The layout folders may directly contain the corresponding CSS files or there may be theme folders.
-         return grunt.file.expand( path + '/**/*.html' ).reduce( function( css, assetDir ) {
-            var relativePath = assetDir.replace( path + '/', '' );
-            var parts = relativePath.split( '/' );
-
-            var layoutName;
-            var layoutPath;
-            if( parts[ parts.length - 2 ].match( /\.theme$/ ) ) {
-               // We have a layout with standard theme folder
-               layoutName = parts.slice( 0, parts.length - 2 ).join( '/' );
-               layoutPath = path + '/' + layoutName + '/';
-            }
-            else {
-               // Assume we have a layout without proper theming
-               layoutName = parts.slice( 0, parts.length - 1 ).join( '/' );
-               layoutPath = path + '/' + layoutName + '/';
-            }
-
-            if( layoutsRead.indexOf( layoutName ) === -1 ) {
-               layoutsRead.push( layoutName );
-               var fileName = fileNameForLayout( layoutPath, theme );
-               return css.concat( [ readCss( fileName ) ] );
-            }
-
-            return css;
+         return Object.keys( cssFilesByLayout ).reduce( function( css, layout ) {
+            var alternatives = cssFilesByLayout[ layout ];
+            return alternatives.length ? css.concat( [ readCss( alternatives[ 0 ] ) ] ) : css;
          }, [] );
+
+         /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+         function collectCssFiles( appLayoutsRoot, themeLayoutsRoot ) {
+            var result = collectLayouts();
+            Object.keys( result ).forEach( function( layout ) {
+               var baseName = layout.split( /[/\\]/ ).pop() + '.css';
+               // theme folder within application layout folder:
+               var places = [ [ appLayoutsRoot, layout, theme.name, 'css', baseName ].join( '/' ) ];
+               if( theme.name !== options.defaultTheme ) {
+                  // layout folder within theme folder:
+                  places.push( [ themeLayoutsRoot, layout, 'css', baseName ].join( '/' ) );
+                  // fallback to default theme folder within application layout folder:
+                  places.push( [ appLayoutsRoot, layout, options.defaultTheme, 'css', baseName ].join( '/' ) );
+               }
+
+               result[ layout ] = places.reduce( function( res, cssLocation ) {
+                  return res.concat( grunt.file.expand( cssLocation ) );
+               }, [] );
+            } );
+            return result;
+
+            //////////////////////////////////////////////////////////////////////////////////////////////////
+
+            function collectLayouts() {
+               var layoutsMap = {};
+               [ appLayoutsRoot, themeLayoutsRoot ].forEach( function( root ) {
+                  grunt.file.expand( root + '/**/*.html' ).forEach( function( htmlFilePath ) {
+                     var layout = htmlFilePath.replace( root, '' ).replace( /^[/]/, '' ).replace(
+                        /[/]([^\/]*\.theme[/])?[^\/]*\.html$/,
+                        ''
+                     );
+                     if( layout ) {
+                        layoutsMap[ layout ] = [];
+                     }
+                  } );
+               } );
+               return layoutsMap;
+            }
+         }
       }
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -200,18 +219,6 @@ module.exports = function( grunt ) {
                }
             };
          }
-      }
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      function fileNameForLayout( layoutPath, theme ) {
-         var fragments = layoutPath.split( '/' );
-         var layoutName = fragments[ fragments.length - 2 ];
-         return getCandidate( [
-            path.join( layoutPath, theme.name, 'css', layoutName + '.css' ),
-            path.join( layoutPath, options.defaultTheme, 'css', layoutName + '.css' ),
-            path.join( layoutPath, 'css', layoutName + '.css' ) // deprecated old directory layout
-         ] );
       }
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////

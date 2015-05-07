@@ -5,7 +5,10 @@ body {
    background-image: url( "http://example.com" );
    background-image: url("//example.com");
 }
-@charset "UTF-8";
+.example-layout {
+   /* from test.theme */
+   color: green;
+}@charset "UTF-8";
 
 
 
