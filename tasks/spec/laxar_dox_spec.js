@@ -20,20 +20,20 @@ describe( 'the laxar_dox task', function() {
          src: [
             dir.fixtures + '/libs/test_lib/test.js'
          ],
-         dest: dir.actual + '/laxar_dox_single.md'
+         dest: dir.actual + '/'
       };
       var task = runTask.task( 'laxar_dox:single', { single: config } );
 
       before( task.run() );
       after( task.clean() );
 
-      it( 'creates the file specified as destination', function() {
+      it( 'creates the file in the directory specified as destination', function() {
          expect( grunt.file.exists( config.dest ) ).toBeTruthy();
       } );
 
       it( 'creates Markdown formatted API documentation', function() {
-         var actual = grunt.file.read( config.dest );
-         var expected = grunt.file.read( dir.expected + '/laxar_dox_single.md' );
+         var actual = readMarkdownFile( config.dest + '/test.js.md' );
+         var expected = readMarkdownFile( dir.expected + '/test.js.md' );
 
          expect( actual ).toEqual( expected );
       } );
@@ -43,25 +43,39 @@ describe( 'the laxar_dox task', function() {
       var config = {
          src: [
             dir.fixtures + '/libs/test_lib/test.js',
-            dir.fixtures + '/libs/test_lib/test.js'
+            dir.fixtures + '/libs/test_lib/test2.js'
          ],
-         dest: dir.actual + '/laxar_dox_multiple.md'
+         dest: dir.actual + '/'
       };
       var task = runTask.task( 'laxar_dox:multiple', { multiple: config } );
 
       before( task.run() );
       after( task.clean() );
 
-      it( 'creates the file specified as destination', function() {
-         expect( grunt.file.exists( config.dest ) ).toBeTruthy();
+      it( 'creates the files in the directory specified as destination', function() {
+         expect( grunt.file.exists( config.dest + '/test.js.md' ) ).toBeTruthy();
+         expect( grunt.file.exists( config.dest + '/test2.js.md' ) ).toBeTruthy();
       } );
 
       it( 'creates Markdown formatted API documentation', function() {
-         var actual = grunt.file.read( config.dest );
-         var expected = grunt.file.read( dir.expected + '/laxar_dox_multiple.md' );
+         var actual = readMarkdownFile( config.dest + '/test.js.md' );
+         var expected = readMarkdownFile( dir.expected + '/test.js.md' );
 
          expect( actual ).toEqual( expected );
+
+         actual = readMarkdownFile( config.dest + '/test2.js.md' );
+         expected = readMarkdownFile( dir.expected + '/test2.js.md' );
+
+         expect(  actual ).toEqual( expected );
       } );
    } );
+
+   function readMarkdownFile( path ) {
+      return stripWhitespace( grunt.file.read( path ) );
+   }
+
+   function stripWhitespace( str ) {
+      return str.replace( /\s/g, '' );
+   }
 
 } );

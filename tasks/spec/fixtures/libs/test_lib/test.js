@@ -3,7 +3,11 @@ define( [], function() {
 
    /**
     * This is a test class.
-    * @param {String} name a name
+    *
+    * @param {String} name
+    *    a name
+    *
+    * @constructor
     */
    function Test( name ) {
       this.name_ = name;
@@ -11,21 +15,29 @@ define( [], function() {
 
    /**
     * This is a test method.
-    * @return {String} the name
+    *
+    * @return {String}
+    *    the name
     */
    Test.prototype.getName = function getName() {
       return this.name_;
    };
 
-
    return {
+
       /**
        * This is a test function.
-       * @param {String} name a name
-       * @return {Object} a new Test instance
+       *
+       * @param {String} name
+       *    a name
+       *
+       * @return {Test}
+       *    a new Test instance
        */
       create: function( name ) {
          return new Test( name );
       }
+
    };
+
 } );
