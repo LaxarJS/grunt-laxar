@@ -26,7 +26,7 @@
       "q": "~1.0.0",
       "minimatch": "~0.2.14",
       "connect-xcors": "~0.5.2",
-      "laxar_dox": "~0.1.0",
+      "laxar_dox": "~1.0.0-alpha.0",
       "karma-laxar": "~0.2.0",
       "karma-coverage": "~0.2.6",
       "karma-junit-reporter": "~0.2.1",
