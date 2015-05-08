@@ -12,6 +12,7 @@
       "fixinstall": "./bin/fixinstall.js"
    },
    "scripts": {
+      "prepublish": "git submodule update --init lib/laxar",
       "test": "grunt test"
    },
    "keywords": [
@@ -47,10 +48,11 @@
       "grunt-cli": "~0.1.13",
       "grunt-run-task": "~0.1.2",
       "grunt-contrib-clean": "~0.5.0",
-      "grunt-contrib-jshint": "~0.10.0",
       "grunt-mocha-cli": "~1.8.0",
       "grunt-bump": "~0.0.13",
       "expectations": "~0.2.5",
+      "jjv": "~1.0.0",
+      "jjve": "~0.5.0",
       "md-code-stream": "~0.1.0"
    }
 }
