@@ -1,1 +1,1 @@
-{"tasks":{"spec":{"fixtures":{"libs":{"test_lib":{"test.js":1}}}}}}
+{"tasks":{"spec":{"fixtures":{"libs":{"test_lib":{"test.js":1,"test2.js":1}}}}}}
