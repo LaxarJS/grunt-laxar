@@ -7,25 +7,30 @@ module.exports = function( grunt ) {
    'use strict';
 
    var path = require( 'path' );
-   var async = require( 'async' );
    var laxarDox = require( 'laxar_dox' );
 
    grunt.task.registerMultiTask( 'laxar_dox', 'Creates API documentation in Markdown', function() {
 
-      var options = this.options( {
+      var options = this.options( {} );
+      var files = this.files || [];
+
+      files.forEach( function( file ) {
+         grunt.log.ok( 'Laxar Dox: creating markdown from ' + file.src.length + ' files.' );
+
+         file.src.forEach( function( filePath ) {
+            var markdown = laxarDox.createMarkdown( grunt.file.read( filePath ) );
+            if( !markdown ) {
+               // no public api doc comments found
+               return;
+            }
+
+            var fileName = path.basename( filePath );
+            var outputFilePath = path.join( file.dest, fileName + '.md' );
+
+            grunt.file.write( outputFilePath, markdown );
+
+            grunt.log.ok( 'Created "' + outputFilePath + '" from "' + filePath + '".' );
+         } );
       } );
-      var files = this.files;
-      var done = this.async();
-
-      async.each( files, function( file, done ) {
-         grunt.verbose.writeln( 'Laxar Dox: creating markdown from ' + file.src.length + ' files.' );
-         var markdown = file.src.map( grunt.file.read )
-            .map( laxarDox.createMarkdown )
-            .join( '\n\n----\n\n' );
-
-         grunt.file.write( file.dest, markdown );
-         grunt.log.ok( 'Created "' + file.dest + '".' );
-         done();
-      }, done );
    } );
 };

@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#46](https://github.com/LaxarJS/grunt-laxar/issues/46): documentation: refactored laxar_dox task and added public documentation task
+
 
 ## 1.0.0-alpha.6
 
