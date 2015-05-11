@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#49](https://github.com/LaxarJS/grunt-laxar/issues/49): laxar_application_dependencies: fixed dependencies
 - [#48](https://github.com/LaxarJS/grunt-laxar/issues/48): documentation: updated to newest laxar dox version
 
 
