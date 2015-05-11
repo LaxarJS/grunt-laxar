@@ -1,3 +1,13 @@
+/**
+ * Copyright 2015 aixigo AG
+ * Released under the MIT license.
+ * http://laxarjs.org/license
+ */
+/**
+ * Another test module.
+ *
+ * @module anotherTestModule
+ */
 define( [ 'angular' ], function( ng ) {
    'use strict';
 

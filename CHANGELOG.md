@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#48](https://github.com/LaxarJS/grunt-laxar/issues/48): documentation: updated to newest laxar dox version
+
 
 ## 1.0.0-alpha.7
 

@@ -1,3 +1,13 @@
+/**
+ * Copyright 2015 aixigo AG
+ * Released under the MIT license.
+ * http://laxarjs.org/license
+ */
+/**
+ * Just a test module.
+ *
+ * @module testModule
+ */
 define( [], function() {
    'use strict';
 
