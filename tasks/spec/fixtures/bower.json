@@ -3,8 +3,8 @@
    "dependencies": {
       "requirejs": "jrburke/requirejs#2.1.x",
       "requirejs-plugins": "millermedeiros/requirejs-plugins#1.0.x",
-      "laxar": "LaxarJS/laxar#^1.0.0-alpha.5",
-      "laxar_uikit": "LaxarJS/laxar_uikit#^1.0.0-alpha.3",
-      "laxar_patterns": "LaxarJS/laxar_patterns#^1.0.0-alpha.0"
+      "laxar": "LaxarJS/laxar#^1.0.0-alpha.10",
+      "laxar_uikit": "LaxarJS/laxar_uikit#^1.0.0-alpha.5",
+      "laxar_patterns": "LaxarJS/laxar_patterns#^1.0.0-alpha.1"
    }
 }

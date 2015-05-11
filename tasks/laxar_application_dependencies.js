@@ -80,11 +80,11 @@ module.exports = function( grunt ) {
 
          var config = require( '../lib/require_config' )( options.requireConfig, options );
          var requirejs = require( 'requirejs' ).config( config );
-         var paths = require( '../lib/laxar_paths' )( config, options );
-
          grunt.verbose.writeln( 'laxar_application_dependencies: obtaining page loader from LaxarJS core' );
          var PageLoader = requirejs( 'laxar/lib/loaders/page_loader' );
          var WidgetCollector = require( '../lib/widget_collector' );
+         var paths = require( '../lib/laxar_paths' )( config, options );
+
 
          var client = httpClient();
 
