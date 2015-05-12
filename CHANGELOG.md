@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#50](https://github.com/LaxarJS/grunt-laxar/issues/50): laxar_application_dependencies: added lookup of control.json for actual control name
+
 
 ## 1.0.0-alpha.8
 
