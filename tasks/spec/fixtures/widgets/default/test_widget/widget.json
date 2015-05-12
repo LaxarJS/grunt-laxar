@@ -10,6 +10,10 @@
       "type": "widget"
    },
 
+   "controls": [
+      "laxar-path-controls/ax-test-control"
+   ],
+
    "features": {
    }
 }

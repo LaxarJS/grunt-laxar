@@ -38,6 +38,7 @@ require.config( {
       'laxar-path-root': '..',
       'laxar-path-layouts': '../application/layouts',
       'laxar-path-pages': '../application/pages',
+      'laxar-path-controls': '../controls',
       'laxar-path-widgets': '../widgets',
       'laxar-path-themes': '../themes',
       'laxar-path-flow': '../application/flow/flow.json'

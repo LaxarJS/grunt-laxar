@@ -18,6 +18,7 @@ describe( 'the laxar_application_dependencies task', function() {
    describe( 'when using the default configuration', function() {
       var config = {
          options: {
+            controls: dir.fixtures + '/controls',
             base: dir.fixtures,
             requireConfig: dir.fixtures + '/require_config.js'
          },

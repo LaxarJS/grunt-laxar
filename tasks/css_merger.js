@@ -191,7 +191,8 @@ module.exports = function( grunt ) {
             var pageLoader = PageLoader.create( q, client, paths.PAGES );
 
             grunt.verbose.writeln( 'Css Merger: initializing widget collector' );
-            return WidgetCollector.create( client, path.relative( config.baseUrl, paths.WIDGETS ), pageLoader );
+            var widgetsRoot = path.relative( config.baseUrl, paths.WIDGETS );
+            return WidgetCollector.create( requirejs, client, widgetsRoot, pageLoader );
          }
 
          /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -213,7 +214,11 @@ module.exports = function( grunt ) {
                   var deferred = q.defer();
                   process.nextTick( function() {
                      grunt.verbose.writeln( 'Css Merger: reading "' + url + '"' );
-                     deferred.resolve( { data: grunt.file.readJSON( url ) } );
+                     if( grunt.file.exists( url ) ) {
+                        deferred.resolve( { data: grunt.file.readJSON( url ) } );
+                        return;
+                     }
+                     deferred.reject( new Error( 'Could not load ' + url ) );
                   } );
                   return deferred.promise;
                }

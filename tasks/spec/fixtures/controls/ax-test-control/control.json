@@ -1,0 +1,7 @@
+{
+   "name": "AxTestControl",
+
+   "integration": {
+      "technology": "angular"
+   }
+}

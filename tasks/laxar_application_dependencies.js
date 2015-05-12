@@ -18,7 +18,11 @@ module.exports = function( grunt ) {
             var deferred = q.defer();
             process.nextTick( function() {
                grunt.verbose.writeln( 'laxar_application_dependencies: reading "' + url + '"' );
-               deferred.resolve( { data: grunt.file.readJSON( url ) } );
+               if( grunt.file.exists( url ) ) {
+                  deferred.resolve( { data: grunt.file.readJSON( url ) } );
+                  return;
+               }
+               deferred.reject( new Error( 'Could not load ' + url ) );
             } );
             return deferred.promise;
          }
@@ -35,7 +39,7 @@ module.exports = function( grunt ) {
          .reduce( function( start, technology ) {
             var end = start + dependenciesByTechnology[ technology].length;
             [].push.apply( dependencies, dependenciesByTechnology[ technology ] );
-            registryEntries.push( '\'' + technology + '\': modules.slice( ' + start + ',' + end + ' )' );
+            registryEntries.push( '\'' + technology + '\': modules.slice( ' + start + ', ' + end + ' )' );
             return end;
          }, 0 );
 
@@ -72,6 +76,7 @@ module.exports = function( grunt ) {
             applicationPackage: 'laxar-application',
             laxar: 'laxar',
             pages: 'laxar-path-pages',
+            controls: 'laxar-path-controls',
             widgets: 'laxar-path-widgets',
             requireConfig: 'require_config.js'
          } );
@@ -93,6 +98,7 @@ module.exports = function( grunt ) {
 
          grunt.verbose.writeln( 'laxar_application_dependencies: instantiating widget collector' );
          var widgetCollector = WidgetCollector.create(
+            requirejs,
             client,
             path.join( options.applicationPackage, path.relative( options.base, paths.WIDGETS ) ),
             pageLoader
