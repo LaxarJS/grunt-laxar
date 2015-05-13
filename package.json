@@ -28,6 +28,7 @@
       "grunt-contrib-jshint": "~0.10.0",
       "grunt-contrib-requirejs": "~0.4.3",
       "grunt-karma": "LaxarJS/grunt-karma#8075438dc412358a5707245e14a3bfaf7ae97963",
+      "laxar": "LaxarJS/laxar#5d688a25aaf0afe7cbd61eb42d5203dda8eebd19",
       "jjv": "~1.0.0",
       "jjve": "~0.5.0",
       "karma": "LaxarJS/karma#f1363cc3fca25a87c5bb45970a7ca3afd207fb73",
