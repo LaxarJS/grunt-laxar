@@ -5,15 +5,27 @@ body {
    background-image: url( "http://example.com" );
    background-image: url("//example.com");
 }
+
 .example-layout {
    /* from test.theme */
    color: green;
-}@charset "UTF-8";
+}
+/* MARKER: old-style control: test theme */
+.ax-old-style-control {
+   border: 1px solid blue;
+}
+/* MARKER: new-style control: test theme */
+.ax-new-style-control {
+   font-weight: bold;
+}
+@charset "UTF-8";
 
 
 
 .test-widget {
    background-color: yellow;
-}.local-widget {
+}
+.local-widget {
    color: green;
 }
+

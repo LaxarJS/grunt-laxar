@@ -1,6 +1,5 @@
 {
-   "name": "AxNewStyleControl",
-
+   "name": "TestControl",
    "integration": {
       "technology": "angular"
    }

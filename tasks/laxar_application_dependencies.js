@@ -10,61 +10,6 @@ module.exports = function( grunt ) {
    var q = require( 'q' );
    var async = require( 'async' );
 
-   // Injected into the WidgetCollector, this uses grunt to read the file
-   // and returns the expected { data: }-object
-   function httpClient() {
-      return {
-         get: function( url ) {
-            var deferred = q.defer();
-            process.nextTick( function() {
-               grunt.verbose.writeln( 'laxar_application_dependencies: reading "' + url + '"' );
-               if( grunt.file.exists( url ) ) {
-                  deferred.resolve( { data: grunt.file.readJSON( url ) } );
-                  return;
-               }
-               deferred.reject( new Error( 'Could not load ' + url ) );
-            } );
-            return deferred.promise;
-         }
-      };
-   }
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   function generateBootstrapCode( dependenciesByTechnology ) {
-
-      var dependencies = [];
-      var registryEntries = [];
-      Object.keys( dependenciesByTechnology )
-         .reduce( function( start, technology ) {
-            var end = start + dependenciesByTechnology[ technology].length;
-            [].push.apply( dependencies, dependenciesByTechnology[ technology ] );
-            registryEntries.push( '\'' + technology + '\': modules.slice( ' + start + ', ' + end + ' )' );
-            return end;
-         }, 0 );
-
-      var requireString = '[\n   \'' + dependencies.join( '\',\n   \'' ) + '\'\n]';
-
-      return 'define( ' + requireString + ', function() {\n' +
-         '   \'use strict\';\n' +
-         '\n' +
-         '   var modules = [].slice.call( arguments );\n' +
-         '   return {\n' +
-         '      ' + registryEntries.join( ',\n      ' ) + '\n' +
-         '   };\n' +
-         '} );\n';
-   }
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   function pushAllIfNotExists( arr, values ) {
-      values.forEach( function( value ) {
-         if( arr.indexOf( value ) === -1 ) {
-            arr.push( value );
-         }
-      } );
-   }
-
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    grunt.registerMultiTask( 'laxar_application_dependencies',
@@ -90,16 +35,12 @@ module.exports = function( grunt ) {
          var WidgetCollector = require( '../lib/widget_collector' );
          var paths = require( '../lib/laxar_paths' )( config, options );
 
-
-         var client = httpClient();
-
          grunt.verbose.writeln( 'laxar_application_dependencies: instantiating page loader' );
-         var pageLoader = PageLoader.create( q, client, paths.PAGES );
+         var pageLoader = PageLoader.create( q, httpClient(), paths.PAGES );
 
          grunt.verbose.writeln( 'laxar_application_dependencies: instantiating widget collector' );
          var widgetCollector = WidgetCollector.create(
             requirejs,
-            client,
             path.join( options.applicationPackage, path.relative( options.base, paths.WIDGETS ) ),
             pageLoader
          );
@@ -116,16 +57,16 @@ module.exports = function( grunt ) {
                .then( function( results ) {
                   var bucket = { angular: [] };
                   results.forEach( function( result ) {
-                     if( Array.isArray( result.controls ) ) {
-                        pushAllIfNotExists( bucket.angular, result.controls );
-                     }
+                     ( result.controls || [] ).forEach( function( controlPath ) {
+                        var descriptor = result.descriptorForControl( controlPath );
 
-                     Object.keys( result.widgets ).forEach( function( type ) {
-                        if( !Array.isArray( bucket[ type ] ) ) {
-                           bucket[ type ] = [];
-                        }
+                        pushArtifact( bucket, determineArtifactTechnology( descriptor ), controlPath );
+                     } );
 
-                        pushAllIfNotExists( bucket[ type ], result.widgets[ type ] );
+                     ( result.widgets || [] ).forEach( function( widgetPath ) {
+                        var descriptor = result.descriptorForWidget( widgetPath );
+
+                        pushArtifact( bucket, determineArtifactTechnology( descriptor ), widgetPath );
                      } );
                   } );
 
@@ -138,5 +79,73 @@ module.exports = function( grunt ) {
                } )
                .catch( grunt.fail.fatal );
          }, done );
+
+         /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+         function determineArtifactTechnology( specification ) {
+            if( !specification.integration || !( 'technology' in specification.integration ) ) {
+               return 'angular';
+            }
+
+            return specification.integration.technology;
+         }
+
       } );
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   // Injected as http client mock into the page loader
+   function httpClient() {
+      return {
+         get: function( url ) {
+            return q.nfcall( process.nextTick )
+               .then( function() {
+                  grunt.verbose.writeln( 'laxar_application_dependencies: reading "' + url + '"' );
+                  if( grunt.file.exists( url ) ) {
+                     return { data: grunt.file.readJSON( url ) };
+                  }
+
+                  throw new Error( 'Could not load ' + url );
+               } );
+         }
+      };
+   }
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   function generateBootstrapCode( dependenciesByTechnology ) {
+      var dependencies = [];
+      var registryEntries = [];
+
+      Object.keys( dependenciesByTechnology )
+         .reduce( function( start, technology ) {
+            var end = start + dependenciesByTechnology[ technology].length;
+            [].push.apply( dependencies, dependenciesByTechnology[ technology ] );
+            registryEntries.push( '\'' + technology + '\': modules.slice( ' + start + ', ' + end + ' )' );
+            return end;
+         }, 0 );
+
+      var requireString = '[\n   \'' + dependencies.join( '\',\n   \'' ) + '\'\n]';
+
+      return 'define( ' + requireString + ', function() {\n' +
+         '   \'use strict\';\n' +
+         '\n' +
+         '   var modules = [].slice.call( arguments );\n' +
+         '   return {\n' +
+         '      ' + registryEntries.join( ',\n      ' ) + '\n' +
+         '   };\n' +
+         '} );\n';
+   }
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   function pushArtifact( bucket, technology, value ) {
+      if( !Array.isArray( bucket[ technology ] ) ) {
+         bucket[ technology ] = [];
+      }
+      if( bucket[ technology ].indexOf( value ) === -1 ) {
+         bucket[ technology ].push( value );
+      }
+   }
+
 };

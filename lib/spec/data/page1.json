@@ -1,0 +1,39 @@
+{
+   "layout": "someLayout",
+   "areas": {
+      "area1": [
+         {
+            "widget": "widget1",
+            "id": "id1"
+         },
+         {
+            "widget": "widget2",
+            "id": "id2"
+         },
+         {
+            "widget": "widget3",
+            "id": "id3"
+         }
+      ],
+      "area2": [
+         {
+            "widget": "widget1",
+            "id": "id4"
+         },
+         {
+            "widget": "widget2",
+            "id": "id5"
+         }
+      ],
+      "area3": [
+         {
+            "widget": "widget3",
+            "id": "id6"
+         },
+         {
+            "widget": "widget4",
+            "id": "id7"
+         }
+      ]
+   }
+}
