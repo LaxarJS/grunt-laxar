@@ -12,7 +12,6 @@
       "fixinstall": "./bin/fixinstall.js"
    },
    "scripts": {
-      "prepublish": "git submodule update --init lib/laxar",
       "test": "grunt test"
    },
    "keywords": [
