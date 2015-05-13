@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#53](https://github.com/LaxarJS/grunt-laxar/issues/53): laxar_application_dependencies: remove laxar submodule; use npm instead
 - [#51](https://github.com/LaxarJS/grunt-laxar/issues/51): laxar_application_dependencies: fixed laxar path for require config
 - [#50](https://github.com/LaxarJS/grunt-laxar/issues/50): laxar_application_dependencies: added lookup of control.json for actual control name
 
