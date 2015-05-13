@@ -51,7 +51,7 @@
       "grunt-bump": "~0.0.13",
       "grunt-cli": "~0.1.13",
       "grunt-contrib-clean": "~0.5.0",
-      "grunt-mocha-cli": "~1.8.0",
+      "grunt-mocha-cli": "~1.13.0",
       "grunt-run-task": "~0.1.2",
       "md-code-stream": "~0.1.0"
    }

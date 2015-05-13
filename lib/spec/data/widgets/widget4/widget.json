@@ -1,0 +1,10 @@
+{
+   "integration": {
+      "technology": "angular"
+   },
+
+   "controls": [
+      "my_ui_package/someControl",
+      "laxar-path-controls/test-control"
+   ]
+}

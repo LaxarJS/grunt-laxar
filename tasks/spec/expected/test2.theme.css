@@ -1,0 +1,28 @@
+@import url("http://example.com/") projection, tv;
+body {
+   background-color: blue;
+}
+
+.example-layout {
+   /* from default.theme */
+   color: red;
+}
+/* MARKER: old-style control: default theme */
+.ax-old-style-control {
+   border: 1px solid green;
+}
+/* MARKER: new-style control: embedded test2 theme */
+.ax-new-style-control > .embedded-test2-theme {
+   background-color: magenta;
+}
+@charset "UTF-8";
+
+
+
+.test-widget {
+   background-color: yellow;
+}
+.local-widget {
+   color: red;
+}
+

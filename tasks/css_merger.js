@@ -35,17 +35,20 @@ module.exports = function( grunt ) {
 
       var flowFiles = this.files;
       var done = this.async();
-      q.all( collectThemes().map( function( theme ) {
-         var mainCss = fixUrls( grunt.file.read( theme.mainFile ), theme.mainFile, options.output );
-         var layoutCss = readLayouts( theme, pathToLayouts );
-         return readWidgetsFromFlow( flowFiles, theme, pathToWidgets ).then( function( widgetCss ) {
-            var outputFilePath = options.output + '/' + theme.name + '.css';
-            var css = [ mainCss ].concat( layoutCss ).concat( widgetCss ).concat( '\n' ).join( '' );
-            grunt.file.write( outputFilePath, withImportsOnTop( css ) );
-            grunt.log.ok( 'Created merged css file in "' + outputFilePath + '".' );
-            return q.when();
-         } );
-      } ) ).then( done ).catch( done );
+      q.all( collectThemes()
+         .map( function( theme ) {
+            var mainCss = fixUrls( grunt.file.read( theme.mainFile ), theme.mainFile, options.output );
+            var layoutCss = readLayouts( theme, pathToLayouts );
+            return readWidgetsFromFlow( flowFiles, theme, pathToWidgets )
+               .then( function( widgetCss ) {
+                  var outputFilePath = options.output + '/' + theme.name + '.css';
+                  var css = [ mainCss ].concat( layoutCss ).concat( widgetCss ).concat( '' ).join( '\n' );
+                  grunt.file.write( outputFilePath, withImportsOnTop( css ) );
+                  grunt.log.ok( 'Created merged css file in "' + outputFilePath + '".' );
+                  return q.when();
+               } );
+         } )
+      ).then( done ).catch( done );
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -145,39 +148,31 @@ module.exports = function( grunt ) {
 
          var widgetCollector = setupWidgetCollector();
 
-         var widgets = [];
-         var controls = [];
-         var uniqueWidget = once();
-         var uniqueControl = once();
+         return q.all( flowFiles.map( function( file ) {
+            return q.all( file.src.map( cssFilesForFlow ) ).then( flatten );
+         } ) ).then( flatten );
 
-         var collectAll = q.all( flowFiles.map( function( file ) {
-            return q.all( file.src.map( function( flow ) {
-               return widgetCollector.gatherWidgetsAndControls( paths.WIDGETS, flow ).then( function( result ) {
-                  Object.keys( result.widgets ).forEach( function( technology ) {
-                     widgets = widgets.concat( result.widgets[ technology ].filter( uniqueWidget ) );
+         function cssFilesForFlow( flow ) {
+            return widgetCollector.gatherWidgetsAndControls( paths.WIDGETS, flow )
+               .then( function( result ) {
+
+                  var controlCss = result.controls.map( function( requireControlPath ) {
+                     var descriptor = result.descriptorForControl( requireControlPath );
+                     var fileName = fileNameForControl( requireControlPath, theme, descriptor );
+                     return readCss( fileName );
                   } );
-                  controls = controls.concat( result.controls.filter( uniqueControl ) );
-                  return q.when();
+
+                  var widgetCss = result.widgets.map( function( widget ) {
+                     var widgetPath = path.resolve( path.join( config.baseUrl, widget ) );
+                     var widgetModulePath = widgetPath.substring( path.join( pathToWidgets, '/' ).length );
+                     var relativeWidgetPath = widgetModulePath.substring( 0, widgetModulePath.lastIndexOf( '/' ) );
+                     var fileName = fileNameForWidget( relativeWidgetPath, theme );
+                     return readCss( fileName );
+                  } );
+
+                  return controlCss.concat( widgetCss );
                } );
-            } ) );
-         } ) );
-
-         return collectAll.then( function() {
-            var controlCss = controls.map( function( requireControlPath ) {
-               var fileName = fileNameForControl( requireControlPath, theme );
-               return readCss( fileName );
-            } );
-
-            var widgetCss = widgets.map( function( widget ) {
-               var widgetPath = path.resolve( path.join( config.baseUrl, widget ) );
-               var widgetModulePath = widgetPath.substring( path.join( pathToWidgets, '/' ).length );
-               var relativeWidgetPath = widgetModulePath.substring( 0, widgetModulePath.lastIndexOf( '/' ) );
-               var fileName = fileNameForWidget( relativeWidgetPath, theme );
-               return readCss( fileName );
-            } );
-
-            return q.when( controlCss.concat( widgetCss ) );
-         } );
+         }
 
          /////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -185,25 +180,13 @@ module.exports = function( grunt ) {
             grunt.verbose.writeln( 'Css Merger: loading page loader' );
             var PageLoader = requirejs( 'laxar/lib/loaders/page_loader' );
             var WidgetCollector = require( '../lib/widget_collector' );
-            var client = httpClient();
 
             grunt.verbose.writeln( 'Css Merger: page loader' );
-            var pageLoader = PageLoader.create( q, client, paths.PAGES );
+            var pageLoader = PageLoader.create( q, httpClient(), paths.PAGES );
 
             grunt.verbose.writeln( 'Css Merger: initializing widget collector' );
             var widgetsRoot = path.relative( config.baseUrl, paths.WIDGETS );
-            return WidgetCollector.create( requirejs, client, widgetsRoot, pageLoader );
-         }
-
-         /////////////////////////////////////////////////////////////////////////////////////////////////////
-
-         function once() {
-            var seenKeys = {};
-            return function( key ) {
-               var isNew = !seenKeys[ key ];
-               seenKeys[ key ] = true;
-               return isNew;
-            };
+            return WidgetCollector.create( requirejs, widgetsRoot, pageLoader );
          }
 
          /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -214,11 +197,7 @@ module.exports = function( grunt ) {
                   var deferred = q.defer();
                   process.nextTick( function() {
                      grunt.verbose.writeln( 'Css Merger: reading "' + url + '"' );
-                     if( grunt.file.exists( url ) ) {
-                        deferred.resolve( { data: grunt.file.readJSON( url ) } );
-                        return;
-                     }
-                     deferred.reject( new Error( 'Could not load ' + url ) );
+                     deferred.resolve( { data: grunt.file.readJSON( url ) } );
                   } );
                   return deferred.promise;
                }
@@ -240,13 +219,24 @@ module.exports = function( grunt ) {
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      function fileNameForControl( requireControlPath, theme ) {
-         var absoluteControlPath = requirejs.toUrl( requireControlPath );
+      function fileNameForControl( requireModulePath, theme, descriptor ) {
+         // support legacy controls (LaxarJS 0.x) that do not have a control.json
+         var absoluteControlPath = requirejs.toUrl( requireModulePath );
          var fragments = absoluteControlPath.split( '/' );
          var controlName = fragments[ fragments.length - 1 ];
+         var themeControlPath = path.join( theme.path, requireModulePath, 'css', controlName + '.css' );
+
+         if( !descriptor.isLegacy ) {
+            // LaxarJS 1.x style control: use name from control.json descriptor
+            controlName = descriptor.name.replace( /(.)([A-Z])/g, '$1-$2' ).toLowerCase();
+            fragments.pop();
+            themeControlPath = path.join( theme.path, 'controls', controlName, 'css', controlName + '.css' );
+         }
+
          return getCandidate( [
-            path.join( theme.path, requireControlPath, 'css', controlName + '.css' ),
-            path.join( absoluteControlPath, options.defaultTheme, 'css', controlName + '.css' )
+            path.join( fragments.join( '/' ), theme.name, 'css', controlName + '.css' ),
+            themeControlPath,
+            path.join( fragments.join( '/' ), options.defaultTheme, 'css', controlName + '.css' )
          ] );
       }
 
@@ -292,6 +282,12 @@ module.exports = function( grunt ) {
 
             return 'url("' + fixedUrl + '")';
          } );
+      }
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function flatten( lists ) {
+         return [].concat.apply( [], lists );
       }
 
    } );

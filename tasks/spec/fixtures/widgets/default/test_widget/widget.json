@@ -11,6 +11,7 @@
    },
 
    "controls": [
+      "laxar-path-controls/ax-old-style-control/ax-old-style-control",
       "laxar-path-controls/ax-test-control"
    ],
 
