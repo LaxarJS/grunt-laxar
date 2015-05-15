@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#37](https://github.com/LaxarJS/grunt-laxar/issues/37): css_merger: fixed paths and URLs for windows
+
 
 ## 1.0.0-alpha.9
 
