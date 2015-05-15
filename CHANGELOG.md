@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## 1.0.0-alpha.9
+
 - [#55](https://github.com/LaxarJS/grunt-laxar/issues/55): css_merger: added support for new-style controls (with descriptor)
 - [#53](https://github.com/LaxarJS/grunt-laxar/issues/53): laxar_application_dependencies: remove laxar submodule; use npm instead
 - [#51](https://github.com/LaxarJS/grunt-laxar/issues/51): laxar_application_dependencies: fixed laxar path for require config
