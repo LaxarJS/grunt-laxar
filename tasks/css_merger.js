@@ -41,7 +41,7 @@ module.exports = function( grunt ) {
             var layoutCss = readLayouts( theme, pathToLayouts );
             return readWidgetsFromFlow( flowFiles, theme, pathToWidgets )
                .then( function( widgetCss ) {
-                  var outputFilePath = options.output + '/' + theme.name + '.css';
+                  var outputFilePath = path.join( options.output, theme.name + '.css' );
                   var css = [ mainCss ].concat( layoutCss ).concat( widgetCss ).concat( '' ).join( '\n' );
                   grunt.file.write( outputFilePath, withImportsOnTop( css ) );
                   grunt.log.ok( 'Created merged css file in "' + outputFilePath + '".' );
@@ -76,7 +76,7 @@ module.exports = function( grunt ) {
          /////////////////////////////////////////////////////////////////////////////////////////////////////
 
          function processThemeDir( dir, themeName ) {
-            var cssMainFile = dir + '/css/theme.css';
+            var cssMainFile = path.join( dir, '/css/theme.css' );
             var themeDir = path.resolve( dir );
             if( grunt.file.exists( cssMainFile ) ) {
                themes.push( {
@@ -107,6 +107,7 @@ module.exports = function( grunt ) {
             var result = collectLayouts();
             Object.keys( result ).forEach( function( layout ) {
                var baseName = layout.split( /[/\\]/ ).pop() + '.css';
+
                // theme folder within application layout folder:
                var places = [ [ appLayoutsRoot, layout, theme.name, 'css', baseName ].join( '/' ) ];
                if( theme.name !== options.defaultTheme ) {
@@ -128,10 +129,8 @@ module.exports = function( grunt ) {
                var layoutsMap = {};
                [ appLayoutsRoot, themeLayoutsRoot ].forEach( function( root ) {
                   grunt.file.expand( root + '/**/*.html' ).forEach( function( htmlFilePath ) {
-                     var layout = htmlFilePath.replace( root, '' ).replace( /^[/]/, '' ).replace(
-                        /[/]([^\/]*\.theme[/])?[^\/]*\.html$/,
-                        ''
-                     );
+                     htmlFilePath = path.resolve( htmlFilePath );
+                     var layout = path.relative( root, htmlFilePath ).split( path.sep )[ 0 ];
                      if( layout ) {
                         layoutsMap[ layout ] = [];
                      }
@@ -165,7 +164,7 @@ module.exports = function( grunt ) {
                   var widgetCss = result.widgets.map( function( widget ) {
                      var widgetPath = path.resolve( path.join( config.baseUrl, widget ) );
                      var widgetModulePath = widgetPath.substring( path.join( pathToWidgets, '/' ).length );
-                     var relativeWidgetPath = widgetModulePath.substring( 0, widgetModulePath.lastIndexOf( '/' ) );
+                     var relativeWidgetPath = path.dirname( widgetModulePath );
                      var fileName = fileNameForWidget( relativeWidgetPath, theme );
                      return readCss( fileName );
                   } );
@@ -208,7 +207,7 @@ module.exports = function( grunt ) {
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
       function fileNameForWidget( relativeWidgetPath, theme ) {
-         var fragments = relativeWidgetPath.split( '/' );
+         var fragments = relativeWidgetPath.split( path.sep );
          var widgetName = fragments[ fragments.length - 1 ];
          return getCandidate( [
             path.join( pathToWidgets, relativeWidgetPath, theme.name, 'css', widgetName + '.css' ),
@@ -253,8 +252,8 @@ module.exports = function( grunt ) {
 
       function getCandidate( candidates ) {
          for( var i = 0; i < candidates.length; ++i ) {
-            if( grunt.file.exists( candidates[i] ) ) {
-               return candidates[i];
+            if( grunt.file.exists( candidates[ i ] ) ) {
+               return candidates[ i ];
             }
          }
          return null;
@@ -263,10 +262,9 @@ module.exports = function( grunt ) {
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
       function fixUrls( css, sourceFileName, destinationDirectory ) {
-         var sourceDirectory = path.relative( base, sourceFileName.replace( /\/[^\/]*\.css$/, '' ) );
+         var sourceDirectory = path.relative( base, path.dirname( sourceFileName ) );
          var destinationFragments = destinationDirectory.replace( /\/$/, '' ).split( '/' );
          var pathPrefix = new Array( destinationFragments.length + 1 ).join( '../' );
-
          var urlMatcher = /url\(\s*([^\)]*)\s*\)/g;
          var schemeMatcher = /^['"]?([a-zA-Z]+[:])?\/\/.*/;
          return css.replace( urlMatcher, function( fullMatch, url ) {
@@ -279,7 +277,6 @@ module.exports = function( grunt ) {
                sourceDirectory,
                url.replace( /["']/g, '' )
             ).split( path.sep ).join( '/' );
-
             return 'url("' + fixedUrl + '")';
          } );
       }
