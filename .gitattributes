@@ -1,0 +1,4 @@
+# Don't apply text/linefeed conversion to our test data
+/lib/spec/data/** -text -crlf
+/tasks/spec/fixtures/** -text -crlf
+/tasks/spec/expected/** -text -crlf

@@ -83,8 +83,8 @@ module.exports = function( grunt ) {
 
       grunt.log.ok( 'Installing bower packages in ' + dir );
       grunt.util.spawn( {
-         cmd: bower,
-         args: [ 'install' ],
+         cmd: process.argv[ 0 ],
+         args: [ bower, 'install' ],
          opts: {
             cwd: dir
          }

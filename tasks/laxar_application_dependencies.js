@@ -36,7 +36,7 @@ module.exports = function( grunt ) {
          var paths = require( '../lib/laxar_paths' )( config, options );
 
          grunt.verbose.writeln( 'laxar_application_dependencies: instantiating page loader' );
-         var pageLoader = PageLoader.create( q, httpClient(), paths.PAGES );
+         var pageLoader = PageLoader.create( q, httpClient(), path.resolve( paths.PAGES ) );
 
          grunt.verbose.writeln( 'laxar_application_dependencies: instantiating widget collector' );
          var widgetCollector = WidgetCollector.create(
@@ -77,7 +77,7 @@ module.exports = function( grunt ) {
                   grunt.log.ok( 'Collected LaxarJS application dependencies in "' + file.dest + '".' );
                   done();
                } )
-               .catch( grunt.fail.fatal );
+               .catch( done );
          }, done );
 
          /////////////////////////////////////////////////////////////////////////////////////////////////////

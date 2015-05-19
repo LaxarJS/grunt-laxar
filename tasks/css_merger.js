@@ -12,6 +12,7 @@ module.exports = function( grunt ) {
 
       var options = this.options( {
          base: '.',
+         pages: 'laxar-path-pages',
          themes: 'laxar-path-themes',
          layouts: 'laxar-path-layouts',
          widgets: 'laxar-path-widgets',
@@ -27,6 +28,7 @@ module.exports = function( grunt ) {
 
       var base = options.base;
       var pathToDefaultTheme = path.resolve( paths.DEFAULT_THEME );
+      var pathToPages = path.resolve( paths.PAGES );
       var pathToThemes = path.resolve( paths.THEMES );
       var pathToLayouts = path.resolve( paths.LAYOUTS );
       var pathToWidgets = path.resolve( paths.WIDGETS );
@@ -181,7 +183,7 @@ module.exports = function( grunt ) {
             var WidgetCollector = require( '../lib/widget_collector' );
 
             grunt.verbose.writeln( 'Css Merger: page loader' );
-            var pageLoader = PageLoader.create( q, httpClient(), paths.PAGES );
+            var pageLoader = PageLoader.create( q, httpClient(), pathToPages );
 
             grunt.verbose.writeln( 'Css Merger: initializing widget collector' );
             var widgetsRoot = path.relative( config.baseUrl, paths.WIDGETS );
