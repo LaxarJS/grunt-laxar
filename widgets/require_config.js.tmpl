@@ -51,6 +51,10 @@ var require = {
          }
       },<%
    }
+   if( paths[ 'bootstrap' ] ) { %>
+      'bootstrap/slider': [ 'jquery' ],
+      'bootstrap/tooltip': [ 'jquery' ],<%
+   }
    if( paths[ 'jquery' ] ) { %>
       jquery: {
          exports: '$'
@@ -66,6 +70,16 @@ var require = {
          exports: 'jsonpatch'
       },<%
    } %>
+   },
+   map: {
+      '*': {<%
+      if( paths[ 'laxar_patterns' ] ) { %>
+         'laxar_patterns': 'laxar-patterns',<%
+      }
+      if( paths[ 'laxar_uikit' ] ) { %>
+         'laxar_uikit': 'laxar-uikit',<%
+      } %>
+      }
    },
    packages: [<%
    for( var i = 0; i < packages.length; i++ ) {

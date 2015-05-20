@@ -10,9 +10,7 @@ var path = require( 'path' );
 
 var staticConfig = {
    deps: [
-      'es5-shim/es5-shim',
-      'json2/json2',
-      'modernizr/modernizr'
+      'es5-shim/es5-shim'
    ],
    shims: {
       'angular': {},
@@ -33,23 +31,24 @@ function defaultConfig( baseUrl ) {
       paths: {
          // LaxarJS Core:
          'requirejs': 'requirejs/require',
+         'text': 'requirejs-plugins/lib/text',
+         'json': 'requirejs-plugins/src/json',
 
          // LaxarJS Core Testing:
          'jasmine': 'jasmine/lib/jasmine-core/jasmine',
          'q_mock': 'q_mock/q',
 
-         // LaxarJS Core Legacy:
-         'text': 'requirejs-plugins/lib/text',
-         'json': 'requirejs-plugins/src/json',
-
-         // LaxarJS UIKit:
+         // LaxarJS 0.x control paths:
          'bootstrap-tooltip': 'bootstrap-sass-official/assets/javascripts/bootstrap/tooltip',
          'bootstrap-affix': 'bootstrap-sass-official/assets/javascripts/bootstrap/affix',
          'jquery_ui': 'jquery_ui/ui',
 
-         // LaxarJS Patterns:
-         'json-patch': 'fast-json-patch/src/json-patch-duplex'
+         // LaxarJS 1.x controls paths:
+         'bootstrap': 'bootstrap-sass-official/assets/javascripts/bootstrap',
+         'jquery-ui': 'jquery-ui',
 
+         // LaxarJS Patterns dependencies:
+         'json-patch': 'fast-json-patch/src/json-patch-duplex'
       },
       packages: []
    };
