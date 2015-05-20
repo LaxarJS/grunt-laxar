@@ -22,7 +22,7 @@ module.exports = function (grunt) {
             var name = list.endpoint.name;
             var widget = name.replace( /^widgets\./, '' )
                              .replace( /\./g, '/' );
-            var proxies = grunt.config( [ 'karma', 'options', 'proxies' ] )
+            var proxies = grunt.config( [ 'karma', 'options', 'proxies' ] );
 
             proxies[ '/base/widgets/' + widget ] = '/base';
 

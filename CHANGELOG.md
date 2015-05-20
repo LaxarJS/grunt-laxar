@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#56](https://github.com/LaxarJS/grunt-laxar/issues/56): widgets: added support for new-style controls and modules
 - [#52](https://github.com/LaxarJS/grunt-laxar/issues/52): tests: made all `grunt-laxar` tests pass on Windows
 - [#37](https://github.com/LaxarJS/grunt-laxar/issues/37): css_merger: fixed paths and URLs for Windows
 
