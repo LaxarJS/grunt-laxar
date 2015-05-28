@@ -29,7 +29,9 @@ module.exports = function( grunt ) {
          var done = this.async();
 
          var config = require( '../lib/require_config' )( options.requireConfig, options );
+         config.paths.laxar = path.dirname( require.resolve( 'laxar' ) );
          var requirejs = require( 'requirejs' ).config( config );
+
          grunt.verbose.writeln( 'laxar_application_dependencies: obtaining page loader from LaxarJS core' );
          var PageLoader = requirejs( 'laxar/lib/loaders/page_loader' );
          var WidgetCollector = require( '../lib/widget_collector' );

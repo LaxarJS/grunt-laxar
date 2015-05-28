@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#57](https://github.com/LaxarJS/grunt-laxar/issues/57): page_loader: laxar is now used as node module
+
 
 ## 1.0.0-alpha.10
 
