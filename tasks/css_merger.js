@@ -23,6 +23,7 @@ module.exports = function( grunt ) {
 
       var q = require( 'q' );
       var config = require( '../lib/require_config' )( options.requireConfig, options );
+      config.paths.laxar = path.dirname( require.resolve( 'laxar' ) );
       var requirejs = require( 'requirejs' ).config( config );
       var paths = require( '../lib/laxar_paths' )( config, options );
 
