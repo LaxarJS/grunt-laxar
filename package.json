@@ -1,6 +1,6 @@
 {
    "name": "grunt-laxar",
-   "version": "1.0.0-alpha.10",
+   "version": "1.0.0-beta.0",
    "description": "Grunt tasks for LaxarJS",
    "repository": {
       "type": "git",
@@ -32,7 +32,7 @@
       "karma-junit-reporter": "~0.2.1",
       "karma-laxar": "~0.2.0",
       "karma-phantomjs-launcher": "~0.1.2",
-      "laxar_dox": "~1.0.0-alpha.1",
+      "laxar-dox": "~1.0.0-beta.1",
       "laxar": "~1.0.0-alpha.14",
       "jjv": "~1.0.0",
       "jjve": "~0.5.0",
