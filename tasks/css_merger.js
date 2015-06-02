@@ -109,7 +109,7 @@ module.exports = function( grunt ) {
          function collectCssFiles( appLayoutsRoot, themeLayoutsRoot ) {
             var result = collectLayouts();
             Object.keys( result ).forEach( function( layout ) {
-               var baseName = layout.split( /[/\\]/ ).pop() + '.css';
+               var baseName = layout.split( path.sep ).pop() + '.css';
 
                // theme folder within application layout folder:
                var places = [ [ appLayoutsRoot, layout, theme.name, 'css', baseName ].join( '/' ) ];
@@ -132,10 +132,11 @@ module.exports = function( grunt ) {
                var layoutsMap = {};
                [ appLayoutsRoot, themeLayoutsRoot ].forEach( function( root ) {
                   grunt.file.expand( root + '/**/*.html' ).forEach( function( htmlFilePath ) {
-                     htmlFilePath = path.resolve( htmlFilePath );
-                     var layout = path.relative( root, htmlFilePath ).split( path.sep )[ 0 ];
-                     if( layout ) {
-                        layoutsMap[ layout ] = [];
+                     var resolvedHtmlFilePath = path.resolve( htmlFilePath );
+                     var layoutRef = path.relative( root, resolvedHtmlFilePath )
+                        .split( path.sep ).slice( 0, -2 ).join( path.sep );
+                     if( layoutRef ) {
+                        layoutsMap[ layoutRef ] = [];
                      }
                   } );
                } );
