@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#60](https://github.com/LaxarJS/grunt-laxar/issues/60): css_merger: fixed default.theme lookup
+
 
 ## 1.0.0-beta.1
 
