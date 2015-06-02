@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#59](https://github.com/LaxarJS/grunt-laxar/issues/59): css_merger: fixed loading of nested layout CSS
+
 
 ## 1.0.0-beta.0
 
