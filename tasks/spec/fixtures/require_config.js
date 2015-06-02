@@ -41,6 +41,7 @@ require.config( {
       'laxar-path-controls': '../controls',
       'laxar-path-widgets': '../widgets',
       'laxar-path-themes': '../themes',
+      'laxar-path-default-theme': 'laxar_uikit/themes/default.theme',
       'laxar-path-flow': '../application/flow/flow.json'
    }
 } );
