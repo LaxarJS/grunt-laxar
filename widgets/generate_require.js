@@ -60,8 +60,18 @@ function defaultConfig( baseUrl ) {
 function addComponent( config, component ) {
    var pkg = component.pkgMeta;
    var name = pkg.name;
-   var location = path.relative( config.baseUrl, component.canonicalDir );
-   var main = typeof pkg.main === 'string' ? path.join( location, pkg.main ).replace( /\.js$/, '' ) : path.join( location, name );
+
+   var packageLocation = path.relative( config.baseUrl, component.canonicalDir );
+   var main = typeof pkg.main === 'string' ?
+      path.join( packageLocation, pkg.main ).replace( /\.js$/, '' ) :
+      path.join( packageLocation, name );
+   var mainRelative = path.relative( packageLocation, main );
+
+   // Workaround to make laxar-* bundles work as common-js modules:
+   if( mainRelative.indexOf( 'dist/' ) === 0 ) {
+      packageLocation = path.join( packageLocation, 'dist' );
+      mainRelative = mainRelative.replace( /^dist[/]/, '' );
+   }
 
    if( staticConfig.shims.hasOwnProperty( name ) ) {
       config.paths[ name ] = main;
@@ -77,8 +87,8 @@ function addComponent( config, component ) {
       if( names.indexOf( name ) < 0 ) {
          config.packages.push( {
             name: pkg.name,
-            main: path.relative( location, main ),
-            location: location,
+            main: mainRelative,
+            location: packageLocation,
             path: main
          } );
       }
