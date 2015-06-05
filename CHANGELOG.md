@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#61](https://github.com/LaxarJS/grunt-laxar/issues/61): widgets: fixed support for widgets using dist-package references
+
 
 ## 1.0.0
 ## 1.0.0-beta.2
