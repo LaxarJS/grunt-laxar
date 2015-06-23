@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 aixigo AG
+ * Copyright 2015 aixigo AG
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
@@ -191,7 +191,7 @@ module.exports = function( grunt ) {
 
    grunt.registerMultiTask(
       'upgrade_pages',
-      'Translate widget instance configurations in laxar pages using a set of rules',
+      'DEPRECATED: Translate widget instance configurations in laxar pages using a set of rules',
       function() {
          var options = this.options( {
             base: '.',

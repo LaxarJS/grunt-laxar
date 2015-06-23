@@ -1,5 +1,7 @@
 # The "directory_tree" task
 
+> This task is *deprecated*. Have a look at [laxar-resources](internal/laxar-resources.md) instead.
+
 The `directory_tree` task takes a list of files and generates a JSON file
 that resembles the directory tree represented by these files.
 

@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 aixigo AG
+ * Copyright 2015 aixigo AG
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
@@ -9,10 +9,11 @@ module.exports = function( grunt ) {
    var fs = require( 'fs' );
    var path = require( 'path' );
    var async = require( 'async' );
-   var mktree = require( '../lib/mktree' );
+   var mktree = require( '../../lib/mktree' );
 
-   grunt.registerMultiTask( 'directory_tree', 'Generate a JSON mapping of files ' +
-      'inside a specific directory tree.', function( n ) {
+   grunt.registerMultiTask(
+      'directory_tree',
+      'DEPRECATED: Generate a JSON mapping of files inside a specific directory tree.', function() {
 
       var options = this.options( {
          base: '.'

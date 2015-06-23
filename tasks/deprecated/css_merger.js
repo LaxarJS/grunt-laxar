@@ -8,7 +8,9 @@ module.exports = function( grunt ) {
 
    var path = require( 'path' );
 
-   grunt.task.registerMultiTask( 'css_merger', 'Merges multiple css files into one file', function() {
+   grunt.task.registerMultiTask(
+      'css_merger',
+      'DEPRECATED: Merges multiple css files into one file', function() {
 
       var options = this.options( {
          base: '.',
@@ -22,10 +24,10 @@ module.exports = function( grunt ) {
       } );
 
       var q = require( 'q' );
-      var config = require( '../lib/require_config' )( options.requireConfig, options );
+      var config = require( '../../lib/require_config' )( options.requireConfig, options );
       config.paths.laxar = path.dirname( require.resolve( 'laxar' ) );
       var requirejs = require( 'requirejs' ).config( config );
-      var paths = require( '../lib/laxar_paths' )( config, options );
+      var paths = require( '../../lib/laxar_paths' )( config, options );
 
       var base = options.base;
       var pathToDefaultTheme = path.resolve( paths.DEFAULT_THEME );
@@ -182,7 +184,7 @@ module.exports = function( grunt ) {
          function setupWidgetCollector() {
             grunt.verbose.writeln( 'Css Merger: loading page loader' );
             var PageLoader = requirejs( 'laxar/lib/loaders/page_loader' );
-            var WidgetCollector = require( '../lib/widget_collector' );
+            var WidgetCollector = require( '../../lib/widget_collector' );
 
             grunt.verbose.writeln( 'Css Merger: page loader' );
             var pageLoader = PageLoader.create( q, httpClient(), pathToPages );

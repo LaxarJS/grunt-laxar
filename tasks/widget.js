@@ -49,8 +49,6 @@ module.exports = function( grunt ) {
 
    grunt.registerMultiTask( 'widget', 'Run widget specific tasks', function() {
       var widget = this.target;
-      var options = this.options();
-
       var config = widgetConfiguration( widget, this.options(), this.data );
 
       /* if the spec_runner.js does not exist, remove the karma task */
