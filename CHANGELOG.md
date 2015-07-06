@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#62](https://github.com/LaxarJS/grunt-laxar/issues/62): karma-laxar: upgraded to latest 1.1.0 alpha
 - [#61](https://github.com/LaxarJS/grunt-laxar/issues/61): widgets: fixed support for widgets using dist-package references
 
 
