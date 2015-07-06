@@ -2,34 +2,37 @@
 
 ## Last Changes
 
+
+## v1.1.0-alpha.0
+
 - [#62](https://github.com/LaxarJS/grunt-laxar/issues/62): karma-laxar: upgraded to latest 1.1.0 alpha
 - [#61](https://github.com/LaxarJS/grunt-laxar/issues/61): widgets: fixed support for widgets using dist-package references
 
 
-## 1.0.0
-## 1.0.0-beta.2
+## v1.0.0
+## v1.0.0-beta.2
 
 - [#60](https://github.com/LaxarJS/grunt-laxar/issues/60): css_merger: fixed default.theme lookup
 
 
-## 1.0.0-beta.1
+## v1.0.0-beta.1
 
 - [#59](https://github.com/LaxarJS/grunt-laxar/issues/59): css_merger: fixed loading of nested layout CSS
 
 
-## 1.0.0-beta.0
+## v1.0.0-beta.0
 
 - [#57](https://github.com/LaxarJS/grunt-laxar/issues/57): page_loader: laxar is now used as node module
 
 
-## 1.0.0-alpha.10
+## v1.0.0-alpha.10
 
 - [#56](https://github.com/LaxarJS/grunt-laxar/issues/56): widgets: added support for new-style controls and modules
 - [#52](https://github.com/LaxarJS/grunt-laxar/issues/52): tests: made all `grunt-laxar` tests pass on Windows
 - [#37](https://github.com/LaxarJS/grunt-laxar/issues/37): css_merger: fixed paths and URLs for Windows
 
 
-## 1.0.0-alpha.9
+## v1.0.0-alpha.9
 
 - [#55](https://github.com/LaxarJS/grunt-laxar/issues/55): css_merger: added support for new-style controls (with descriptor)
 - [#53](https://github.com/LaxarJS/grunt-laxar/issues/53): laxar_application_dependencies: remove laxar submodule; use npm instead
@@ -37,32 +40,32 @@
 - [#50](https://github.com/LaxarJS/grunt-laxar/issues/50): laxar_application_dependencies: added lookup of control.json for actual control name
 
 
-## 1.0.0-alpha.8
+## v1.0.0-alpha.8
 
 - [#49](https://github.com/LaxarJS/grunt-laxar/issues/49): laxar_application_dependencies: fixed dependencies
 - [#48](https://github.com/LaxarJS/grunt-laxar/issues/48): documentation: updated to newest laxar dox version
 
 
-## 1.0.0-alpha.7
+## v1.0.0-alpha.7
 
 - [#47](https://github.com/LaxarJS/grunt-laxar/issues/47): laxar_application_dependencies: turned internal laxar dependency into git submodule
 - [#46](https://github.com/LaxarJS/grunt-laxar/issues/46): documentation: refactored laxar_dox task and added public documentation task
 
 
-## 1.0.0-alpha.6
+## v1.0.0-alpha.6
 
 - [#43](https://github.com/LaxarJS/grunt-laxar/issues/43): css_merger: load CSS from themes
     + NEW FEATURE: see ticket for details
 
 
-## 1.0.0-alpha.5
+## v1.0.0-alpha.5
 
 - [#44](https://github.com/LaxarJS/grunt-laxar/issues/44): laxar_application_dependencies: use laxar-application package to allow for using relative AMD-paths from widgets, even with plugins
     + **BREAKING CHANGE:** see ticket for details
 - [#42](https://github.com/LaxarJS/grunt-laxar/issues/42): laxar_application_dependencies: cleaned up some fallout of (#29)
 
 
-## 1.0.0-alpha.4
+## v1.0.0-alpha.4
 
 - [#39](https://github.com/LaxarJS/grunt-laxar/issues/39): widget: updated `karma-laxar` to automatically load `es5-shim`
     + NEW FEATURE: see ticket for details
@@ -72,7 +75,7 @@
     + **BREAKING CHANGE:** see ticket for details
 
 
-## 1.0.0-alpha.3
+## v1.0.0-alpha.3
 
 - [#40](https://github.com/LaxarJS/grunt-laxar/issues/40): portal_angular_dependencies, css_merger: refactored portal artifacts to runtime and loaders.
     + **BREAKING CHANGE:** see ticket for details
