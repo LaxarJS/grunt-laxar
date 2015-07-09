@@ -1,8 +1,10 @@
 # The "laxar_application_dependencies" Task
 
+> This task is *deprecated*. Have a look at [laxar-dependencies](internal/laxar-dependencies.md) instead.
+
 The `laxar_application_dependencies` task parses an application's flow, resolves the pages and determines the widgets and controls used on those pages.
 From the list of widgets and controls it creates a *RequireJS* module that consists of a list of all the required modules' names, grouped by integration technology.
-Typically, this module is required from your main javascript file, such as `init.js` when using the [grunt-init-laxar-application](https://github.com/LaxarJS/grunt-init-laxar-application) template, and used to bootstrap your LaxarJS application. 
+Typically, this module is required from your main javascript file, such as `init.js` when using the [grunt-init-laxar-application](https://github.com/LaxarJS/grunt-init-laxar-application) template, and used to bootstrap your LaxarJS application.
 
 
 ## Overview
@@ -91,4 +93,3 @@ grunt.initConfig( {
    }
 } );
 ```
-

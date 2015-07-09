@@ -2,6 +2,8 @@
  * Copyright 2015 aixigo AG
  * Released under the MIT license.
  * http://laxarjs.org/license
+ *
+ * @deprecation This task is deprecated! See https://github.com/LaxarJS/grunt-laxar/issues/41 for details.
  */
 module.exports = function( grunt ) {
    'use strict';
@@ -13,7 +15,7 @@ module.exports = function( grunt ) {
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    grunt.registerMultiTask( 'laxar_application_dependencies',
-      'Generate a RequireJS module to bootstrap a LaxarJS application with its widget modules.',
+      'DEPRECATED: Generate a RequireJS module to bootstrap a LaxarJS application with its widget modules.',
       function() {
 
          var options = this.options( {
@@ -28,14 +30,14 @@ module.exports = function( grunt ) {
          var files = this.files;
          var done = this.async();
 
-         var config = require( '../lib/require_config' )( options.requireConfig, options );
+         var config = require( '../../lib/require_config' )( options.requireConfig, options );
          config.paths.laxar = path.dirname( require.resolve( 'laxar' ) );
          var requirejs = require( 'requirejs' ).config( config );
 
          grunt.verbose.writeln( 'laxar_application_dependencies: obtaining page loader from LaxarJS core' );
          var PageLoader = requirejs( 'laxar/lib/loaders/page_loader' );
-         var WidgetCollector = require( '../lib/widget_collector' );
-         var paths = require( '../lib/laxar_paths' )( config, options );
+         var WidgetCollector = require( '../../lib/widget_collector' );
+         var paths = require( '../../lib/laxar_paths' )( config, options );
 
          grunt.verbose.writeln( 'laxar_application_dependencies: instantiating page loader' );
          var pageLoader = PageLoader.create( q, httpClient(), path.resolve( paths.PAGES ) );

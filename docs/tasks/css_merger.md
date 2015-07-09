@@ -1,5 +1,7 @@
 # The "css_merger" task
 
+> This task is *deprecated*. Have a look at [laxar-dist-css](internal/laxar-dist-css.md) instead.
+
 The `css_merger` task merges CSS files.
 
 ## Overview
