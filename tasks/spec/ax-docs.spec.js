@@ -3,6 +3,10 @@
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
+
+/* global expect */
+require( 'expectations' );
+
 var grunt = require( 'grunt' );
 var runTask = require( 'grunt-run-task' );
 
@@ -20,7 +24,7 @@ describe( 'the laxar_dox task', function() {
          src: [
             dir.fixtures + '/libs/test_lib/test.js'
          ],
-         dest: dir.actual + '/'
+         dest: dir.actual + '/docs/'
       };
       var task = runTask.task( 'laxar_dox:single', { single: config } );
 
@@ -45,7 +49,7 @@ describe( 'the laxar_dox task', function() {
             dir.fixtures + '/libs/test_lib/test.js',
             dir.fixtures + '/libs/test_lib/test2.js'
          ],
-         dest: dir.actual + '/'
+         dest: dir.actual + '/docs/'
       };
       var task = runTask.task( 'laxar_dox:multiple', { multiple: config } );
 

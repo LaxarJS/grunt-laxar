@@ -164,6 +164,11 @@ module.exports = function( grunt, taskName ) {
 
    /** Write task results only if something changed, so that watchers are only triggered if needed */
    function writeIfChanged( resultsPath, newResults, startMs ) {
+      // make sure that all generated text files end in a newline:
+      if( newResults.charAt( newResults.length - 1 ) !== '\n' ) {
+         newResults += '\n';
+      }
+
       var previous = '';
       try {
          previous = grunt.file.read( resultsPath, { encoding: 'utf-8' } );

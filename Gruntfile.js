@@ -32,17 +32,27 @@ module.exports = function( grunt ) {
             'tasks/spec/*.js'
          ]
       },
+      copy: {
+         test: {
+            expand: true,
+            src: './**/*.*',
+            cwd: 'tasks/spec/fixtures/',
+            dest: 'tmp/'
+         }
+      },
       mochacli: {
          options: {
             ui: 'bdd',
-            reporter: 'spec',
-            require: ['expectations']
+            reporter: 'spec'
          },
          lib: [
             'lib/spec/*_spec.js'
          ],
          tasks: [
-            'tasks/spec/*_spec.js'
+            'tasks/spec/deprecated/*_spec.js'
+         ],
+         'flow-tasks': [
+            'tasks/spec/*.spec.js'
          ]
       },
       'npm-publish': {
@@ -61,11 +71,20 @@ module.exports = function( grunt ) {
    });
 
    grunt.loadNpmTasks( 'grunt-contrib-clean' );
+   grunt.loadNpmTasks( 'grunt-contrib-copy' );
    grunt.loadNpmTasks( 'grunt-contrib-jshint' );
    grunt.loadNpmTasks( 'grunt-mocha-cli' );
    grunt.loadNpmTasks( 'grunt-bump' );
 
-   grunt.registerTask( 'test', [ 'clean', 'fixtures', 'mochacli', 'jshint' ] );
+   grunt.registerTask( 'test', [
+      // lib:
+      'clean', 'mochacli:lib',
+      // legacy tasks:
+      'clean', 'fixtures', 'mochacli:tasks',
+      // flow based tasks:
+      'clean', 'fixtures', 'copy', 'mochacli:flow-tasks',
+      // additional QA:
+      'jshint' ] );
    grunt.registerTask( 'default', ['test'] );
 
    grunt.registerTask( 'release', 'Test, bump and publish to NPM.', function( type ) {

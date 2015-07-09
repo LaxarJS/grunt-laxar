@@ -2,9 +2,11 @@
 
 > For a given flow target, generates an AMD module that references all direct dependencies.
 
- the controller modules of all reachable widgets and activities as well the modules of their controls.
-
+A module is generated, which depends on the controller modules of all reachable widgets and activities as well the modules of their controls.
 When loaded using _RequireJS_ or bundled using _r.js_ this causes all transitive dependencies of these modules to be included as well.
+
+The dependencies module is stored under `{dest}/{target}/dependencies.js`.
+Here, *dest* refers to the configured destination directory (usually `var/flows`), and *target* corresponds to the flow target that was specified when running the task.
 
 
 ## Overview

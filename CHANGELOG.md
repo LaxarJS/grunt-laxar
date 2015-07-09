@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+- [#63](https://github.com/LaxarJS/grunt-laxar/issues/63): added regression tests for the new flow-based tasks
+    + NEW FEATURE: see ticket for details
+
 
 ## v1.1.0-alpha.1
 

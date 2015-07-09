@@ -3,6 +3,10 @@
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
+
+/* global expect */
+require( 'expectations' );
+
 var grunt = require( 'grunt' );
 var runTask = require( 'grunt-run-task' );
 
