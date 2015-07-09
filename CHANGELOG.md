@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.1.0-alpha.1
+
 - [#41](https://github.com/LaxarJS/grunt-laxar/issues/41): added new flow-based tasks
     + NEW FEATURE: see ticket for details
 
