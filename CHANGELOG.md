@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.1.0-alpha.2
+
 - [#65](https://github.com/LaxarJS/grunt-laxar/issues/65): laxar-resources: normalized task result
     + NEW FEATURE: see ticket for details
 - [#64](https://github.com/LaxarJS/grunt-laxar/issues/64): added Travis-CI build integration
