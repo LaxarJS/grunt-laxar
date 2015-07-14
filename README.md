@@ -1,4 +1,4 @@
-# grunt-laxar
+# grunt-laxar [![Build Status](https://travis-ci.org/LaxarJS/grunt-laxar.svg?branch=master)](https://travis-ci.org/LaxarJS/grunt-laxar)
 
 > Grunt tasks for LaxarJS
 
