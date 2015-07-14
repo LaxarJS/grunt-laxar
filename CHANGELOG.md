@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+- [#66](https://github.com/LaxarJS/grunt-laxar/issues/66): jshint: always use project settings
+    + NEW FEATURE: see ticket for details
+
 
 ## v1.1.0-alpha.2
 

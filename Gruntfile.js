@@ -6,17 +6,12 @@
 module.exports = function( grunt ) {
    'use strict';
 
-   var pkg = grunt.file.readJSON( 'package.json' );
-
-   grunt.initConfig({
+   grunt.initConfig( {
       clean: {
          test: [ 'tmp' ],
          fixtures: [ 'tasks/spec/fixtures/bower_components' ]
       },
       jshint: {
-         options: {
-            jshintrc: '.jshintrc'
-         },
          gruntfile: [
             __filename
          ],
@@ -68,7 +63,7 @@ module.exports = function( grunt ) {
             pushTo: 'origin'
          }
       }
-   });
+   } );
 
    grunt.loadNpmTasks( 'grunt-contrib-clean' );
    grunt.loadNpmTasks( 'grunt-contrib-copy' );
