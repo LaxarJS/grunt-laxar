@@ -1,0 +1,36 @@
+{
+   "concat": {
+      "laxar-flow-my-flow": {
+         "options": {
+            "separator": "require.paths[ 'laxar-path-flow' ] = \"../application/flow/flow.json\";\n"
+         },
+         "src": [
+            "require_config.js",
+            "bower_components/requirejs.js"
+         ],
+         "dest": "var/flows/my-flow/work/require-configured.js"
+      }
+   },
+   "requirejs": {
+      "laxar-flow-my-flow": {
+         "options": {
+            "flow": {
+               "target": "my-flow",
+               "src": "application/flow/flow.json"
+            },
+            "mainConfigFile": "require_config.js",
+            "name": "../init",
+            "optimize": "uglify2",
+            "deps": [
+               "laxar-application/var/flows/my-flow/work/require-configured"
+            ],
+            "out": "var/flows/my-flow/dist/bundle.js",
+            "saveConfig": true,
+            "tasks": [
+               "concat:laxar-flow-my-flow",
+               "requirejs:laxar-flow-my-flow"
+            ]
+         }
+      }
+   }
+}

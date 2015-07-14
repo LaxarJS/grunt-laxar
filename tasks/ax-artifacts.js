@@ -36,7 +36,6 @@ module.exports = function( grunt ) {
       TASK,
       'Collects artifacts for LaxarJS flows.',
       function() {
-         this.requires( 'laxar-configure' );
          runArtifacts( this );
       }
    );

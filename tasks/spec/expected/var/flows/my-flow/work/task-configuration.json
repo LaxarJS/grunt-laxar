@@ -1,0 +1,116 @@
+{
+   "laxar-artifacts": {
+      "my-flow": {
+         "src": "application/flow/flow.json",
+         "dest": "var/flows"
+      }
+   },
+   "laxar-build-flow": {
+      "options": {
+         "userTasks": []
+      },
+      "my-flow": {
+         "src": "var/flows",
+         "options": {
+            "flow": {
+               "target": "my-flow",
+               "src": "application/flow/flow.json"
+            }
+         }
+      }
+   },
+   "laxar-resources": {
+      "my-flow": {
+         "src": "var/flows",
+         "options": {
+            "flow": {
+               "target": "my-flow",
+               "src": "application/flow/flow.json"
+            }
+         }
+      }
+   },
+   "laxar-dependencies": {
+      "my-flow": {
+         "src": "var/flows",
+         "options": {
+            "flow": {
+               "target": "my-flow",
+               "src": "application/flow/flow.json"
+            }
+         }
+      }
+   },
+   "laxar-configure-watch": {
+      "my-flow": {
+         "src": "var/flows",
+         "options": {
+            "flow": {
+               "target": "my-flow",
+               "src": "application/flow/flow.json"
+            }
+         }
+      }
+   },
+   "laxar-dist-flow": {
+      "options": {
+         "userTasks": []
+      },
+      "my-flow": {
+         "src": "var/flows",
+         "options": {
+            "flow": {
+               "target": "my-flow",
+               "src": "application/flow/flow.json"
+            }
+         }
+      }
+   },
+   "laxar-dist-css": {
+      "my-flow": {
+         "src": "var/flows",
+         "options": {
+            "flow": {
+               "target": "my-flow",
+               "src": "application/flow/flow.json"
+            }
+         }
+      }
+   },
+   "laxar-dist-js": {
+      "my-flow": {
+         "src": "var/flows",
+         "options": {
+            "flow": {
+               "target": "my-flow",
+               "src": "application/flow/flow.json"
+            }
+         }
+      }
+   },
+   "laxar-test-flow": {
+      "options": {
+         "userTasks": []
+      },
+      "my-flow": {
+         "src": "var/flows",
+         "options": {
+            "flow": {
+               "target": "my-flow",
+               "src": "application/flow/flow.json"
+            }
+         }
+      }
+   },
+   "laxar-test-configure-widget": {
+      "my-flow": {
+         "src": "var/flows",
+         "options": {
+            "flow": {
+               "target": "my-flow",
+               "src": "application/flow/flow.json"
+            }
+         }
+      }
+   }
+}

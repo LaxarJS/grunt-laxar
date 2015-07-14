@@ -1,0 +1,110 @@
+{
+   "bower_components": {
+      "laxar-uikit": {
+         "dist": {
+            "themes": {
+               "default.theme": {
+                  "css": {
+                     "theme.css": 1
+                  }
+               }
+            }
+         }
+      }
+   },
+   "themes": {
+      "test.theme": {
+         "css": {
+            "theme.css": 1
+         },
+         "layouts": {
+            "example": {
+               "css": {
+                  "example.css": 1
+               }
+            }
+         }
+      },
+      "test2.theme": {
+         "css": {
+            "theme.css": 1
+         }
+      }
+   },
+   "controls": {
+      "ax-old-style-control": {
+         "ax-old-style-control": {
+            "default.theme": {
+               "css": {
+                  "ax-old-style-control.css": 1
+               }
+            }
+         }
+      },
+      "ax-test-control": {
+         "control.json": "{\"name\":\"AxNewStyleControl\",\"integration\":{\"technology\":\"angular\"}}",
+         "default.theme": {
+            "css": {
+               "ax-new-style-control.css": 1
+            }
+         },
+         "test2.theme": {
+            "css": {
+               "ax-new-style-control.css": 1
+            }
+         }
+      }
+   },
+   "application": {
+      "flow": {
+         "flow.json": "{\"places\":{\"entry\":{\"redirectTo\":\"start\"},\"start\":{\"page\":\"start\"}}}"
+      },
+      "pages": {
+         "start.json": "{\"layout\":\"start\",\"areas\":{\"content\":[{\"widget\":\"default/test_widget\",\"features\":{}},{\"widget\":\"default/test_widget\",\"features\":{}},{\"widget\":\"default/local_widget\",\"features\":{}},{\"widget\":\"default/plain_widget\"}]}}"
+      },
+      "layouts": {
+         "example": {
+            "default.theme": {
+               "example.html": "<div class=\"example-layout\"> <div data-ax-widget-area=\"example\"></div> </div> ",
+               "css": {
+                  "example.css": 1
+               }
+            }
+         },
+         "start": {
+            "default.theme": {
+               "start.html": "<div class=\"ax-start-wrapper\"> <div class=\"ax-start-content\" data-ax-widget-area=\"content\"></div> </div> "
+            }
+         }
+      }
+   },
+   "widgets": {
+      "default": {
+         "local_widget": {
+            "widget.json": "{\"name\":\"LocalWidget\",\"description\":\"A widget with embedded test.theme styling\",\"version\":{\"spec\":\"0.1.0\"},\"integration\":{\"technology\":\"angular\",\"type\":\"widget\"},\"features\":{}}",
+            "default.theme": {
+               "css": {
+                  "local_widget.css": 1
+               }
+            },
+            "test.theme": {
+               "css": {
+                  "local_widget.css": 1
+               }
+            }
+         },
+         "plain_widget": {
+            "widget.json": "{\"name\":\"PlainWidget\",\"description\":\"A plain widget\",\"version\":{\"spec\":\"0.1.0\"},\"integration\":{\"technology\":\"plain\",\"type\":\"widget\"},\"features\":{}}"
+         },
+         "test_widget": {
+            "default.theme": {
+               "test_widget.html": "<!-- :) --> ",
+               "css": {
+                  "test_widget.css": 1
+               }
+            },
+            "widget.json": "{\"name\":\"TestWidget\",\"description\":\"A regular test widget\",\"version\":{\"spec\":\"0.1.0\"},\"integration\":{\"technology\":\"angular\",\"type\":\"widget\"},\"controls\":[\"laxar-path-controls/ax-old-style-control/ax-old-style-control\",\"laxar-path-controls/ax-test-control\"],\"features\":{}}"
+         }
+      }
+   }
+}
