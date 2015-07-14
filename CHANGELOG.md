@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#64](https://github.com/LaxarJS/grunt-laxar/issues/64): added Travis-CI build integration
+    + NEW FEATURE: see ticket for details
 - [#63](https://github.com/LaxarJS/grunt-laxar/issues/63): added regression tests for the new flow-based tasks
     + NEW FEATURE: see ticket for details
 
