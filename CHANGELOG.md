@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#65](https://github.com/LaxarJS/grunt-laxar/issues/65): laxar-resources: normalized task result
+    + NEW FEATURE: see ticket for details
 - [#64](https://github.com/LaxarJS/grunt-laxar/issues/64): added Travis-CI build integration
     + NEW FEATURE: see ticket for details
 - [#63](https://github.com/LaxarJS/grunt-laxar/issues/63): added regression tests for the new flow-based tasks
