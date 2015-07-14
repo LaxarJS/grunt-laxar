@@ -50,9 +50,10 @@ module.exports = function( grunt ) {
 
       // wait for all file-embeddings
       q.all( listingPromises ).then( function() {
+         var results = normalize( listings );
          helpers.writeIfChanged(
             path.join( flowsDirectory, flowId, RESOURCES_FILE ),
-            JSON.stringify( listings, null, 3 ),
+            JSON.stringify( results, null, 3 ),
             startMs
          );
          done();
@@ -61,6 +62,21 @@ module.exports = function( grunt ) {
          grunt.log.error( TASK + ': ERROR:', err );
          done( err );
       } );
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function normalize( listing ) {
+         if( typeof( listing ) !== 'object' ) {
+            return listing;
+         }
+         var keys = Object.keys( listing );
+         keys.sort();
+         var result = {};
+         keys.forEach( function( key ) {
+            result[ key ] = normalize( listing[ key ] );
+         } );
+         return result;
+      }
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
