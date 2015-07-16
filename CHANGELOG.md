@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#67](https://github.com/LaxarJS/grunt-laxar/issues/67): project: use latest karma-laxar
 - [#66](https://github.com/LaxarJS/grunt-laxar/issues/66): jshint: always use project settings
     + NEW FEATURE: see ticket for details
 
