@@ -40,7 +40,7 @@
       "karma": "LaxarJS/karma#f1363cc3fca25a87c5bb45970a7ca3afd207fb73",
       "karma-coverage": "~0.2.6",
       "karma-junit-reporter": "~0.2.1",
-      "karma-laxar": "~1.1.0-alpha.0",
+      "karma-laxar": "~1.1.0-alpha.1",
       "karma-phantomjs-launcher": "~0.1.2",
       "laxar": "~1.0.0-beta.1",
       "laxar-dox": "~1.0.0",
