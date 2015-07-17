@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+- [#71](https://github.com/LaxarJS/grunt-laxar/issues/71): widgets: fixed lookup of jshintrc
+
+
 ## v1.1.0-alpha.3
 
 - [#67](https://github.com/LaxarJS/grunt-laxar/issues/67): project: use latest karma-laxar
