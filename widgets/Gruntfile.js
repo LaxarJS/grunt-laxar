@@ -75,6 +75,9 @@ module.exports = function (grunt) {
          }
       },
       jshint: {
+         options: {
+            jshintrc: __dirname + '/../.jshintrc'
+         },
          default: {
             src: [ '*.js', '!(bower_components|node_modules)/**/*.js' ]
          }
