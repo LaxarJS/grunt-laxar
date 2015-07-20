@@ -2,10 +2,60 @@
 
 > For a given flow target, collects all reachable artifacts and produce an *artifacts model* in JSON format.
 
-The generated _artifacts model_ serves as a base for many other tasks and is very useful for tooling and inspection.
+The generated *artifacts model* serves as a base for many other tasks and is very useful for tooling and inspection.
 
 The artifacts model is stored under `{dest}/{target}/tooling/artifacts.json`.
 Here, *dest* refers to the configured destination directory (usually `var/flows`), and *target* corresponds to the flow target that was specified when running the task.
+
+There is one top-level key in the artifacts model for each type of artifact: *flows, themes, pages (including compositions), layouts, widgets* and *controls*.
+The value of each of these top-level entries is a list of corresponding *artifact items*.
+The individual attributes of an artifact item depend on the type of artifact, but all items have a `resources` entry, and many also have a `path` and/or `references`.
+
+
+### Artifact Resources
+
+Each artifact that is part of the artifacts model has associated *resources* which play a role for processing by subsequent tasks.
+There are several sets of such resources, which may overlap.
+The `resources` attribute of each artifact item contains these sets by name, each being represented as an *array of strings*, which are file paths or glob-patterns.
+Patterns starting with '/' must be interpreted relative to the project root, while other patterns are relative to the artifact's path.
+Not that there do not actually have to exist any files matching these paths; these are just the paths where the LaxarJS runtime and tasks will be able to pick them up.
+
+
+#### Artifact Resources: *embed*
+
+Any *embed resources* of an artifact will possibly be downloaded by the LaxarJS runtime, using the [axFileResourceProvider](https://github.com/LaxarJS/laxar/blob/master/docs/api/runtime_services.js.md#axFileResourceProvider) service.
+Actually existing files that match these resources will be textually embedded by the [laxar-resources](./laxar-resources.md) task into the file *resources.json*, so that the runtime can access their contents without any delay.
+
+* For *widgets*, this list includes the *widget.json*, any HTML templates (local to the widget, or provided externally by a theme), and anything specified in the *widget.json* under `resources.embed`.
+
+* For *controls*, this list includes the *control.json*, and anything specified in the *control.json* under `resources.embed`.
+
+Note that *embed* implies *list* (see below).
+
+
+#### Artifact Resources: *list*
+
+Any *list resources* of an artifact will possibly be checked for availability by the LaxarJS runtime, using the [axFileResourceProvider](https://github.com/LaxarJS/laxar/blob/master/docs/api/runtime_services.js.md#axFileResourceProvider) service.
+Actual files corresponding to these resources will be listed by the task [laxar-resources](./laxar-resources.md) in the file *resources.json* so that the runtime can determine their availability without producing HTML 404 errors.
+These resources *might* be downloaded (if they actually exist), for example by a runtime-generated `link` element, in order to load a stylesheet.
+
+* For *widgets*, this list includes any CSS stylesheets (local to the widget, or provided externally by a theme), and anything specified in the *widget.json* under `resources.list`.
+
+* For *controls*, this list includes any CSS stylesheets (local to the control, or provided externally by a theme), anything specified in the *control.json* under `resources.list`.
+
+Note that any *embed* resources belong are *implicitly* list resources as well.
+
+#### Artifact Resources: *watch*
+
+Any *watch resources* indicate file locations that are observed by the development server.
+These resources are processed by [laxar-configure-watch](./laxar-configure-watch.md) to configure the grunt `watch` task.
+Changes to these resources will be live-reloaded if the development server is used.
+
+* For *widgets*, this list includes the implementation module, any of the default *list* and *embed* resources (see above) as well as anything specified in the *widget.json* under `resources.watch`.
+
+* For *controls*, this list includes the implementation module, any of the default *list* and *embed* resources (see above) as well as anything specified in the *control.json* under `resources.watch`.
+
+To watch all JavaScript files of a widget that you are developing, you could simply add an entry _"*.js"_ to the `resources.watch` entry of the _widget.json_.
 
 
 ## Overview
