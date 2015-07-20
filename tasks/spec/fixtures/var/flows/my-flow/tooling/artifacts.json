@@ -251,8 +251,12 @@
             "watch": [
                "widget.json",
                "*.theme/test_widget.html",
+               "data.json",
                "*.theme/css/test_widget.css",
+               "messages-en.json",
+               "messages-de.json",
                "test_widget.js",
+               "*.js",
                "/themes/test.theme/widgets/default/test_widget/css/test_widget.css",
                "/themes/test.theme/widgets/default/test_widget/test_widget.html",
                "/themes/test2.theme/widgets/default/test_widget/css/test_widget.css",
@@ -261,11 +265,14 @@
             "embed": [
                "widget.json",
                "*.theme/test_widget.html",
+               "data.json",
                "/themes/test.theme/widgets/default/test_widget/test_widget.html",
                "/themes/test2.theme/widgets/default/test_widget/test_widget.html"
             ],
             "list": [
                "*.theme/css/test_widget.css",
+               "messages-en.json",
+               "messages-de.json",
                "/themes/test.theme/widgets/default/test_widget/css/test_widget.css",
                "/themes/test2.theme/widgets/default/test_widget/css/test_widget.css"
             ]

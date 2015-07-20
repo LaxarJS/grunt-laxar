@@ -103,7 +103,7 @@
                   "test_widget.css": 1
                }
             },
-            "widget.json": "{\"name\":\"TestWidget\",\"description\":\"A regular test widget\",\"version\":{\"spec\":\"0.1.0\"},\"integration\":{\"technology\":\"angular\",\"type\":\"widget\"},\"controls\":[\"laxar-path-controls/ax-old-style-control/ax-old-style-control\",\"laxar-path-controls/ax-test-control\"],\"features\":{}}"
+            "widget.json": "{\"name\":\"TestWidget\",\"description\":\"A regular test widget\",\"version\":{\"spec\":\"0.1.0\"},\"integration\":{\"technology\":\"angular\",\"type\":\"widget\"},\"controls\":[\"laxar-path-controls/ax-old-style-control/ax-old-style-control\",\"laxar-path-controls/ax-test-control\"],\"features\":{},\"resources\":{\"watch\":[\"*.js\"],\"list\":[\"messages-en.json\",\"messages-de.json\"],\"embed\":[\"data.json\"]}}"
          }
       }
    }

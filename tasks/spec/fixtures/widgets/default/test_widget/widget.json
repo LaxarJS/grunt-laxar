@@ -16,5 +16,12 @@
    ],
 
    "features": {
+   },
+
+   "resources": {
+      "watch": [ "*.js" ],
+      "list": [ "messages-en.json", "messages-de.json" ],
+      "embed": [ "data.json" ]
    }
+
 }
