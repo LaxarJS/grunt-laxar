@@ -256,9 +256,9 @@ module.exports = function( grunt ) {
                var artifactHtmlRef = [ '*.theme' ].concat( htmlPart ).join( URL_SEP );
                var artifactCssRef = [ '*.theme' ].concat( cssPart ).join( URL_SEP );
 
-               var toEmbed = resources.embed || [ 'widget.json' ].concat( hasView ? [ artifactHtmlRef ] : [] );
-               var toList = resources.list || ( hasView ? [ artifactCssRef ] : [] );
-               var toWatch = resources.watch || toEmbed.concat( toList ).concat( [ name + '.js' ] );
+               var toEmbed = [ 'widget.json' ].concat( hasView ? [ artifactHtmlRef ] : [] ).concat( resources.embed || [] );
+               var toList = ( hasView ? [ artifactCssRef ] : [] ).concat( resources.list || [] );
+               var toWatch = toEmbed.concat( toList ).concat( [ name + '.js' ] ).concat( resources.watch || [] );
 
                // Take into account possible theme-folder files
                themes.filter( nonDefault ).forEach( function( theme ) {
@@ -362,9 +362,9 @@ module.exports = function( grunt ) {
                var cssPart = [ 'css', name + '.css' ];
 
                var artifactCssRef = [ '*.theme' ].concat( cssPart ).join( URL_SEP );
-               var toList = resources.list || [ artifactCssRef ];
-               var toEmbed = resources.embed || [ 'control.json' ];
-               var toWatch = resources.watch || toList.concat( [ name + '.js' ] );
+               var toList = [ artifactCssRef].concat( resources.list || [] );
+               var toEmbed = [ 'control.json'].concat( resources.embed || [] );
+               var toWatch = toList.concat( [ name + '.js' ] ).concat( resources.watch || [] );
 
                // Take into account possible theme-folder files
                themes.filter( nonDefault ).forEach( function( theme ) {
