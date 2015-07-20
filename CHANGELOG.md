@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#68](https://github.com/LaxarJS/grunt-laxar/issues/68): documentation: added docs for `laxar-artifacts`
 - [#69](https://github.com/LaxarJS/grunt-laxar/issues/69): documentation: fixed directory_tree docs
 - [#71](https://github.com/LaxarJS/grunt-laxar/issues/71): widgets: fixed lookup of jshintrc
 
