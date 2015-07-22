@@ -41,18 +41,11 @@ describe( 'the laxar-dependencies task', function() {
    describe( 'configured for a given flow', function() {
 
       var taskConfig;
-      var configSpy;
 
       before( function( done ) {
          taskConfig = grunt.file.readJSON( paths.fixtures.configuration )[ 'laxar-dependencies' ];
-         configSpy = spyOn( runTask.grunt.config, 'set' );
          run( 'laxar-dependencies:my-flow', taskConfig, dir.actual, done );
       } );
-
-      after( function() {
-         configSpy.reset();
-      } );
-
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
       it( 'generates the correct dependencies module', function() {

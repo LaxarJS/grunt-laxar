@@ -84,35 +84,25 @@
       {
          "resources": {
             "list": [
-               "/application/layouts/example/default.theme/css/example.css",
-               "/application/layouts/example/default.theme/example.html",
-               "/application/layouts/example/test.theme/css/example.css",
-               "/application/layouts/example/test.theme/example.html",
-               "/themes/test.theme/layouts/example/css/example.css",
-               "/themes/test.theme/layouts/example/example.html",
-               "/application/layouts/example/test2.theme/css/example.css",
-               "/application/layouts/example/test2.theme/example.html",
                "/themes/test2.theme/layouts/example/css/example.css",
-               "/themes/test2.theme/layouts/example/example.html"
+               "/themes/test.theme/layouts/example/css/example.css",
+               "/application/layouts/example/test.theme/css/example.css",
+               "/application/layouts/example/test2.theme/css/example.css",
+               "/application/layouts/example/default.theme/css/example.css"
             ],
             "watch": [
-               "/application/layouts/example/default.theme/css/example.css",
-               "/application/layouts/example/default.theme/example.html",
-               "/application/layouts/example/test.theme/css/example.css",
-               "/application/layouts/example/test.theme/example.html",
-               "/themes/test.theme/layouts/example/css/example.css",
-               "/themes/test.theme/layouts/example/example.html",
-               "/application/layouts/example/test2.theme/css/example.css",
-               "/application/layouts/example/test2.theme/example.html",
                "/themes/test2.theme/layouts/example/css/example.css",
-               "/themes/test2.theme/layouts/example/example.html"
+               "/themes/test.theme/layouts/example/css/example.css",
+               "/application/layouts/example/test.theme/css/example.css",
+               "/application/layouts/example/test2.theme/css/example.css",
+               "/application/layouts/example/default.theme/css/example.css"
             ],
             "embed": [
-               "/application/layouts/example/default.theme/example.html",
-               "/application/layouts/example/test.theme/example.html",
+               "/themes/test2.theme/layouts/example/example.html",
                "/themes/test.theme/layouts/example/example.html",
+               "/application/layouts/example/test.theme/example.html",
                "/application/layouts/example/test2.theme/example.html",
-               "/themes/test2.theme/layouts/example/example.html"
+               "/application/layouts/example/default.theme/example.html"
             ]
          },
          "references": {
@@ -124,35 +114,25 @@
       {
          "resources": {
             "list": [
-               "/application/layouts/start/default.theme/css/start.css",
-               "/application/layouts/start/default.theme/start.html",
-               "/application/layouts/start/test.theme/css/start.css",
-               "/application/layouts/start/test.theme/start.html",
-               "/themes/test.theme/layouts/start/css/start.css",
-               "/themes/test.theme/layouts/start/start.html",
-               "/application/layouts/start/test2.theme/css/start.css",
-               "/application/layouts/start/test2.theme/start.html",
                "/themes/test2.theme/layouts/start/css/start.css",
-               "/themes/test2.theme/layouts/start/start.html"
+               "/themes/test.theme/layouts/start/css/start.css",
+               "/application/layouts/start/test.theme/css/start.css",
+               "/application/layouts/start/test2.theme/css/start.css",
+               "/application/layouts/start/default.theme/css/start.css"
             ],
             "watch": [
-               "/application/layouts/start/default.theme/css/start.css",
-               "/application/layouts/start/default.theme/start.html",
-               "/application/layouts/start/test.theme/css/start.css",
-               "/application/layouts/start/test.theme/start.html",
-               "/themes/test.theme/layouts/start/css/start.css",
-               "/themes/test.theme/layouts/start/start.html",
-               "/application/layouts/start/test2.theme/css/start.css",
-               "/application/layouts/start/test2.theme/start.html",
                "/themes/test2.theme/layouts/start/css/start.css",
-               "/themes/test2.theme/layouts/start/start.html"
+               "/themes/test.theme/layouts/start/css/start.css",
+               "/application/layouts/start/test.theme/css/start.css",
+               "/application/layouts/start/test2.theme/css/start.css",
+               "/application/layouts/start/default.theme/css/start.css"
             ],
             "embed": [
-               "/application/layouts/start/default.theme/start.html",
-               "/application/layouts/start/test.theme/start.html",
+               "/themes/test2.theme/layouts/start/start.html",
                "/themes/test.theme/layouts/start/start.html",
+               "/application/layouts/start/test.theme/start.html",
                "/application/layouts/start/test2.theme/start.html",
-               "/themes/test2.theme/layouts/start/start.html"
+               "/application/layouts/start/default.theme/start.html"
             ]
          },
          "references": {
@@ -171,25 +151,25 @@
          },
          "resources": {
             "watch": [
+               "/themes/test2.theme/widgets/default/local_widget/local_widget.html",
+               "/themes/test2.theme/widgets/default/local_widget/css/local_widget.css",
+               "/themes/test.theme/widgets/default/local_widget/local_widget.html",
+               "/themes/test.theme/widgets/default/local_widget/css/local_widget.css",
                "widget.json",
                "*.theme/local_widget.html",
                "*.theme/css/local_widget.css",
-               "local_widget.js",
-               "/themes/test.theme/widgets/default/local_widget/css/local_widget.css",
-               "/themes/test.theme/widgets/default/local_widget/local_widget.html",
-               "/themes/test2.theme/widgets/default/local_widget/css/local_widget.css",
-               "/themes/test2.theme/widgets/default/local_widget/local_widget.html"
+               "local_widget.js"
             ],
             "embed": [
-               "widget.json",
-               "*.theme/local_widget.html",
+               "/themes/test2.theme/widgets/default/local_widget/local_widget.html",
                "/themes/test.theme/widgets/default/local_widget/local_widget.html",
-               "/themes/test2.theme/widgets/default/local_widget/local_widget.html"
+               "widget.json",
+               "*.theme/local_widget.html"
             ],
             "list": [
-               "*.theme/css/local_widget.css",
+               "/themes/test2.theme/widgets/default/local_widget/css/local_widget.css",
                "/themes/test.theme/widgets/default/local_widget/css/local_widget.css",
-               "/themes/test2.theme/widgets/default/local_widget/css/local_widget.css"
+               "*.theme/css/local_widget.css"
             ]
          },
          "references": {
@@ -210,25 +190,25 @@
          },
          "resources": {
             "watch": [
+               "/themes/test2.theme/widgets/default/plain_widget/plain_widget.html",
+               "/themes/test2.theme/widgets/default/plain_widget/css/plain_widget.css",
+               "/themes/test.theme/widgets/default/plain_widget/plain_widget.html",
+               "/themes/test.theme/widgets/default/plain_widget/css/plain_widget.css",
                "widget.json",
                "*.theme/plain_widget.html",
                "*.theme/css/plain_widget.css",
-               "plain_widget.js",
-               "/themes/test.theme/widgets/default/plain_widget/css/plain_widget.css",
-               "/themes/test.theme/widgets/default/plain_widget/plain_widget.html",
-               "/themes/test2.theme/widgets/default/plain_widget/css/plain_widget.css",
-               "/themes/test2.theme/widgets/default/plain_widget/plain_widget.html"
+               "plain_widget.js"
             ],
             "embed": [
-               "widget.json",
-               "*.theme/plain_widget.html",
+               "/themes/test2.theme/widgets/default/plain_widget/plain_widget.html",
                "/themes/test.theme/widgets/default/plain_widget/plain_widget.html",
-               "/themes/test2.theme/widgets/default/plain_widget/plain_widget.html"
+               "widget.json",
+               "*.theme/plain_widget.html"
             ],
             "list": [
-               "*.theme/css/plain_widget.css",
+               "/themes/test2.theme/widgets/default/plain_widget/css/plain_widget.css",
                "/themes/test.theme/widgets/default/plain_widget/css/plain_widget.css",
-               "/themes/test2.theme/widgets/default/plain_widget/css/plain_widget.css"
+               "*.theme/css/plain_widget.css"
             ]
          },
          "references": {
@@ -249,6 +229,10 @@
          },
          "resources": {
             "watch": [
+               "/themes/test2.theme/widgets/default/test_widget/test_widget.html",
+               "/themes/test2.theme/widgets/default/test_widget/css/test_widget.css",
+               "/themes/test.theme/widgets/default/test_widget/test_widget.html",
+               "/themes/test.theme/widgets/default/test_widget/css/test_widget.css",
                "widget.json",
                "*.theme/test_widget.html",
                "data.json",
@@ -256,25 +240,21 @@
                "messages-en.json",
                "messages-de.json",
                "test_widget.js",
-               "*.js",
-               "/themes/test.theme/widgets/default/test_widget/css/test_widget.css",
-               "/themes/test.theme/widgets/default/test_widget/test_widget.html",
-               "/themes/test2.theme/widgets/default/test_widget/css/test_widget.css",
-               "/themes/test2.theme/widgets/default/test_widget/test_widget.html"
+               "*.js"
             ],
             "embed": [
+               "/themes/test2.theme/widgets/default/test_widget/test_widget.html",
+               "/themes/test.theme/widgets/default/test_widget/test_widget.html",
                "widget.json",
                "*.theme/test_widget.html",
-               "data.json",
-               "/themes/test.theme/widgets/default/test_widget/test_widget.html",
-               "/themes/test2.theme/widgets/default/test_widget/test_widget.html"
+               "data.json"
             ],
             "list": [
+               "/themes/test2.theme/widgets/default/test_widget/css/test_widget.css",
+               "/themes/test.theme/widgets/default/test_widget/css/test_widget.css",
                "*.theme/css/test_widget.css",
                "messages-en.json",
-               "messages-de.json",
-               "/themes/test.theme/widgets/default/test_widget/css/test_widget.css",
-               "/themes/test2.theme/widgets/default/test_widget/css/test_widget.css"
+               "messages-de.json"
             ]
          },
          "references": {
@@ -300,18 +280,18 @@
          },
          "resources": {
             "watch": [
+               "/themes/test2.theme/controls/laxar-path-controls/ax-old-style-control/ax-old-style-control/css/ax-old-style-control.css",
+               "/themes/test.theme/controls/laxar-path-controls/ax-old-style-control/ax-old-style-control/css/ax-old-style-control.css",
                "*.theme/css/ax-old-style-control.css",
-               "ax-old-style-control.js",
-               "themes/test.theme/controls/laxar-path-controls/ax-old-style-control/ax-old-style-control/css/ax-old-style-control.css",
-               "themes/test2.theme/controls/laxar-path-controls/ax-old-style-control/ax-old-style-control/css/ax-old-style-control.css"
+               "ax-old-style-control.js"
             ],
             "embed": [
                "control.json"
             ],
             "list": [
-               "*.theme/css/ax-old-style-control.css",
-               "themes/test.theme/controls/laxar-path-controls/ax-old-style-control/ax-old-style-control/css/ax-old-style-control.css",
-               "themes/test2.theme/controls/laxar-path-controls/ax-old-style-control/ax-old-style-control/css/ax-old-style-control.css"
+               "/themes/test2.theme/controls/laxar-path-controls/ax-old-style-control/ax-old-style-control/css/ax-old-style-control.css",
+               "/themes/test.theme/controls/laxar-path-controls/ax-old-style-control/ax-old-style-control/css/ax-old-style-control.css",
+               "*.theme/css/ax-old-style-control.css"
             ]
          },
          "references": {
@@ -329,18 +309,18 @@
          },
          "resources": {
             "watch": [
+               "/themes/test2.theme/controls/laxar-path-controls/ax-test-control/css/ax-new-style-control.css",
+               "/themes/test.theme/controls/laxar-path-controls/ax-test-control/css/ax-new-style-control.css",
                "*.theme/css/ax-new-style-control.css",
-               "ax-new-style-control.js",
-               "themes/test.theme/controls/laxar-path-controls/ax-test-control/css/ax-new-style-control.css",
-               "themes/test2.theme/controls/laxar-path-controls/ax-test-control/css/ax-new-style-control.css"
+               "ax-new-style-control.js"
             ],
             "embed": [
                "control.json"
             ],
             "list": [
-               "*.theme/css/ax-new-style-control.css",
-               "themes/test.theme/controls/laxar-path-controls/ax-test-control/css/ax-new-style-control.css",
-               "themes/test2.theme/controls/laxar-path-controls/ax-test-control/css/ax-new-style-control.css"
+               "/themes/test2.theme/controls/laxar-path-controls/ax-test-control/css/ax-new-style-control.css",
+               "/themes/test.theme/controls/laxar-path-controls/ax-test-control/css/ax-new-style-control.css",
+               "*.theme/css/ax-new-style-control.css"
             ]
          },
          "references": {

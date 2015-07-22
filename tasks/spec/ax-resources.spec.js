@@ -41,7 +41,6 @@ describe( 'the laxar-resources task', function() {
    describe( 'configured for a given flow', function() {
 
       var taskConfig;
-      var configSpy;
 
       before( function( done ) {
          // remove result (from previous run or from fixture to another task).
@@ -49,12 +48,7 @@ describe( 'the laxar-resources task', function() {
             grunt.file.delete( paths.actual.result );
          }
          taskConfig = grunt.file.readJSON( paths.fixtures.configuration )[ 'laxar-resources' ];
-         configSpy = spyOn( runTask.grunt.config, 'set' );
          run( 'laxar-resources:my-flow', taskConfig, dir.actual, done );
-      } );
-
-      after( function() {
-         configSpy.reset();
       } );
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////

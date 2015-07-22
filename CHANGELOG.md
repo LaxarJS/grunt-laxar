@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#72](https://github.com/LaxarJS/grunt-laxar/issues/72): new task: laxar-info
+    + NEW FEATURE: see ticket for details
 - [#74](https://github.com/LaxarJS/grunt-laxar/issues/74): added task laxar-merge-require-config
     + NEW FEATURE: see ticket for details
 - [#70](https://github.com/LaxarJS/grunt-laxar/issues/70): per-artifact resources now extend (rather than replace) defaults
