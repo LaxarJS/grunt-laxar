@@ -11,7 +11,7 @@ module.exports = function( grunt ) {
       'laxar-dist-flow'
    ] );
 
-   /** This is basically an alias-tasks, but handles multiple flow targets. */
+   /** This is basically an alias-task, but handles multiple flow targets. */
    grunt.registerMultiTask( 'laxar-dist-flow',
       'Optimizes LaxarJS application artifacts',
       function() {

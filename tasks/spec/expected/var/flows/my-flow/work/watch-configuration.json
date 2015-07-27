@@ -1,5 +1,24 @@
 {
    "watch": {
+      "my-flow-merge-require-config": {
+         "event": [
+            "changed"
+         ],
+         "files": [
+            "widgets/default/local_widget/require_config.js",
+            "widgets/default/plain_widget/require_config.js",
+            "widgets/default/test_widget/require_config.js",
+            "controls/ax-old-style-control/ax-old-style-control/require_config.js",
+            "controls/ax-test-control/require_config.js",
+            "require_config.js"
+         ],
+         "options": {
+            "spawn": false
+         },
+         "tasks": [
+            "laxar-merge-require-config:my-flow"
+         ]
+      },
       "my-flow-reload": {
          "files": [
             "application/flow/flow.json",

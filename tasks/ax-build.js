@@ -11,7 +11,7 @@ module.exports = function( grunt ) {
       'laxar-build-flow'
    ] );
 
-   /** This is basically an alias-tasks, but supports flow targets. */
+   /** This is basically an alias-task, but supports flow targets. */
    grunt.registerMultiTask( 'laxar-build-flow',
       'Rebuilds the artifacts model and associated files',
       function() {
@@ -21,6 +21,7 @@ module.exports = function( grunt ) {
                'laxar-artifacts:' + flowId,
                'laxar-resources:' + flowId,
                'laxar-dependencies:' + flowId,
+               'laxar-merge-require-config:' + flowId,
                'laxar-configure-watch:' + flowId
             ]
          } );

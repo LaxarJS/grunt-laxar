@@ -15,19 +15,17 @@ module.exports = function( grunt ) {
    // These multi-tasks will be auto-configured for each flow target.
    var BASE_TASKS = {
       'build-flow': [
-         'laxar-build-flow',
+         'laxar-merge-require-config',
          'laxar-resources',
          'laxar-dependencies',
          'laxar-configure-watch'
       ],
       'dist-flow': [
-         'laxar-dist-flow',
          'laxar-dist-css',
          'laxar-dist-js'
       ],
       'test-flow': [
-         'laxar-test-flow',
-         'laxar-test-configure-widget'
+         'laxar-test-configure-flow'
       ]
    };
 
@@ -45,7 +43,8 @@ module.exports = function( grunt ) {
 
    function runConfigure( task ) {
       var options = task.options( {
-         workDirectory: 'var/flows',
+         workDirectory: path.join( 'var', 'flows' ),
+         testDirectory: path.join( 'var', 'tests' ),
          ports: {
             develop: 8000,
             test: 9000,
@@ -92,7 +91,7 @@ module.exports = function( grunt ) {
 
          STAGES.forEach( function( stage ) {
             var userTasks = ( options.userTasks && options.userTasks[ stage ] ) || [];
-            var stageTasks = BASE_TASKS[ stage ].concat( userTasks );
+            var stageTasks = [ 'laxar-' + stage ].concat( BASE_TASKS[ stage ] ).concat( userTasks );
 
             config[ 'laxar-' + stage ] = {
                options: { userTasks: userTasks }
@@ -102,7 +101,8 @@ module.exports = function( grunt ) {
                config[ taskName ][ flowId ] = {
                   src: flowsDirectory,
                   options: {
-                     flow: flowSettings
+                     flow: flowSettings,
+                     testDirectory: options.testDirectory
                   }
                };
             } );
@@ -135,6 +135,7 @@ module.exports = function( grunt ) {
       grunt.config( 'connect.options.livereload', options.ports.livereload );
       grunt.config( 'watch.options.livereload', options.ports.livereload );
       grunt.config( 'karma.options.proxies./base', 'http://localhost:' + options.ports.test );
+      grunt.config( 'laxar-test-widget.options.testDirectory', options.testDirectory );
    }
 
 };

@@ -12,7 +12,6 @@ module.exports = function( grunt ) {
    var fs = require( 'fs' );
    var q = require( 'q' );
    var path = require( 'path' );
-   var async = require( 'async' );
 
    var readFile = q.nfbind( fs.readFile );
 
@@ -28,14 +27,14 @@ module.exports = function( grunt ) {
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-   function runResources( self ) {
+   function runResources( task ) {
 
       var startMs = Date.now();
-      var done = self.async();
+      var done = task.async();
 
-      var flowId = self.nameArgs.split( ':' )[ 1 ];
-      var flowsDirectory = self.files[ 0 ].src[ 0 ];
-      var options = self.options( {
+      var flowId = task.nameArgs.split( ':' )[ 1 ];
+      var flowsDirectory = task.files[ 0 ].src[ 0 ];
+      var options = task.options( {
          embed: true
       } );
 

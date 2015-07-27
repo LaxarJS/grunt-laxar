@@ -33,6 +33,7 @@ module.exports = function( grunt ) {
       var flowsDirectory = self.files[ 0 ].src[ 0 ];
       var subTaskReload = flowId + '-reload';
       var subTaskRebuild = flowId + '-rebuild';
+      var subTaskRequire = flowId + '-merge-require-config';
       var subTaskUpdate = flowId + '-update';
 
       var options = self.options( {
@@ -45,6 +46,7 @@ module.exports = function( grunt ) {
       config.watch[ subTaskReload ] = watchConfigForReload( artifacts, flowId, options );
       config.watch[ subTaskUpdate ] = watchConfigForUpdate( artifacts, flowId, options );
       config.watch[ subTaskRebuild ] = watchConfigForRebuild( artifacts, flowId, options );
+      config.watch[ subTaskRequire ] = watchConfigForRequireConfigMerging( artifacts, flowId, options );
 
       if( options.saveConfig ) {
          var destination = path.join( flowsDirectory, flowId, RESULT_FILE );
@@ -55,6 +57,7 @@ module.exports = function( grunt ) {
       grunt.config( 'watch.' + subTaskReload, config.watch[ subTaskReload ] );
       grunt.config( 'watch.' + subTaskUpdate, config.watch[ subTaskUpdate ] );
       grunt.config( 'watch.' + subTaskRebuild, config.watch[ subTaskRebuild ] );
+      grunt.config( 'watch.' + subTaskRequire, config.watch[ subTaskRequire ] );
    }
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -88,6 +91,27 @@ module.exports = function( grunt ) {
                .map( helpers.getResourcePaths( artifacts.themes, 'watch' ) )
          ),
          event: [ 'changed' ]
+      };
+   }
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   /**
+    * Changes detected by this watcher should
+    *  - merge changes from partial require config files with the global one
+    */
+   function watchConfigForRequireConfigMerging( artifacts, flowId, options ) {
+      return {
+         files: flatten(
+            selectArtifacts( artifacts, [ 'widgets', 'controls' ] )
+               .map( function( artifact ) {
+                  return path.join( artifact.path, 'require_config.js' );
+               } )
+               .concat( 'require_config.js' )
+         ),
+         event: [ 'changed' ],
+         tasks: [ 'laxar-merge-require-config:' + flowId ],
+         options: { spawn: options.spawn }
       };
    }
 

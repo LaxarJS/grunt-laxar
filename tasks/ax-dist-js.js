@@ -12,6 +12,7 @@ module.exports = function( grunt ) {
    var CONFIG_FILE = path.join( 'work', 'dist-js-configuration.json' );
    var CONCAT_RESULT_REF = path.join( 'work', 'require-configured' );
    var REQUIREJS_RESULT = path.join( 'dist', 'bundle.js' );
+   var REQUIRE_CONFIG = 'require_config';
 
    var URL_SEP = '/';
    var load = require( './lib/load' );
@@ -41,6 +42,9 @@ module.exports = function( grunt ) {
       var requirejsConfig = requirejsHelper.configuration( requirejsOptions );
       var requirejs = requirejsHelper.fromConfiguration( requirejsConfig );
 
+      // Path to the merged require (with widget and control local config) configuration for this flow
+      var generatedRequireConfigPath = path.join( flowsDirectory, flowId, REQUIRE_CONFIG ) + '.js';
+
       // The pre-configured requirejs implementation is stored here:
       var requirePlusConfigPath = path.join( flowsDirectory, flowId, CONCAT_RESULT_REF ) + '.js';
       var requirePlusConfigRef = projectRef( path.join(
@@ -52,8 +56,10 @@ module.exports = function( grunt ) {
          // flow-specific overrides
          flow: {},
 
+         baseUrl: 'bower_components/',
+
          // concat, requirejs: file that sets `var require = ...`
-         mainConfigFile: 'require_config.js',
+         mainConfigFile: generatedRequireConfigPath,
 
          // requirejs: name of the init-file, relative to the RequireJS baseUrl
          name: '../init',
@@ -87,7 +93,7 @@ module.exports = function( grunt ) {
             separator: flowFixupStatement
          },
          src: [
-            options.mainConfigFile,
+            generatedRequireConfigPath,
             projectPath( 'requirejs' ) + '.js'
          ],
          dest: requirePlusConfigPath

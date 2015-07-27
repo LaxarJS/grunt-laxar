@@ -10,4 +10,5 @@ module.exports = function( grunt ) {
    require( './deprecated/upgrade_pages' )( grunt );
    require( './deprecated/laxar_application_dependencies' )( grunt );
    require( './deprecated/test_results_merger' )( grunt );
+   require( './deprecated/widget' )( grunt );
 };
