@@ -45,6 +45,15 @@ The path within your project where task output files are stored.
 All *laxar-...* tasks will use this folder, and a subfolder will be created for each flow target.
 
 
+### options.testDirectory
+
+Type: `String`
+Default value: `var/test`
+
+The path within your project where test output files are stored.
+All *laxar-test-...* tasks will use this folder, and subfolders will be created for artifacts that are being tested.
+
+
 ### options.userTasks
 
 Type: `Object`

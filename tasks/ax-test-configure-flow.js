@@ -6,7 +6,7 @@
 module.exports = function( grunt ) {
    'use strict';
 
-   var TASK = 'laxar-test-configure-widget';
+   var TASK = 'laxar-test-configure-flow';
 
    var path = require( 'path' );
    var CONFIG_FILE = path.join( 'work', 'test-widget-configuration.json' );
@@ -14,7 +14,7 @@ module.exports = function( grunt ) {
    var helpers = require( './lib/task_helpers' )( grunt, TASK );
 
    grunt.registerMultiTask( TASK,
-      'Runs the spec tests for each widget within this flow.',
+      'Configures tests for each widget within this flow.',
       function() { runTestConfigureWidgets( this ); }
    );
 
@@ -31,11 +31,12 @@ module.exports = function( grunt ) {
          resultsFile: 'test-results.xml',
          saveConfig: true
       } );
+      var testPath = options.testDirectory;
 
       var artifacts = helpers.artifactsListing( flowsDirectory, flowId );
 
+      var widgets = [];
       var config = {
-         widget: {},
          'laxar-test-merge-results': {}
       };
       var mergeConfig = config[ 'laxar-test-merge-results' ][ flowId ] = {
@@ -45,12 +46,8 @@ module.exports = function( grunt ) {
 
       artifacts.widgets.forEach( function( widgetInfo ) {
          var widgetPath = widgetInfo.path;
-         var widgetResultsPath = path.join( widgetPath, options.resultsFile );
-         config.widget[ widgetPath ] = {
-            junitReporter: {
-               outputFile: widgetResultsPath
-            }
-         };
+         var widgetResultsPath = path.join( testPath, widgetPath, options.resultsFile );
+         widgets.push( widgetPath );
          mergeConfig.src.push( widgetResultsPath );
       } );
 
@@ -62,8 +59,9 @@ module.exports = function( grunt ) {
       }
 
       // Apply generated configuration:
-      Object.keys( config.widget ).forEach( function( target ) {
-         grunt.config( 'widget.' + target, config.widget[ target ] );
+      grunt.config( 'laxar-test-widget-internal.options.testDirectory', options.testDirectory );
+      widgets.forEach( function( target ) {
+         grunt.config( 'laxar-test-widget-internal.' + target, {} );
       } );
       grunt.config( 'laxar-test-merge-results.' + flowId, mergeConfig );
    }

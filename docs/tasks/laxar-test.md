@@ -2,7 +2,7 @@
 
 > Runs spec tests of all widgets that are a direct part of the application
 
-It does not make sense to test the same widget twice only for being part of two flows, so this task pools and processes widgets from all flows.
+It does not make sense to test the same widget twice just for being part of two flows, so this task pools and processes widgets from all flows.
 
 To test an individual widget, use the task [*laxar-test-widget*](laxar-test-widget.md).
 

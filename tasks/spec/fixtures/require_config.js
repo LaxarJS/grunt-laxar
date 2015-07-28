@@ -1,4 +1,4 @@
-require.config( {
+var require = {
    baseUrl: 'bower_components',
    packages: [
       {
@@ -30,5 +30,9 @@ require.config( {
       'laxar-path-flow': '../application/flow/flow.json',
 
       'test-lib': '../libs/test_lib/test'
+   },
+   shim: {
+      'angular-route': [ 'angular' ],
+      'angular-sanitize': [ 'angular' ]
    }
-} );
+};

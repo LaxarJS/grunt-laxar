@@ -10,18 +10,20 @@ module.exports = function( grunt, taskName ) {
    var fs = require( 'fs' );
    var q = require( 'q' );
 
+   var helpers = require( '../../lib/helpers' );
+
    var ARTIFACTS = path.join( 'tooling', 'artifacts.json' );
 
    return {
       ARTIFACTS_FILE: ARTIFACTS,
       artifactsListing: artifactsListing,
       getResourcePaths: getResourcePaths,
-      flatten: flatten,
-      fileExists: fileExists,
-      lookup: lookup,
-      once: once,
-      promiseOnce: promiseOnce,
-      writeIfChanged: writeIfChanged
+      writeIfChanged: writeIfChanged,
+      flatten: helpers.flatten,
+      fileExists: helpers.fileExists,
+      lookup: helpers.lookup,
+      once: helpers.once,
+      promiseOnce: helpers.promiseOnce
    };
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -70,7 +72,7 @@ module.exports = function( grunt, taskName ) {
          if( !artifact.resources || !artifact.resources[ type ] ) {
             return [];
          }
-         return flatten( artifact.resources[ type ].map( expandThemes ) ).map( fixPaths );
+         return helpers.flatten( artifact.resources[ type ].map( expandThemes ) ).map( fixPaths );
 
          function expandThemes( pattern ) {
             var isThemed = 0 === pattern.indexOf( '*.theme' + path.sep );
@@ -85,69 +87,6 @@ module.exports = function( grunt, taskName ) {
             );
          }
       }
-   }
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   function fileExists( path ) {
-      return q.nfcall( fs.open, path, 'r' ).then(
-         function() { return true; },
-         function() { return false; }
-      );
-   }
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   function flatten( arrays ) {
-      return [].concat.apply( [], arrays );
-   }
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   function lookup( object ) {
-      return function( key ) {
-         return object[ key ];
-      };
-   }
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   /**
-    * Decorate a function so that each input is processed only once.
-    * Subsequent calls will return an empty array.
-    * @param {Function} f
-    *   The function to decorate.
-    *   Should take a string and return an array.
-    */
-   function once( f ) {
-      var inputs = {};
-      return function( input ) {
-         if( inputs[ input ] ) {
-            return [];
-         }
-         inputs[ input ] = true;
-         return f( input );
-      };
-   }
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   /**
-    * Decorate a function so that each input is processed only once.
-    * Subsequent calls will return a (resolved) promise for an empty array.
-    * @param {Function} f
-    *   The function to decorate.
-    *   Should take a string and return a promise for an array.
-    */
-   function promiseOnce( f ) {
-      var inputs = {};
-      return function( input ) {
-         if( inputs[ input ] ) {
-            return q.when( [] );
-         }
-         inputs[ input ] = true;
-         return f( input );
-      };
    }
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////

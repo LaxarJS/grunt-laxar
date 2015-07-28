@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#74](https://github.com/LaxarJS/grunt-laxar/issues/74): added task laxar-merge-require-config
+    + NEW FEATURE: see ticket for details
 - [#70](https://github.com/LaxarJS/grunt-laxar/issues/70): per-artifact resources now extend (rather than replace) defaults
 - [#68](https://github.com/LaxarJS/grunt-laxar/issues/68): documentation: added docs for `laxar-artifacts`
 - [#69](https://github.com/LaxarJS/grunt-laxar/issues/69): documentation: fixed directory_tree docs

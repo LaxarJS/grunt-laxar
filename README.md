@@ -87,6 +87,7 @@ grunt laxar-configure laxar-artifacts:main
 The easiest way to generate the required configuration is by running *laxar-configure* before launching any of these tasks.
 The main tasks listed above do that for you out of the box.
 
+
 ### ⚙ *laxar-build-flow*
 
 For a given flow target, generates all artifacts that are needed to run that flow in the browser during development *([more](docs/tasks/internal/laxar-build-flow.md))*.
@@ -103,9 +104,14 @@ For a given flow target, determines static assets (JSON, CSS, HTML) from the art
 
 For a given flow target, generates an AMD module that references all direct dependencies *([more](docs/tasks/internal/laxar-dependencies.md))*.
 
+⚙ **laxar-merge-require-config**
+
+For a given flow target, collects and merges all *require_config.js* files found in widgets and controls *([more](docs/tasks/internal/laxar-merge-require-config.md))*.
+
 ⚙ **laxar-configure-watch**
 
 For a given flow target, generates configuration for  [*watch*](https://github.com/gruntjs/grunt-contrib-watch) targets *([more](docs/tasks/internal/laxar-configure-watch.md))*.
+
 
 ### ⚙ *laxar-dist-flow*
 
@@ -118,6 +124,20 @@ For a given flow target, uses [*r.js*](http://requirejs.org/docs/optimization.ht
 ⚙ **laxar-dist-css**
 
 For a given flow target, uses [*clean-css*](https://github.com/jakubpawlowicz/clean-css) (via [*cssmin*](https://github.com/gruntjs/grunt-contrib-cssmin)) in order to create a single, optimized CSS file for each theme *([more](docs/tasks/internal/laxar-dist-css.md))*.
+
+
+### ⚙ *laxar-test-flow*
+
+For a given flow target, run all widget tests *([more](docs/tasks/internal/laxar-test-flow.md))*.
+
+⚙ **laxar-test-configure-flow**
+
+Prepares test-configuration for all widgets of the given flow *([more](docs/tasks/internal/laxar-test-configure-flow.md))*.
+
+⚙ **laxar-test-widget-internal**
+
+Runs pre-configured widget tests (prepared by `laxar-test-configure-flow` or by `laxar-test-widget`) *([more](docs/tasks/internal/laxar-test-widget-internal.md))*.
+
 
 
 ## Deprecated Tasks
