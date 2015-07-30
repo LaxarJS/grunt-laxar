@@ -28,7 +28,9 @@ module.exports = function( grunt ) {
          grunt.task.run( options.tasks );
 
          if( options.userTasks ) {
-            grunt.task.run( options.userTasks );
+            grunt.task.run( options.userTasks.map( function( taskName ) {
+               return taskName + ':' + flowId;
+            } ) );
          }
       }
    );
