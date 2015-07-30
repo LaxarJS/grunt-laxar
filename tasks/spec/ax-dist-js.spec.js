@@ -43,17 +43,11 @@ describe( 'the laxar-dist-js task', function() {
    describe( 'configured for a given flow', function() {
 
       var taskConfig;
-      var configSpy;
 
       before( function( done ) {
          taskConfig = grunt.file.readJSON( paths.fixtures.configuration )[ 'laxar-dist-js' ];
          taskConfig.base = 'tmp';
-         configSpy = spyOn( runTask.grunt.config, 'set' );
          run( 'laxar-dist-js:my-flow', taskConfig, dir.actual, done );
-      } );
-
-      after( function() {
-         configSpy.reset();
       } );
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////

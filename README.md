@@ -65,6 +65,10 @@ Runs the spec tests of all widgets that are a direct part of the application *([
 
 Runs the spec test of an individual widget *([more](docs/tasks/laxar-test-widget.md))*.
 
+### ⚙ *laxar-info*
+
+Obtain information about the artifacts in your application ([more](docs/tasks/laxar-info.md)).
+
 ### ⚙ *laxar-dox*
 
 Create API documentation in Markdown format ([more](docs/tasks/laxar-dox.md)).

@@ -5,11 +5,13 @@ module.exports = run;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function run( task, taskConfig, newBase, done ) {
+function run( taskName, taskConfig, newBase, done ) {
    var previousBase = path.resolve( '.' );
    runTask.grunt.file.setBase( newBase );
-   runTask.task( task, taskConfig ).run( function( err ) {
+   var task = runTask.task( taskName, taskConfig );
+   task.run( function( err ) {
       runTask.grunt.file.setBase( previousBase );
       done( err );
    } );
+   return task;
 }

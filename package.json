@@ -20,7 +20,7 @@
    ],
    "dependencies": {
       "async": "~0.7.0",
-      "clean-css": "~3.3.5",
+      "clean-css": "3.3.7",
       "connect-xcors": "~0.5.2",
       "findup": "~0.1.5",
       "glob": "~3.1.21",
