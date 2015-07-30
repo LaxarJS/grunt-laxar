@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#73](https://github.com/LaxarJS/grunt-laxar/issues/73): laxar-artifacts: fixed artifact model inconsistencies
 - [#72](https://github.com/LaxarJS/grunt-laxar/issues/72): new task: laxar-info
     + NEW FEATURE: see ticket for details
 - [#74](https://github.com/LaxarJS/grunt-laxar/issues/74): added task laxar-merge-require-config

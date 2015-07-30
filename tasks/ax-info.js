@@ -156,13 +156,13 @@ module.exports = function( grunt ) {
             case 'themes':
                return item.name + '  (' + item.path + path.sep + ')';
             case 'pages':
-               return item.references.file + '  (' + item.path + ')';
+               return item.references.file.self + '  (' + item.path + ')';
             case 'layouts':
-               return item.references.file.reference + '   (location: theme-dependent)';
+               return item.references.file.self + '   (location: theme-dependent)';
             case 'widgets':
-               return item.references.file.reference + '  (' + item.path + path.sep + ')';
+               return item.references.file.self + '  (' + item.path + path.sep + ')';
             case 'controls':
-               return item.references.amd.reference + '  (' + item.path + path.sep + ')';
+               return item.references.amd.self + '  (' + item.path + path.sep + ')';
             default:
                return '';
          }
@@ -256,7 +256,7 @@ module.exports = function( grunt ) {
             usingFlowIds.push( flow.target );
             usingPages = usingPages.concat( model.pages
                .filter( function( p ) { return p.widgets.indexOf( widgetRef ) !== -1; } )
-               .map( function( _ ) { return _.references.file.reference || _.references.file; } )
+               .map( function( _ ) { return _.references.file.self; } )
                .filter( function( p ) { return usingPages.indexOf( p ) === -1; } ) );
             themeItems = model.themes;
             widgetItem = maybeItem[ 0 ];
@@ -308,7 +308,7 @@ module.exports = function( grunt ) {
             usingFlowIds.push( flow.target );
             usingWidgets = usingWidgets.concat( model.widgets
                .filter( function( w ) { return w.controls.indexOf( controlRef ) !== -1; } )
-               .map( function( _ ) { return _.references.file.reference || _.references.file; } )
+               .map( function( _ ) { return _.references.file.self; } )
                .filter( function( w ) { return usingWidgets.indexOf( w ) === -1; } ) );
             themeItems = model.themes;
             controlItem = maybeItem[ 0 ];
@@ -406,8 +406,7 @@ module.exports = function( grunt ) {
       }
 
       return function( item ) {
-         var itemRef = item.references[ protocol ];
-         return ( itemRef.reference || itemRef ) === reference;
+         return item.references[ protocol ].self === reference;
       };
    }
 

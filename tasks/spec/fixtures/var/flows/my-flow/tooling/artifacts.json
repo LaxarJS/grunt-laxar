@@ -12,7 +12,9 @@
             "list": []
          },
          "references": {
-            "file": "application/flow/flow.json"
+            "file": {
+               "self": "application/flow/flow.json"
+            }
          }
       }
    ],
@@ -20,6 +22,11 @@
       {
          "path": "bower_components/laxar-uikit/dist/themes/default.theme",
          "name": "default.theme",
+         "references": {
+            "file": {
+               "self": "default.theme"
+            }
+         },
          "resources": {
             "watch": [
                "css/theme.css"
@@ -33,6 +40,11 @@
       {
          "path": "themes/test.theme",
          "name": "test.theme",
+         "references": {
+            "file": {
+               "self": "test.theme"
+            }
+         },
          "resources": {
             "watch": [
                "css/theme.css"
@@ -46,6 +58,11 @@
       {
          "path": "themes/test2.theme",
          "name": "test2.theme",
+         "references": {
+            "file": {
+               "self": "test2.theme"
+            }
+         },
          "resources": {
             "watch": [
                "css/theme.css"
@@ -70,7 +87,9 @@
             "list": []
          },
          "references": {
-            "file": "start"
+            "file":  {
+               "self": "start"
+            }
          },
          "pages": [],
          "widgets": [
@@ -107,7 +126,7 @@
          },
          "references": {
             "file": {
-               "reference": "example"
+               "self": "example"
             }
          }
       },
@@ -137,7 +156,7 @@
          },
          "references": {
             "file": {
-               "reference": "start"
+               "self": "start"
             }
          }
       }
@@ -174,7 +193,7 @@
          },
          "references": {
             "file": {
-               "reference": "default/local_widget"
+               "self": "default/local_widget"
             },
             "amd": {
                "module": "laxar-application/widgets/default/local_widget/local_widget"
@@ -213,7 +232,7 @@
          },
          "references": {
             "file": {
-               "reference": "default/plain_widget"
+               "self": "default/plain_widget"
             },
             "amd": {
                "module": "laxar-application/widgets/default/plain_widget/plain_widget"
@@ -259,7 +278,7 @@
          },
          "references": {
             "file": {
-               "reference": "default/test_widget"
+               "self": "default/test_widget"
             },
             "amd": {
                "module": "laxar-application/widgets/default/test_widget/test_widget"
@@ -296,7 +315,7 @@
          },
          "references": {
             "amd": {
-               "reference": "laxar-path-controls/ax-old-style-control/ax-old-style-control",
+               "self": "laxar-path-controls/ax-old-style-control/ax-old-style-control",
                "module": "laxar-path-controls/ax-old-style-control/ax-old-style-control/ax-old-style-control"
             }
          }
@@ -325,7 +344,7 @@
          },
          "references": {
             "amd": {
-               "reference": "laxar-path-controls/ax-test-control",
+               "self": "laxar-path-controls/ax-test-control",
                "module": "laxar-path-controls/ax-test-control/ax-new-style-control"
             }
          }
