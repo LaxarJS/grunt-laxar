@@ -80,7 +80,7 @@ module.exports = function( grunt ) {
       if( silence ) {
          grunt.log.header = function() {
             grunt.log.write( '.' );
-         }
+         };
       }
       if( silence === 'max' ) {
          var origOk = grunt.log.ok;
@@ -89,7 +89,7 @@ module.exports = function( grunt ) {
                return grunt.log.write( '.' );
             }
             origOk.apply( grunt.log, arguments );
-         }
+         };
       }
 
    }
