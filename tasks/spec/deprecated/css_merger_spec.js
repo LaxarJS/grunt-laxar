@@ -30,7 +30,7 @@ describe( 'the css_merger task', function() {
             requireConfig: dir.fixtures + '/require_config.js'
          },
          src: [
-            dir.fixtures + '/application/flow/flow.json'
+            dir.fixtures + '/application/flow/flow_deprecated.json'
          ]
       };
       var task = runTask.task( 'css_merger:default', { default: config } );

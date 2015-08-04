@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#79](https://github.com/LaxarJS/grunt-laxar/issues/79): integration: implemented using widgets installed via bower as amd module
+    + NEW FEATURE: see ticket for details
 - [#76](https://github.com/LaxarJS/grunt-laxar/issues/76): laxar-build, laxar-dist, laxar-test: run each user-task flow-target only once
 - [#73](https://github.com/LaxarJS/grunt-laxar/issues/73): laxar-artifacts: fixed artifact model inconsistencies
 - [#72](https://github.com/LaxarJS/grunt-laxar/issues/72): new task: laxar-info
