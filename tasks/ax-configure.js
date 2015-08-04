@@ -58,6 +58,8 @@ module.exports = function( grunt ) {
          saveConfig: true
       } );
 
+      configureSilence();
+
       if( grunt.option( 'laxar-flow' ) ) {
          var flow = grunt.option( 'laxar-flow' );
          options.flows = options.flows.filter( function( flowConfig ) {
@@ -68,6 +70,28 @@ module.exports = function( grunt ) {
       var flowsDirectory = options.workDirectory;
       configureFlowTasks( options, flowsDirectory );
       configureOtherTasks( options );
+   }
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   function configureSilence() {
+
+      var silence = grunt.option( 'laxar-silence' );
+      if( silence ) {
+         grunt.log.header = function() {
+            grunt.log.write( '.' );
+         }
+      }
+      if( silence === 'max' ) {
+         var origOk = grunt.log.ok;
+         grunt.log.ok = function( message ) {
+            if( message && message.indexOf( 'unchanged,' ) ) {
+               return grunt.log.write( '.' );
+            }
+            origOk.apply( grunt.log, arguments );
+         }
+      }
+
    }
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
