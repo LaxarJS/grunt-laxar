@@ -27,7 +27,7 @@ describe( 'the laxar_application_dependencies task', function() {
             requireConfig: dir.fixtures + '/require_config.js'
          },
          src: [
-            dir.fixtures + '/application/flow/flow.json'
+            dir.fixtures + '/application/flow/flow_deprecated.json'
          ],
          dest: dir.actual + '/laxar_application_dependencies.js'
       };

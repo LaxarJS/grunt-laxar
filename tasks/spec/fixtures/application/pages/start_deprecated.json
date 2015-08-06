@@ -19,9 +19,6 @@
          },
          {
             "widget": "default/plain_widget"
-         },
-         {
-            "widget": "amd:bower-widget"
          }
       ]
    }

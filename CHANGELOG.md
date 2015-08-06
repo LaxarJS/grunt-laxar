@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+- [#79](https://github.com/LaxarJS/grunt-laxar/issues/79): integration: implemented using widgets installed via bower as amd module
+    + NEW FEATURE: see ticket for details
+
 
 ## v1.1.0-alpha.4
 

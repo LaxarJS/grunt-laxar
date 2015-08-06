@@ -1,5 +1,31 @@
 {
+   "application": {
+      "flow": {
+         "flow.json": "{\"places\":{\"entry\":{\"redirectTo\":\"start\"},\"start\":{\"page\":\"start\"}}}"
+      },
+      "layouts": {
+         "example": {
+            "default.theme": {
+               "css": {
+                  "example.css": 1
+               },
+               "example.html": "<div class=\"example-layout\"> <div data-ax-widget-area=\"example\"></div> </div> "
+            }
+         },
+         "start": {
+            "default.theme": {
+               "start.html": "<div class=\"ax-start-wrapper\"> <div class=\"ax-start-content\" data-ax-widget-area=\"content\"></div> </div> "
+            }
+         }
+      },
+      "pages": {
+         "start.json": "{\"layout\":\"start\",\"areas\":{\"content\":[{\"widget\":\"default/test_widget\",\"features\":{}},{\"widget\":\"default/test_widget\",\"features\":{}},{\"widget\":\"default/local_widget\",\"features\":{}},{\"widget\":\"default/plain_widget\"},{\"widget\":\"amd:bower-widget\"}]}}"
+      }
+   },
    "bower_components": {
+      "bower-widget": {
+         "widget.json": "{\"name\":\"bower-widget\",\"description\":\"A widget installed via bower\",\"version\":{\"spec\":\"0.1.0\"},\"integration\":{\"technology\":\"plain\",\"type\":\"widget\"},\"features\":{}}"
+      },
       "laxar-uikit": {
          "dist": {
             "themes": {
@@ -9,25 +35,6 @@
                   }
                }
             }
-         }
-      }
-   },
-   "themes": {
-      "test.theme": {
-         "css": {
-            "theme.css": 1
-         },
-         "layouts": {
-            "example": {
-               "css": {
-                  "example.css": 1
-               }
-            }
-         }
-      },
-      "test2.theme": {
-         "css": {
-            "theme.css": 1
          }
       }
    },
@@ -55,33 +62,28 @@
          }
       }
    },
-   "application": {
-      "flow": {
-         "flow.json": "{\"places\":{\"entry\":{\"redirectTo\":\"start\"},\"start\":{\"page\":\"start\"}}}"
-      },
-      "pages": {
-         "start.json": "{\"layout\":\"start\",\"areas\":{\"content\":[{\"widget\":\"default/test_widget\",\"features\":{}},{\"widget\":\"default/test_widget\",\"features\":{}},{\"widget\":\"default/local_widget\",\"features\":{}},{\"widget\":\"default/plain_widget\"}]}}"
-      },
-      "layouts": {
-         "example": {
-            "default.theme": {
-               "example.html": "<div class=\"example-layout\"> <div data-ax-widget-area=\"example\"></div> </div> ",
+   "themes": {
+      "test.theme": {
+         "css": {
+            "theme.css": 1
+         },
+         "layouts": {
+            "example": {
                "css": {
                   "example.css": 1
                }
             }
-         },
-         "start": {
-            "default.theme": {
-               "start.html": "<div class=\"ax-start-wrapper\"> <div class=\"ax-start-content\" data-ax-widget-area=\"content\"></div> </div> "
-            }
+         }
+      },
+      "test2.theme": {
+         "css": {
+            "theme.css": 1
          }
       }
    },
    "widgets": {
       "default": {
          "local_widget": {
-            "widget.json": "{\"name\":\"LocalWidget\",\"description\":\"A widget with embedded test.theme styling\",\"version\":{\"spec\":\"0.1.0\"},\"integration\":{\"technology\":\"angular\",\"type\":\"widget\"},\"features\":{}}",
             "default.theme": {
                "css": {
                   "local_widget.css": 1
@@ -91,19 +93,20 @@
                "css": {
                   "local_widget.css": 1
                }
-            }
+            },
+            "widget.json": "{\"name\":\"LocalWidget\",\"description\":\"A widget with embedded test.theme styling\",\"version\":{\"spec\":\"0.1.0\"},\"integration\":{\"technology\":\"angular\",\"type\":\"widget\"},\"features\":{}}"
          },
          "plain_widget": {
             "widget.json": "{\"name\":\"PlainWidget\",\"description\":\"A plain widget\",\"version\":{\"spec\":\"0.1.0\"},\"integration\":{\"technology\":\"plain\",\"type\":\"widget\"},\"features\":{}}"
          },
          "test_widget": {
             "default.theme": {
-               "test_widget.html": "<!-- :) --> ",
                "css": {
                   "test_widget.css": 1
-               }
+               },
+               "test_widget.html": "<!-- :) --> "
             },
-            "widget.json": "{\"name\":\"TestWidget\",\"description\":\"A regular test widget\",\"version\":{\"spec\":\"0.1.0\"},\"integration\":{\"technology\":\"angular\",\"type\":\"widget\"},\"controls\":[\"laxar-path-controls/ax-old-style-control/ax-old-style-control\",\"laxar-path-controls/ax-test-control\"],\"features\":{}}"
+            "widget.json": "{\"name\":\"TestWidget\",\"description\":\"A regular test widget\",\"version\":{\"spec\":\"0.1.0\"},\"integration\":{\"technology\":\"angular\",\"type\":\"widget\"},\"controls\":[\"laxar-path-controls/ax-old-style-control/ax-old-style-control\",\"laxar-path-controls/ax-test-control\"],\"features\":{},\"resources\":{\"watch\":[\"*.js\"],\"list\":[\"messages-en.json\",\"messages-de.json\"],\"embed\":[\"data.json\"]}}"
          }
       }
    }
