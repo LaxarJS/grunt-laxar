@@ -201,7 +201,12 @@
                "module": "bower-widget/bower-widget"
             }
          },
-         "controls": []
+         "controls": [],
+         "referencedAs": {
+            "byUser": "amd:bower-widget",
+            "derivedScheme": "amd",
+            "derivedReference": "bower-widget"
+         }
       },
       {
          "path": "widgets/default/local_widget",
@@ -241,7 +246,11 @@
                "module": "laxar-application/widgets/default/local_widget/local_widget"
             }
          },
-         "controls": []
+         "controls": [],
+         "referencedAs": {
+            "byUser": "default/local_widget",
+            "derivedReference": "default/local_widget"
+         }
       },
       {
          "path": "widgets/default/plain_widget",
@@ -281,7 +290,11 @@
                "module": "laxar-application/widgets/default/plain_widget/plain_widget"
             }
          },
-         "controls": []
+         "controls": [],
+         "referencedAs": {
+            "byUser": "default/plain_widget",
+            "derivedReference": "default/plain_widget"
+         }
       },
       {
          "path": "widgets/default/test_widget",
@@ -331,7 +344,11 @@
          "controls": [
             "laxar-path-controls/ax-old-style-control/ax-old-style-control",
             "laxar-path-controls/ax-test-control"
-         ]
+         ],
+         "referencedAs": {
+            "byUser": "default/test_widget",
+            "derivedReference": "default/test_widget"
+         }
       }
    ],
    "controls": [
@@ -343,8 +360,8 @@
          },
          "resources": {
             "watch": [
-               "/themes/test2.theme/controls/laxar-path-controls/ax-old-style-control/ax-old-style-control/css/ax-old-style-control.css",
-               "/themes/test.theme/controls/laxar-path-controls/ax-old-style-control/ax-old-style-control/css/ax-old-style-control.css",
+               "/themes/test2.theme/controls/ax-old-style-control/css/ax-old-style-control.css",
+               "/themes/test.theme/controls/ax-old-style-control/css/ax-old-style-control.css",
                "*.theme/css/ax-old-style-control.css",
                "ax-old-style-control.js"
             ],
@@ -352,16 +369,24 @@
                "control.json"
             ],
             "list": [
-               "/themes/test2.theme/controls/laxar-path-controls/ax-old-style-control/ax-old-style-control/css/ax-old-style-control.css",
-               "/themes/test.theme/controls/laxar-path-controls/ax-old-style-control/ax-old-style-control/css/ax-old-style-control.css",
+               "/themes/test2.theme/controls/ax-old-style-control/css/ax-old-style-control.css",
+               "/themes/test.theme/controls/ax-old-style-control/css/ax-old-style-control.css",
                "*.theme/css/ax-old-style-control.css"
             ]
          },
          "references": {
+            "local": {
+               "self": "ax-old-style-control/ax-old-style-control"
+            },
             "amd": {
-               "self": "laxar-path-controls/ax-old-style-control/ax-old-style-control",
+               "self": "../controls/ax-old-style-control/ax-old-style-control",
                "module": "laxar-path-controls/ax-old-style-control/ax-old-style-control/ax-old-style-control"
             }
+         },
+         "referencedAs": {
+            "byUser": "laxar-path-controls/ax-old-style-control/ax-old-style-control",
+            "derivedScheme": "amd",
+            "derivedReference": "laxar-path-controls/ax-old-style-control/ax-old-style-control"
          }
       },
       {
@@ -372,8 +397,8 @@
          },
          "resources": {
             "watch": [
-               "/themes/test2.theme/controls/laxar-path-controls/ax-test-control/css/ax-new-style-control.css",
-               "/themes/test.theme/controls/laxar-path-controls/ax-test-control/css/ax-new-style-control.css",
+               "/themes/test2.theme/controls/ax-test-control/css/ax-new-style-control.css",
+               "/themes/test.theme/controls/ax-test-control/css/ax-new-style-control.css",
                "*.theme/css/ax-new-style-control.css",
                "ax-new-style-control.js"
             ],
@@ -381,16 +406,24 @@
                "control.json"
             ],
             "list": [
-               "/themes/test2.theme/controls/laxar-path-controls/ax-test-control/css/ax-new-style-control.css",
-               "/themes/test.theme/controls/laxar-path-controls/ax-test-control/css/ax-new-style-control.css",
+               "/themes/test2.theme/controls/ax-test-control/css/ax-new-style-control.css",
+               "/themes/test.theme/controls/ax-test-control/css/ax-new-style-control.css",
                "*.theme/css/ax-new-style-control.css"
             ]
          },
          "references": {
+            "local": {
+               "self": "ax-test-control"
+            },
             "amd": {
-               "self": "laxar-path-controls/ax-test-control",
+               "self": "../controls/ax-test-control",
                "module": "laxar-path-controls/ax-test-control/ax-new-style-control"
             }
+         },
+         "referencedAs": {
+            "byUser": "laxar-path-controls/ax-test-control",
+            "derivedScheme": "amd",
+            "derivedReference": "laxar-path-controls/ax-test-control"
          }
       }
    ]
