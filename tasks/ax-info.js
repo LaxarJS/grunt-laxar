@@ -8,7 +8,7 @@ module.exports = function( grunt ) {
 
    var TASK = 'laxar-info';
    var helpers = require( './lib/task_helpers' )( grunt, TASK );
-   var path = require( 'path' );
+   var path = require( '../lib/path-platform/path' ).posix;
 
 
    grunt.registerTask( TASK,

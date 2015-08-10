@@ -7,8 +7,10 @@
 /* global expect */
 require( 'expectations' );
 
+var path = require( '../../../lib/path-platform/path' ).posix;
 var grunt = require( 'grunt' );
-var runTask = require( 'grunt-run-task' );
+var run = require( '../lib/run-elsewhere' );
+
 
 describe( 'the laxar_application_dependencies task', function() {
    'use strict';
@@ -22,22 +24,22 @@ describe( 'the laxar_application_dependencies task', function() {
    describe( 'when using the default configuration', function() {
       var config = {
          options: {
-            controls: dir.fixtures + '/controls',
-            base: dir.fixtures,
-            requireConfig: dir.fixtures + '/require_config.js'
+            controls: './controls',
+            base: '.',
+            requireConfig: './require_config.js'
          },
          src: [
-            dir.fixtures + '/application/flow/flow_deprecated.json'
+            'application/flow/flow_deprecated.json'
          ],
-         dest: dir.actual + '/laxar_application_dependencies.js'
+         dest: './laxar_application_dependencies.js'
       };
-      var task = runTask.task( 'laxar_application_dependencies:default', { default: config } );
 
-      before( task.run() );
-      after( task.clean() );
+      before( function( done ) {
+         run( 'laxar_application_dependencies:default', { default: config }, dir.actual, done );
+      } );
 
       it( 'creates the file specified as destination', function() {
-         expect( grunt.file.exists( config.dest ) ).toBeTruthy();
+         expect( grunt.file.exists( path.join( dir.actual, config.dest ) ) ).toBeTruthy();
       } );
 
       it( 'writes the expected RequireJS module to the destination file', function() {

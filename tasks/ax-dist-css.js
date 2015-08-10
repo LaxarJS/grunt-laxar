@@ -8,7 +8,7 @@ module.exports = function( grunt ) {
 
    var TASK = 'laxar-dist-css';
 
-   var path = require( 'path' );
+   var path = require( '../lib/path-platform/path' ).posix;
    var CONFIG_FILE = path.join( 'work', 'dist-css-configuration.json' );
    var RESOURCES_FILE = 'resources.json';
    var RESULT_DIRECTORY = path.join( 'dist' );

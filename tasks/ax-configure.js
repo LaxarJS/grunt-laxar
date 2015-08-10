@@ -30,7 +30,7 @@ module.exports = function( grunt ) {
    };
 
    var helpers = require( './lib/task_helpers' )( grunt, TASK );
-   var path = require( 'path' );
+   var path = require( '../lib/path-platform/path' ).posix;
 
    var RESULT_FILE = path.join( 'work', 'task-configuration.json' );
 

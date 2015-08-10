@@ -8,7 +8,7 @@ module.exports = function( grunt ) {
 
    var TASK = 'laxar-test-configure-flow';
 
-   var path = require( 'path' );
+   var path = require( '../lib/path-platform/path' ).posix;
    var CONFIG_FILE = path.join( 'work', 'test-widget-configuration.json' );
    var RESULTS_FILE = path.join( 'tooling', 'test-results.xml' );
    var helpers = require( './lib/task_helpers' )( grunt, TASK );

@@ -8,7 +8,7 @@ module.exports = function( grunt ) {
 
    var TASK = 'laxar-configure-watch';
 
-   var path = require( 'path' );
+   var path = require( '../lib/path-platform/path' ).posix;
    var RESULT_FILE = path.join( 'work', 'watch-configuration.json' );
 
    var load = require( './lib/load' );
