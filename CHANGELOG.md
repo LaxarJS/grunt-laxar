@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#80](https://github.com/LaxarJS/grunt-laxar/issues/80): require_config_merger: improved log message
 - [#81](https://github.com/LaxarJS/grunt-laxar/issues/81): fixed paths on windows
 - [#79](https://github.com/LaxarJS/grunt-laxar/issues/79): integration: implemented using widgets installed via bower as amd module
     + NEW FEATURE: see ticket for details
