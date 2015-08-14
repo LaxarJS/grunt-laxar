@@ -73,7 +73,7 @@ module.exports = function( grunt ) {
 
    grunt.registerTask( 'test-lib', [ 'clean', 'mochacli:lib' ] );
    grunt.registerTask( 'test-flow-tasks', [ 'clean', 'fixtures', 'copy', 'mochacli:flow-tasks' ] );
-   grunt.registerTask( 'test-legacy-tasks', [ 'clean', 'fixtures', 'mochacli:tasks' ] );
+   grunt.registerTask( 'test-legacy-tasks', [ 'clean', 'fixtures', 'copy', 'mochacli:tasks' ] );
    grunt.registerTask( 'test-additional', [ 'clean', 'jshint' ] );
 
    grunt.registerTask( 'test', [ 'test-lib', 'test-flow-tasks', 'test-legacy-tasks', 'test-additional' ] );

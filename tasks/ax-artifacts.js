@@ -11,7 +11,7 @@ module.exports = function( grunt ) {
    var fs = require( 'fs' );
    var q = require( 'q' );
    var glob = q.nfbind( require( 'glob' ) );
-   var path = require( 'path' );
+   var path = require( '../lib/path-platform/path' ).posix;
    var async = require( 'async' );
    var jsonlint = require( 'jsonlint' );
 

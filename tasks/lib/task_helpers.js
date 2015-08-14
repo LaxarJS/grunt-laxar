@@ -6,7 +6,7 @@
 module.exports = function( grunt, taskName ) {
    'use strict';
 
-   var path = require( 'path' );
+   var path = require( '../../lib/path-platform/path' ).posix;
    var fs = require( 'fs' );
    var q = require( 'q' );
 

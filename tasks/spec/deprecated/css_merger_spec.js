@@ -8,7 +8,7 @@
 require( 'expectations' );
 
 var grunt = require( 'grunt' );
-var runTask = require( 'grunt-run-task' );
+var run = require( '../lib/run-elsewhere' );
 
 describe( 'the css_merger task', function() {
    'use strict';
@@ -25,17 +25,18 @@ describe( 'the css_merger task', function() {
 
       var config = {
          options: {
-            base: dir.fixtures,
-            output: dir.actual,
-            requireConfig: dir.fixtures + '/require_config.js'
+            base: '.',
+            output: '.',
+            requireConfig: './require_config.js'
          },
          src: [
-            dir.fixtures + '/application/flow/flow_deprecated.json'
+            'application/flow/flow_deprecated.json'
          ]
       };
-      var task = runTask.task( 'css_merger:default', { default: config } );
 
-      before( task.run() );
+      before( function( done ) {
+         run( 'css_merger:default', { default: config }, dir.actual, done );
+      } );
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -51,9 +52,15 @@ describe( 'the css_merger task', function() {
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      it( 'writes the default theme stylesheets to the `default.theme.css` file', function() {
-         var actual = grunt.file.read( dir.actual + '/default.theme.css' );
-         expect( actual.indexOf( '/* MARKER: old-style control: default theme */' ) ).not.toEqual( -1 );
+      it( 'includes old-style control-CSS into the `default.theme.css` file', function() {
+         var actual = grunt.file.read( dir.actual + '/default.theme.css');
+         expect(actual.indexOf('/* MARKER: old-style control: default theme */')).not.toEqual(-1);
+      } );
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      it( 'includes new-style control-CSS into the `default.theme.css` file', function() {
+         var actual = grunt.file.read( dir.actual + '/default.theme.css');
          expect( actual.indexOf( '/* MARKER: new-style control: default theme */' ) ).not.toEqual( -1 );
       } );
 

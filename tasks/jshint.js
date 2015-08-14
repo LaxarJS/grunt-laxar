@@ -6,7 +6,7 @@
 module.exports = function( grunt ) {
    'use strict';
 
-   var path = require( 'path' );
+   var path = require( '../lib/path-platform/path' ).posix;
    var load = require( './lib/load' );
    var _ = grunt.util._;
 

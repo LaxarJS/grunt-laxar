@@ -6,7 +6,8 @@
 module.exports = function( grunt ) {
    'use strict';
 
-   var path = require( 'path' );
+   var systemPath = require( 'path' );
+   var path = require( '../../lib/path-platform/path' ).posix;
 
    grunt.task.registerMultiTask(
       'css_merger',
@@ -25,16 +26,25 @@ module.exports = function( grunt ) {
 
       var q = require( 'q' );
       var config = require( '../../lib/require_config' )( options.requireConfig, options );
-      config.paths.laxar = path.dirname( require.resolve( 'laxar' ) );
+
+      var laxarPath = systemPath
+         .relative( options.base, require.resolve( 'laxar' ) )
+         .split( systemPath.sep )
+         .join( path.sep );
+
+      config.paths.laxar = path.relative(
+         path.resolve( config.baseUrl ),
+         path.resolve( path.dirname( laxarPath ) )
+      );
+
       var requirejs = require( 'requirejs' ).config( config );
       var paths = require( '../../lib/laxar_paths' )( config, options );
 
-      var base = options.base;
-      var pathToDefaultTheme = path.resolve( paths.DEFAULT_THEME );
-      var pathToPages = path.resolve( paths.PAGES );
-      var pathToThemes = path.resolve( paths.THEMES );
-      var pathToLayouts = path.resolve( paths.LAYOUTS );
-      var pathToWidgets = path.resolve( paths.WIDGETS );
+      var pathToDefaultTheme = path.relative( options.base, paths.DEFAULT_THEME );
+      var pathToPages = path.relative( options.base, paths.PAGES );
+      var pathToThemes = path.relative( options.base, paths.THEMES );
+      var pathToLayouts = path.relative( options.base, paths.LAYOUTS );
+      var pathToWidgets = path.relative( options.base, paths.WIDGETS );
 
       grunt.file.mkdir( options.output );
 
@@ -44,6 +54,7 @@ module.exports = function( grunt ) {
          .map( function( theme ) {
             var mainCss = fixUrls( grunt.file.read( theme.mainFile ), theme.mainFile, options.output );
             var layoutCss = readLayouts( theme, pathToLayouts );
+
             return readWidgetsFromFlow( flowFiles, theme, pathToWidgets )
                .then( function( widgetCss ) {
                   var outputFilePath = path.join( options.output, theme.name + '.css' );
@@ -81,8 +92,8 @@ module.exports = function( grunt ) {
          /////////////////////////////////////////////////////////////////////////////////////////////////////
 
          function processThemeDir( dir, themeName ) {
-            var cssMainFile = path.join( dir, '/css/theme.css' );
-            var themeDir = path.resolve( dir );
+            var cssMainFile = path.join( dir, 'css/theme.css' );
+            var themeDir = path.relative( options.base, dir );
             if( grunt.file.exists( cssMainFile ) ) {
                themes.push( {
                   name: themeName || themeDir.replace( pathToThemes + path.sep, '' ),
@@ -134,7 +145,7 @@ module.exports = function( grunt ) {
                var layoutsMap = {};
                [ appLayoutsRoot, themeLayoutsRoot ].forEach( function( root ) {
                   grunt.file.expand( root + '/**/*.html' ).forEach( function( htmlFilePath ) {
-                     var resolvedHtmlFilePath = path.resolve( htmlFilePath );
+                     var resolvedHtmlFilePath = path.relative( options.base, htmlFilePath );
                      var layoutRef = path.relative( root, resolvedHtmlFilePath )
                         .split( path.sep ).slice( 0, -2 ).join( path.sep );
                      if( layoutRef ) {
@@ -160,7 +171,6 @@ module.exports = function( grunt ) {
          function cssFilesForFlow( flow ) {
             return widgetCollector.gatherWidgetsAndControls( paths.WIDGETS, flow )
                .then( function( result ) {
-
                   var controlCss = result.controls.map( function( requireControlPath ) {
                      var descriptor = result.descriptorForControl( requireControlPath );
                      var fileName = fileNameForControl( requireControlPath, theme, descriptor );
@@ -168,10 +178,9 @@ module.exports = function( grunt ) {
                   } );
 
                   var widgetCss = result.widgets.map( function( widget ) {
-                     var widgetPath = path.resolve( path.join( config.baseUrl, widget ) );
-                     var widgetModulePath = widgetPath.substring( path.join( pathToWidgets, '/' ).length );
-                     var relativeWidgetPath = path.dirname( widgetModulePath );
-                     var fileName = fileNameForWidget( relativeWidgetPath, theme );
+                     var projectWidgetPath = path.join( config.baseUrl, widget );
+                     var relativeWidgetPath = path.relative( pathToWidgets, projectWidgetPath );
+                     var fileName = fileNameForWidget( path.dirname( relativeWidgetPath ), theme );
                      return readCss( fileName );
                   } );
 
@@ -189,8 +198,8 @@ module.exports = function( grunt ) {
             grunt.verbose.writeln( 'Css Merger: page loader' );
             var pageLoader = PageLoader.create( q, httpClient(), pathToPages );
 
-            grunt.verbose.writeln( 'Css Merger: initializing widget collector' );
             var widgetsRoot = path.relative( config.baseUrl, paths.WIDGETS );
+            grunt.verbose.writeln( 'Css Merger: initializing widget collector' );
             return WidgetCollector.create( requirejs, widgetsRoot, pageLoader );
          }
 
@@ -268,7 +277,7 @@ module.exports = function( grunt ) {
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
       function fixUrls( css, sourceFileName, destinationDirectory ) {
-         var sourceDirectory = path.relative( base, path.dirname( sourceFileName ) );
+         var sourceDirectory = path.relative( options.base, path.dirname( sourceFileName ) );
          var destinationFragments = destinationDirectory.replace( /\/$/, '' ).split( '/' );
          var pathPrefix = new Array( destinationFragments.length + 1 ).join( '../' );
          var urlMatcher = /url\(\s*([^\)]*)\s*\)/g;

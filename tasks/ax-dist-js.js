@@ -8,18 +8,16 @@ module.exports = function( grunt ) {
 
    var TASK = 'laxar-dist-js';
 
-   var path = require( 'path' );
+   var path = require( '../lib/path-platform/path' ).posix;
    var CONFIG_FILE = path.join( 'work', 'dist-js-configuration.json' );
-   var CONCAT_RESULT_REF = path.join( 'work', 'require-configured' );
-   var REQUIREJS_RESULT = path.join( 'dist', 'bundle.js' );
+   var CONCAT_RESULT_REF = 'work/require-configured';
+   var REQUIREJS_RESULT = 'dist/bundle.js';
    var REQUIRE_CONFIG = 'require_config';
 
-   var URL_SEP = '/';
    var load = require( './lib/load' );
    load( grunt, 'grunt-contrib-concat' );
    load( grunt, 'grunt-contrib-requirejs' );
 
-   var requirejsHelper = require( '../lib/require_config' );
    var helpers = require( './lib/task_helpers' )( grunt, TASK );
 
    grunt.registerMultiTask( TASK,
@@ -30,6 +28,9 @@ module.exports = function( grunt ) {
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    function runDistJs( task ) {
+      var base = task.options( { 'base': '.' } ).base;
+      var requirejsHelper = require( '../lib/require_config' ).helper( base );
+
 
       var startMs = Date.now();
 
@@ -37,19 +38,13 @@ module.exports = function( grunt ) {
       var flowId = task.nameArgs.split( ':' )[ 1 ];
       var subTask = 'laxar-flow-' + flowId;
 
-      // Set-up a requirejs instance to resolve references within this task like the application would do:
-      var requirejsOptions = requirejsHelper.baseOptions();
-      var requirejsConfig = requirejsHelper.configuration( requirejsOptions );
-      var requirejs = requirejsHelper.fromConfiguration( requirejsConfig );
-
       // Path to the merged require (with widget and control local config) configuration for this flow
       var generatedRequireConfigPath = path.join( flowsDirectory, flowId, REQUIRE_CONFIG ) + '.js';
 
       // The pre-configured requirejs implementation is stored here:
       var requirePlusConfigPath = path.join( flowsDirectory, flowId, CONCAT_RESULT_REF ) + '.js';
-      var requirePlusConfigRef = projectRef( path.join(
-         requirejsOptions.applicationPackage, flowsDirectory, flowId, CONCAT_RESULT_REF
-      ) );
+      var requirePlusConfigRef = requirejsHelper
+         .projectRef( path.join( 'laxar-application', flowsDirectory, flowId, CONCAT_RESULT_REF ) );
 
       var options = task.options( {
 
@@ -94,7 +89,7 @@ module.exports = function( grunt ) {
          },
          src: [
             generatedRequireConfigPath,
-            projectPath( 'requirejs' ) + '.js'
+            requirejsHelper.projectPath( 'requirejs' ) + '.js'
          ],
          dest: requirePlusConfigPath
       };
@@ -113,18 +108,6 @@ module.exports = function( grunt ) {
 
       if( options.tasks ) {
          grunt.task.run( options.tasks );
-      }
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      function projectPath( requireRef ) {
-         var absolutePath = requirejs.toUrl( requireRef ).split( URL_SEP ).join( path.sep );
-         return path.relative( requirejsOptions.base, absolutePath );
-      }
-
-      function projectRef( requireRef ) {
-         var rootPath = projectPath( requireRef );
-         return [ requirejsOptions.applicationPackage ].concat( rootPath.split( path.sep ) ).join( URL_SEP );
       }
 
    }

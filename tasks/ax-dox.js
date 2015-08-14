@@ -6,7 +6,7 @@
 module.exports = function( grunt ) {
    'use strict';
 
-   var path = require( 'path' );
+   var path = require( '../lib/path-platform/path' ).posix;
    var laxarDox = require( 'laxar-dox' );
 
    grunt.task.registerMultiTask( 'laxar-dox', 'Creates API documentation in Markdown', function() {
