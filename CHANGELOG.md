@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#82](https://github.com/LaxarJS/grunt-laxar/issues/82): fixed handling of missing `includes/themes`
+
 
 ## v1.1.0-alpha.5
 
