@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.1.0-alpha.5
+
 - [#83](https://github.com/LaxarJS/grunt-laxar/issues/83): fixed local references in laxar-info
 - [#80](https://github.com/LaxarJS/grunt-laxar/issues/80): require_config_merger: improved log message
 - [#81](https://github.com/LaxarJS/grunt-laxar/issues/81): fixed paths on windows
