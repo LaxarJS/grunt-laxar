@@ -12,7 +12,7 @@ module.exports = function( grunt ) {
 
 
    grunt.registerTask( TASK,
-      'Configures LaxarJS tasks for development, testing and optimization.',
+      'Displays information about the artifacts in your application.',
       function() { runInfo(); }
    );
 
@@ -176,7 +176,7 @@ module.exports = function( grunt ) {
       var usingFlowIds = [];
       flowTargets().forEach( function( flow ) {
          var model = artifactsModel( flow.target );
-         var maybeItem = model.pages.filter( matchesReference( pageRef, 'file' ) );
+         var maybeItem = model.pages.filter( matchesReference( pageRef, 'local' ) );
          if( maybeItem.length ) {
             usingFlowIds.push( flow.target );
             pageItem = maybeItem[ 0 ];
@@ -218,7 +218,7 @@ module.exports = function( grunt ) {
       var themeItems = [];
       flowTargets().forEach( function( flow ) {
          var model = artifactsModel( flow.target );
-         var maybeItem = model.layouts.filter( matchesReference( layoutRef, 'file' ) );
+         var maybeItem = model.layouts.filter( matchesReference( layoutRef, 'local' ) );
          if( maybeItem.length ) {
             usingFlowIds.push( flow.target );
             themeItems = model.themes;
@@ -251,7 +251,7 @@ module.exports = function( grunt ) {
       var themeItems = [];
       flowTargets().forEach( function( flow ) {
          var model = artifactsModel( flow.target );
-         var maybeItem = model.widgets.filter( matchesReference( widgetRef, 'file' ) );
+         var maybeItem = model.widgets.filter( matchesReference( widgetRef, 'local' ) );
          if( maybeItem.length ) {
             usingFlowIds.push( flow.target );
             usingPages = usingPages.concat( model.pages
@@ -394,7 +394,7 @@ module.exports = function( grunt ) {
     * @param {String} reference
     *   A reference such as 'my-category/some-widget', 'amd:organization-widget', 'file:cat/sub/other-widget'.
     * @param defaultProtocol
-    *   The protocol to use if the reference does not contain a protocol (such as 'amd', 'file' etc).
+    *   The protocol to use if the reference does not contain a protocol (such as 'amd', 'local' etc).
     * @returns {Function}
     */
    function matchesReference( reference, defaultProtocol ) {
