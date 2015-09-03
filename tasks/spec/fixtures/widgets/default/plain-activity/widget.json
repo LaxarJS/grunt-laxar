@@ -1,0 +1,15 @@
+{
+   "name": "plain-activity",
+   "description": "A plain activity",
+   "version": {
+      "spec": "0.1.0"
+   },
+
+   "integration": {
+      "technology": "plain",
+      "type": "activity"
+   },
+
+   "features": {
+   }
+}
