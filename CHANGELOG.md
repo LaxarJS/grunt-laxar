@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#77](https://github.com/LaxarJS/grunt-laxar/issues/77): laxar-artifacts: do not try to list (global) theme paths
 - [#82](https://github.com/LaxarJS/grunt-laxar/issues/82): fixed handling of missing `includes/themes`
 
 

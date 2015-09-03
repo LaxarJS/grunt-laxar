@@ -19,7 +19,7 @@
          }
       },
       "pages": {
-         "start.json": "{\"layout\":\"start\",\"areas\":{\"content\":[{\"widget\":\"default/test_widget\",\"features\":{}},{\"widget\":\"default/test_widget\",\"features\":{}},{\"widget\":\"default/local_widget\",\"features\":{}},{\"widget\":\"default/plain_widget\"},{\"widget\":\"amd:bower-widget\"}]}}"
+         "start.json": "{\"layout\":\"start\",\"areas\":{\"content\":[{\"widget\":\"default/test_widget\",\"features\":{}},{\"widget\":\"default/test_widget\",\"features\":{}},{\"widget\":\"default/local_widget\",\"features\":{}},{\"widget\":\"default/plain_widget\"},{\"widget\":\"amd:bower-widget\"},{\"widget\":\"default/plain-activity\"}]}}"
       }
    },
    "bower_components": {
@@ -95,6 +95,9 @@
                }
             },
             "widget.json": "{\"name\":\"LocalWidget\",\"description\":\"A widget with embedded test.theme styling\",\"version\":{\"spec\":\"0.1.0\"},\"integration\":{\"technology\":\"angular\",\"type\":\"widget\"},\"features\":{}}"
+         },
+         "plain-activity": {
+            "widget.json": "{\"name\":\"plain-activity\",\"description\":\"A plain activity\",\"version\":{\"spec\":\"0.1.0\"},\"integration\":{\"technology\":\"plain\",\"type\":\"activity\"},\"features\":{}}"
          },
          "plain_widget": {
             "widget.json": "{\"name\":\"PlainWidget\",\"description\":\"A plain widget\",\"version\":{\"spec\":\"0.1.0\"},\"integration\":{\"technology\":\"plain\",\"type\":\"widget\"},\"features\":{}}"

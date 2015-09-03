@@ -96,7 +96,8 @@
             "default/test_widget",
             "default/local_widget",
             "default/plain_widget",
-            "amd:bower-widget"
+            "amd:bower-widget",
+            "default/plain-activity"
          ]
       }
    ],
@@ -250,6 +251,38 @@
          "referencedAs": {
             "byUser": "default/local_widget",
             "derivedReference": "default/local_widget"
+         }
+      },
+      {
+         "path": "widgets/default/plain-activity",
+         "integration": {
+            "technology": "plain",
+            "type": "activity"
+         },
+         "resources": {
+            "watch": [
+               "widget.json",
+               "plain-activity.js"
+            ],
+            "embed": [
+               "widget.json"
+            ],
+            "list": [
+            ]
+         },
+         "references": {
+            "local": {
+               "self": "default/plain-activity"
+            },
+            "amd": {
+               "self": "../widgets/default/plain-activity",
+               "module": "laxar-application/widgets/default/plain-activity/plain-activity"
+            }
+         },
+         "controls": [],
+         "referencedAs": {
+            "byUser": "default/plain-activity",
+            "derivedReference": "default/plain-activity"
          }
       },
       {

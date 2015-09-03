@@ -22,6 +22,9 @@
          },
          {
             "widget": "amd:bower-widget"
+         },
+         {
+            "widget": "default/plain-activity"
          }
       ]
    }
