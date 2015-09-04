@@ -38,7 +38,8 @@ module.exports = function( grunt ) {
 
       var options = self.options( {
          spawn: false,
-         saveConfig: true
+         saveConfig: true,
+         watchBowerComponents: false
       } );
 
       var artifacts = helpers.artifactsListing( flowsDirectory, flowId );
@@ -47,6 +48,14 @@ module.exports = function( grunt ) {
       config.watch[ subTaskUpdate ] = watchConfigForUpdate( artifacts, flowId, options );
       config.watch[ subTaskRebuild ] = watchConfigForRebuild( artifacts, flowId, options );
       config.watch[ subTaskRequire ] = watchConfigForRequireConfigMerging( artifacts, flowId, options );
+
+      if( !options.watchBowerComponents ) {
+         Object.keys( config.watch ).forEach( function( subTask ) {
+            config.watch[ subTask].files = config.watch[ subTask].files.filter( function( patternEntry ) {
+               return patternEntry.indexOf( 'bower_components' ) !== 0;
+            } );
+         } );
+      }
 
       if( options.saveConfig ) {
          var destination = path.join( flowsDirectory, flowId, RESULT_FILE );
