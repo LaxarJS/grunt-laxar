@@ -3,6 +3,7 @@
       "my-flow-reload": {
          "files": [
             "application/flow/flow.json",
+            "bower_components/laxar-uikit/dist/themes/default.theme/css/theme.css",
             "themes/test.theme/css/theme.css",
             "themes/test2.theme/css/theme.css",
             "application/pages/start.json",
@@ -20,6 +21,14 @@
             "themes/test2.theme/widgets/bower-widget/css/bower-widget.css",
             "themes/test.theme/widgets/bower-widget/bower-widget.html",
             "themes/test.theme/widgets/bower-widget/css/bower-widget.css",
+            "bower_components/bower-widget/widget.json",
+            "bower_components/bower-widget/default.theme/bower-widget.html",
+            "bower_components/bower-widget/test.theme/bower-widget.html",
+            "bower_components/bower-widget/test2.theme/bower-widget.html",
+            "bower_components/bower-widget/default.theme/css/bower-widget.css",
+            "bower_components/bower-widget/test.theme/css/bower-widget.css",
+            "bower_components/bower-widget/test2.theme/css/bower-widget.css",
+            "bower_components/bower-widget/bower-widget.js",
             "themes/test2.theme/widgets/default/local_widget/local_widget.html",
             "themes/test2.theme/widgets/default/local_widget/css/local_widget.css",
             "themes/test.theme/widgets/default/local_widget/local_widget.html",
@@ -82,7 +91,7 @@
       "my-flow-update": {
          "files": [
             "application/flow/*",
-
+            "bower_components/laxar-uikit/dist/themes/default.theme/css/*",
             "themes/test.theme/css/*",
             "themes/test2.theme/css/*",
             "application/pages/*",
@@ -100,6 +109,13 @@
             "themes/test2.theme/widgets/bower-widget/css/*",
             "themes/test.theme/widgets/bower-widget/*",
             "themes/test.theme/widgets/bower-widget/css/*",
+            "bower_components/bower-widget/*",
+            "bower_components/bower-widget/default.theme/*",
+            "bower_components/bower-widget/test.theme/*",
+            "bower_components/bower-widget/test2.theme/*",
+            "bower_components/bower-widget/default.theme/css/*",
+            "bower_components/bower-widget/test.theme/css/*",
+            "bower_components/bower-widget/test2.theme/css/*",
             "themes/test2.theme/widgets/default/local_widget/*",
             "themes/test2.theme/widgets/default/local_widget/css/*",
             "themes/test.theme/widgets/default/local_widget/*",
@@ -175,6 +191,7 @@
       },
       "my-flow-merge-require-config": {
          "files": [
+            "bower_components/bower-widget/require_config.js",
             "widgets/default/local_widget/require_config.js",
             "widgets/default/plain-activity/require_config.js",
             "widgets/default/plain_widget/require_config.js",
