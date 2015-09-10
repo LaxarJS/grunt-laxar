@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#84](https://github.com/LaxarJS/grunt-laxar/issues/84): laxar-info: print indirect references
+
 
 ## v1.1.0-alpha.6
 

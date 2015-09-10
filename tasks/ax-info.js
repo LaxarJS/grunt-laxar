@@ -174,8 +174,9 @@ module.exports = function( grunt ) {
    function printPageInfo( pageRef ) {
       var pageItem = null;
       var usingFlowIds = [];
+      var model;
       flowTargets().forEach( function( flow ) {
-         var model = artifactsModel( flow.target );
+         model = artifactsModel( flow.target );
          var maybeItem = model.pages.filter( matchesReference( pageRef, 'local' ) );
          if( maybeItem.length ) {
             usingFlowIds.push( flow.target );
@@ -201,10 +202,32 @@ module.exports = function( grunt ) {
 
       writeHead( 'Uses widgets:' );
       if( pageItem.widgets.length ) {
-         pageItem.widgets.forEach( function( _ ) { writeDetail( _ ); } );
+         printWidgetsRecursively( pageRef, pageItem );
       }
       else {
          writeNone();
+      }
+
+      function printWidgetsRecursively( pageRef, pageItem, visited, printed ) {
+         var isIndirect = !!visited && !!printed;
+         visited = visited || {};
+         printed = printed || {};
+
+         if( visited[ pageRef ] ) { return; }
+         visited[ pageRef ] = true;
+
+         ( pageItem.widgets || [] ).forEach( function( widgetRef ) {
+            if( printed[ widgetRef ] ) { return; }
+            printed[ widgetRef ] = true;
+            writeDetail( widgetRef + (isIndirect ? ' (through ' + pageRef + ')' : '') );
+         } );
+
+         pageItem.pages.forEach( function( ref ) {
+            var maybeItem = model.pages.filter( matchesReference( ref, 'local' ) )[ 0 ];
+            if( maybeItem ) {
+               printWidgetsRecursively( ref, maybeItem, visited, printed );
+            }
+         } );
       }
 
       return true;
