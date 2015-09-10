@@ -18,17 +18,20 @@ module.exports = function( grunt ) {
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-   function runInfo() {
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      printGeneralInfo();
+   function runInfo() {
 
       var handlers = {
          flow: printFlowInfo,
          page: printPageInfo,
          layout: printLayoutInfo,
          widget: printWidgetInfo,
-         control: printControlInfo
+         control: printControlInfo,
+         path: printByPath
       };
+
+      printGeneralInfo();
 
       if( grunt.option( 'usage' ) ) {
          printUsageInfo();
@@ -47,7 +50,6 @@ module.exports = function( grunt ) {
       if( !hasModels ) {
          return;
       }
-
 
       var handlerArgument;
       var anyHandler = grunt.option( 'any' ) || grunt.option( 'X' );
@@ -70,12 +72,48 @@ module.exports = function( grunt ) {
 
       if( !artifactProcessed ) {
          if( handlerArgument ) {
-            warn( 'The reference ' + handlerArgument + ' does not seem to be used anywhere!' );
+            warn( 'The artifact ' + handlerArgument + ' does not seem to be used anywhere!' );
          }
          else {
             printProjectInfo();
          }
       }
+   }
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   function printByPath( path ) {
+
+      var handlers = {
+         flows: printFlowInfo,
+         pages: printPageInfo,
+         widgets: printWidgetInfo,
+         controls: printControlInfo
+      };
+
+      var maybeRef;
+      var maybeHandler;
+      flowTargets().forEach( function( flow ) {
+         var model = artifactsModel( flow.target );
+         Object.keys( handlers ).forEach( function( artifactType ) {
+            var maybeItem = model[ artifactType ].filter( matchesPath( path ) );
+            if( maybeItem.length ) {
+               var refs = maybeItem[ 0 ].references;
+               var refStrings = Object.keys( refs )
+                  .filter( function( refType ) {
+                     return refs[ refType ] && refs[ refType ].self;
+                  } )
+                  .map( function( refType ) {
+                     return refType + ':' + refs[ refType ].self;
+                  } );
+
+               maybeRef = refStrings[ 0 ];
+               maybeHandler = handlers[ artifactType ];
+            }
+         } );
+      } );
+
+      return !!maybeRef && !!maybeHandler && maybeHandler( maybeRef );
    }
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -94,12 +132,18 @@ module.exports = function( grunt ) {
       write( '  --control <control-ref>  Print information on the given control.' );
       write( '                           The control-ref has the same format as is used in' );
       write( '                           the controls-section of widget.json descriptors' );
-      write( '                           (and as printed by --flow).' );
+      write( '                           (and as printed by --widget).' );
       write( '  --page <page-ref>        Print information on the given page.' );
       write( '                           The page-ref has the same format as is used in' );
       write( '                           flow definitions (and as printed by --flow).' );
       write( '  --any | -X <ref>         Try all artifact types and print information for the first' );
       write( '                           first matching item' );
+      write( '  --path <path>            Print information on any artifact at the given path.' );
+      write( '                           For pages, this includes the .json suffix.' );
+      write( '                           For widgets, use the folder containing the widget.json' );
+      write( '                           For controls, use the folder containing the control.json' );
+      write( '                           For themes, use the path to the theme folder' );
+      write( '                           This does not work for layouts (no unique path)!' );
       write( '  --usage                  Print this information.' );
       write( '                           Without any arguments, available flows are listed.' );
    }
@@ -425,11 +469,19 @@ module.exports = function( grunt ) {
       var parts = reference.split( ':' );
       if( parts.length > 1 ) {
          protocol = parts[ 0 ];
-         reference = parts.slice( 1, parts.length - 1 ).join( ':' );
+         reference = parts.slice( 1 ).join( ':' );
       }
 
       return function( item ) {
          return item.references[ protocol ].self === reference;
+      };
+   }
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   function matchesPath( path ) {
+      return function( item ) {
+         return item.path && item.path === path;
       };
    }
 
