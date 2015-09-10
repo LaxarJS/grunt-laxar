@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.1.0-alpha.8
+
 - [#85](https://github.com/LaxarJS/grunt-laxar/issues/85): laxar-info: allow to address artifacts by path
     + NEW FEATURE: see ticket for details
 
