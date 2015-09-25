@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#87](https://github.com/LaxarJS/grunt-laxar/issues/87): fixinstall: fixed fixinstall (for use with npm v3.x)
+
 
 ## 1.0.2
 
