@@ -1,5 +1,5 @@
 {
-   "name": "bower-widget",
+   "name": "b-widget",
    "description": "A widget installed via bower",
    "version": {
       "spec": "0.1.0"
