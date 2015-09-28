@@ -24,7 +24,7 @@
    },
    "bower_components": {
       "bower-widget": {
-         "widget.json": "{\"name\":\"bower-widget\",\"description\":\"A widget installed via bower\",\"version\":{\"spec\":\"0.1.0\"},\"integration\":{\"technology\":\"plain\",\"type\":\"widget\"},\"features\":{}}"
+         "widget.json": "{\"name\":\"b-widget\",\"description\":\"A widget installed via bower\",\"version\":{\"spec\":\"0.1.0\"},\"integration\":{\"technology\":\"plain\",\"type\":\"widget\"},\"features\":{}}"
       },
       "laxar-uikit": {
          "dist": {

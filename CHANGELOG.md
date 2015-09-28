@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#88](https://github.com/LaxarJS/grunt-laxar/issues/88): tests: improved testing of AMD-reference handling
 - [#87](https://github.com/LaxarJS/grunt-laxar/issues/87): fixinstall: fixed fixinstall (for use with npm v3.x)
 
 

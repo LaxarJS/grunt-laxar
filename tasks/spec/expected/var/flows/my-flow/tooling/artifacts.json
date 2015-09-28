@@ -172,25 +172,25 @@
          },
          "resources": {
             "watch": [
-               "/themes/test2.theme/widgets/bower-widget/bower-widget.html",
-               "/themes/test2.theme/widgets/bower-widget/css/bower-widget.css",
-               "/themes/test.theme/widgets/bower-widget/bower-widget.html",
-               "/themes/test.theme/widgets/bower-widget/css/bower-widget.css",
+               "/themes/test2.theme/widgets/b-widget/b-widget.html",
+               "/themes/test2.theme/widgets/b-widget/css/b-widget.css",
+               "/themes/test.theme/widgets/b-widget/b-widget.html",
+               "/themes/test.theme/widgets/b-widget/css/b-widget.css",
                "widget.json",
-               "*.theme/bower-widget.html",
-               "*.theme/css/bower-widget.css",
-               "bower-widget.js"
+               "*.theme/b-widget.html",
+               "*.theme/css/b-widget.css",
+               "b-widget.js"
             ],
             "embed": [
-               "/themes/test2.theme/widgets/bower-widget/bower-widget.html",
-               "/themes/test.theme/widgets/bower-widget/bower-widget.html",
+               "/themes/test2.theme/widgets/b-widget/b-widget.html",
+               "/themes/test.theme/widgets/b-widget/b-widget.html",
                "widget.json",
-               "*.theme/bower-widget.html"
+               "*.theme/b-widget.html"
             ],
             "list": [
-               "/themes/test2.theme/widgets/bower-widget/css/bower-widget.css",
-               "/themes/test.theme/widgets/bower-widget/css/bower-widget.css",
-               "*.theme/css/bower-widget.css"
+               "/themes/test2.theme/widgets/b-widget/css/b-widget.css",
+               "/themes/test.theme/widgets/b-widget/css/b-widget.css",
+               "*.theme/css/b-widget.css"
             ]
          },
          "references": {
@@ -199,7 +199,7 @@
             },
             "amd": {
                "self": "bower-widget",
-               "module": "bower-widget/bower-widget"
+               "module": "bower-widget/b-widget"
             }
          },
          "controls": [],

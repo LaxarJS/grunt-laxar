@@ -10,7 +10,7 @@ define( [], function() {
    return {
       create: Controller,
       injections:  [ 'axContext' ],
-      name: 'plainWidget'
-   }
+      name: 'bWidget'
+   };
 
 } );

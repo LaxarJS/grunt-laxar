@@ -3,7 +3,7 @@ define( [
    'laxar-path-controls/ax-test-control/ax-new-style-control',
    'laxar-application/widgets/default/local_widget/local_widget',
    'laxar-application/widgets/default/test_widget/test_widget',
-   'bower-widget/bower-widget',
+   'bower-widget/b-widget',
    'laxar-application/widgets/default/plain-activity/plain-activity',
    'laxar-application/widgets/default/plain_widget/plain_widget'
 ], function() {
