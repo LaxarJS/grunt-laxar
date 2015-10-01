@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.1.0-alpha.9
+
 - [#86](https://github.com/LaxarJS/grunt-laxar/issues/86): laxar-artifacts: fixed watchers for layout HTML files
 - [#89](https://github.com/LaxarJS/grunt-laxar/issues/89): laxar-artifacts: fixed CSS paths for control styles bundled in themes
 - [#88](https://github.com/LaxarJS/grunt-laxar/issues/88): tests: improved testing of AMD-reference handling
