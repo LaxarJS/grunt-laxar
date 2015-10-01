@@ -165,7 +165,7 @@
    ],
    "widgets": [
       {
-         "path": "bower_components/b-widget",
+         "path": "bower_components/bower-widget",
          "integration": {
             "technology": "plain",
             "type": "widget"
@@ -267,8 +267,7 @@
             "embed": [
                "widget.json"
             ],
-            "list": [
-            ]
+            "list": []
          },
          "references": {
             "local": {
@@ -430,8 +429,8 @@
          },
          "resources": {
             "watch": [
-               "/themes/test2.theme/controls/ax-test-control/css/ax-new-style-control.css",
-               "/themes/test.theme/controls/ax-test-control/css/ax-new-style-control.css",
+               "/themes/test2.theme/controls/ax-new-style-control/css/ax-new-style-control.css",
+               "/themes/test.theme/controls/ax-new-style-control/css/ax-new-style-control.css",
                "*.theme/css/ax-new-style-control.css",
                "ax-new-style-control.js"
             ],
@@ -439,8 +438,8 @@
                "control.json"
             ],
             "list": [
-               "/themes/test2.theme/controls/ax-test-control/css/ax-new-style-control.css",
-               "/themes/test.theme/controls/ax-test-control/css/ax-new-style-control.css",
+               "/themes/test2.theme/controls/ax-new-style-control/css/ax-new-style-control.css",
+               "/themes/test.theme/controls/ax-new-style-control/css/ax-new-style-control.css",
                "*.theme/css/ax-new-style-control.css"
             ]
          },
