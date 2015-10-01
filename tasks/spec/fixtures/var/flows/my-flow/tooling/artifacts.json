@@ -116,7 +116,12 @@
                "/themes/test.theme/layouts/example/css/example.css",
                "/application/layouts/example/test.theme/css/example.css",
                "/application/layouts/example/test2.theme/css/example.css",
-               "/application/layouts/example/default.theme/css/example.css"
+               "/application/layouts/example/default.theme/css/example.css",
+               "/themes/test2.theme/layouts/example/example.html",
+               "/themes/test.theme/layouts/example/example.html",
+               "/application/layouts/example/test.theme/example.html",
+               "/application/layouts/example/test2.theme/example.html",
+               "/application/layouts/example/default.theme/example.html"
             ],
             "embed": [
                "/themes/test2.theme/layouts/example/example.html",
@@ -146,7 +151,12 @@
                "/themes/test.theme/layouts/start/css/start.css",
                "/application/layouts/start/test.theme/css/start.css",
                "/application/layouts/start/test2.theme/css/start.css",
-               "/application/layouts/start/default.theme/css/start.css"
+               "/application/layouts/start/default.theme/css/start.css",
+               "/themes/test2.theme/layouts/start/start.html",
+               "/themes/test.theme/layouts/start/start.html",
+               "/application/layouts/start/test.theme/start.html",
+               "/application/layouts/start/test2.theme/start.html",
+               "/application/layouts/start/default.theme/start.html"
             ],
             "embed": [
                "/themes/test2.theme/layouts/start/start.html",
