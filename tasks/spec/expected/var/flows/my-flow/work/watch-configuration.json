@@ -68,8 +68,8 @@
             "controls/ax-old-style-control/ax-old-style-control/test.theme/css/ax-old-style-control.css",
             "controls/ax-old-style-control/ax-old-style-control/test2.theme/css/ax-old-style-control.css",
             "controls/ax-old-style-control/ax-old-style-control/ax-old-style-control.js",
-            "themes/test2.theme/controls/ax-test-control/css/ax-new-style-control.css",
-            "themes/test.theme/controls/ax-test-control/css/ax-new-style-control.css",
+            "themes/test2.theme/controls/ax-new-style-control/css/ax-new-style-control.css",
+            "themes/test.theme/controls/ax-new-style-control/css/ax-new-style-control.css",
             "controls/ax-test-control/default.theme/css/ax-new-style-control.css",
             "controls/ax-test-control/test.theme/css/ax-new-style-control.css",
             "controls/ax-test-control/test2.theme/css/ax-new-style-control.css",
@@ -82,7 +82,6 @@
       "my-flow-update": {
          "files": [
             "application/flow/*",
-
             "themes/test.theme/css/*",
             "themes/test2.theme/css/*",
             "application/pages/*",
@@ -140,8 +139,8 @@
             "controls/ax-old-style-control/ax-old-style-control/test.theme/css/*",
             "controls/ax-old-style-control/ax-old-style-control/test2.theme/css/*",
             "controls/ax-old-style-control/ax-old-style-control/*",
-            "themes/test2.theme/controls/ax-test-control/css/*",
-            "themes/test.theme/controls/ax-test-control/css/*",
+            "themes/test2.theme/controls/ax-new-style-control/css/*",
+            "themes/test.theme/controls/ax-new-style-control/css/*",
             "controls/ax-test-control/default.theme/css/*",
             "controls/ax-test-control/test.theme/css/*",
             "controls/ax-test-control/test2.theme/css/*",

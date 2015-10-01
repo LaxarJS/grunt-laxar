@@ -1,5 +1,6 @@
 {
-   "name": "AxNewStyleControl",
+   "name": "ax-new-style-control",
+   "description": "A control that has an internal name (that is different from the external name in this case).",
 
    "integration": {
       "technology": "angular"

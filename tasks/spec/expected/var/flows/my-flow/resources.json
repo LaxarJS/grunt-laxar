@@ -49,7 +49,7 @@
          }
       },
       "ax-test-control": {
-         "control.json": "{\"name\":\"AxNewStyleControl\",\"integration\":{\"technology\":\"angular\"}}",
+         "control.json": "{\"name\":\"ax-new-style-control\",\"description\":\"A control that has an internal name (that is different from the external name in this case).\",\"integration\":{\"technology\":\"angular\"}}",
          "default.theme": {
             "css": {
                "ax-new-style-control.css": 1
@@ -64,6 +64,13 @@
    },
    "themes": {
       "test.theme": {
+         "controls": {
+            "ax-new-style-control": {
+               "css": {
+                  "ax-new-style-control.css": 1
+               }
+            }
+         },
          "css": {
             "theme.css": 1
          },
