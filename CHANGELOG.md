@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#86](https://github.com/LaxarJS/grunt-laxar/issues/86): laxar-artifacts: fixed watchers for layout HTML files
 - [#89](https://github.com/LaxarJS/grunt-laxar/issues/89): laxar-artifacts: fixed CSS paths for control styles bundled in themes
 - [#88](https://github.com/LaxarJS/grunt-laxar/issues/88): tests: improved testing of AMD-reference handling
 - [#87](https://github.com/LaxarJS/grunt-laxar/issues/87): fixinstall: fixed fixinstall (for use with npm v3.x)
