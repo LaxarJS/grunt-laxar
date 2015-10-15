@@ -77,7 +77,11 @@ module.exports = function( grunt ) {
 
       // A bit hacky: Insert a fixup-statement to make sure that the correct flow will be loaded.
       var flowFixupStatement = 'require.paths[ \'laxar-path-flow\' ] = ' +
-                               '"' + path.join( '..', options.flow.src ) + '";\n';
+         '"' + path.join( '..', options.flow.src ) + '";\n';
+      // Another fixup statement to allow overriding of the RequireJS baseUrl
+      var baseUrlFixupStatement = 'require.baseUrl = ' +
+         '(typeof window !== "undefined" && window.laxar && window.laxar.amd && window.laxar.amd.baseUrl)' +
+         ' || require.baseUrl;\n';
 
       var config = {
          concat: {},
@@ -85,7 +89,7 @@ module.exports = function( grunt ) {
       };
       config.concat[ subTask ] = {
          options: {
-            separator: flowFixupStatement
+            separator: flowFixupStatement + baseUrlFixupStatement
          },
          src: [
             generatedRequireConfigPath,
