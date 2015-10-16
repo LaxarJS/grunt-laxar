@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.1.0
+
 - [#90](https://github.com/LaxarJS/grunt-laxar/issues/90): laxar-dist-js: allow to override baseUrl from laxar application config
     + NEW FEATURE: see ticket for details
 
