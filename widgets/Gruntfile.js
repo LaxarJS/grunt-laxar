@@ -10,9 +10,51 @@ module.exports = function (grunt) {
    var bower = require( 'bower' );
    var generate = require( './generate_require' );
 
-   grunt.registerInitTask( 'autoinit', function() {
+   grunt.registerInitTask( 'prepare', function() {
       var done = this.async();
 
+      var json = grunt.file.readJSON( 'bower.json' );
+      var modified = [];
+
+      Object.keys( json.dependencies ).forEach( function( dependency ) {
+         var name = dependency.toUpperCase().replace('-', '_') + '_VERSION';
+         if( process.env[ name ] ) {
+            json.dependencies[ dependency ] = process.env[ name ];
+            modified.push( dependency + '#' + process.env[ name ] );
+         }
+      } );
+
+      if( modified.length ) {
+         grunt.log.ok( 'Updating Bower dependency versions for ' + grunt.log.wordlist( modified ) );
+         grunt.file.write( 'bower.json', JSON.stringify( json, null, 3 ) );
+      }
+
+      grunt.log.ok( 'Installing Bower dependencies……' );
+
+      bower.commands.install( [], {}, { loglevel: 0 } )
+         .on( 'error', done )
+         .on( 'log', function( message ) {
+            var endpoint = message.data && message.data.endpoint || {};
+            switch( message.level ) {
+               case 'action':
+               case 'info':
+                  grunt.log.ok( grunt.log.wordlist( [ endpoint.name + '#' + endpoint.target ] ), message.id, message.message );
+                  break;
+               case 'debug':
+                  grunt.log.debug( message.message );
+                  break;
+               default:
+                  grunt.verbose.writeln( JSON.stringify( message, null, 3 ) );
+                  break;
+            }
+         } )
+         .on( 'end', function() {
+            done();
+         } );
+   } );
+
+   grunt.registerInitTask( 'init', function() {
+      var done = this.async();
       grunt.log.ok( 'Querying Bower dependencies…' );
 
       bower.commands.list( null, { offline: true } )
@@ -80,8 +122,6 @@ module.exports = function (grunt) {
          }
       }
    } );
-
-   grunt.task.run( 'autoinit' );
 
    grunt.registerTask( 'test', [ 'karma', 'jshint' ] );
    grunt.registerTask( 'default', [ 'test' ] );
