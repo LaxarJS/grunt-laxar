@@ -2,8 +2,11 @@
 
 ## Last Changes
 
+## v1.1.1
+
 - [#91](https://github.com/LaxarJS/grunt-laxar/issues/91): widgets: update infrastructure for isolated testing to better handle older LaxarJS versions
     + NEW FEATURE: see ticket for details
+
 
 ## v1.1.0
 
