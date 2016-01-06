@@ -36,6 +36,7 @@ function defaultConfig( baseUrl ) {
 
          // LaxarJS Core Testing:
          'jasmine': 'jasmine/lib/jasmine-core/jasmine',
+	 'jasmine2': 'jasmine2/lib/jasmine-core/jasmine',
          'q_mock': 'q_mock/q',
 
          // LaxarJS 0.x control paths:
