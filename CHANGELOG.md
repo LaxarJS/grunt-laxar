@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.1.2
+
 - [#93](https://github.com/LaxarJS/grunt-laxar/issues/93): widgets: add jasmine2 to requires.js generator
 
 
