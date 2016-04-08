@@ -154,7 +154,7 @@ module.exports = function( grunt ) {
          var type = path.extname( filePath );
          if( type === '.json' ) {
             // Eliminate whitespace by re-serializing:
-            return preprocessJson( contents );
+            return JSON.stringify( JSON.parse( contents ) );
          }
          if( type === '.html' ) {
             // Eliminate (some) whitespace:
@@ -163,107 +163,6 @@ module.exports = function( grunt ) {
          return contents;
       }
 
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      function preprocessJson( jsonContents ) {
-         var contents = JSON.parse( jsonContents );
-         if( typeof( contents ) === 'object' && !Array.isArray( contents ) ) {
-            if( contents.features && contents.features.$schema ) {
-               optimizeSchema( contents.features, 0 );
-               if( contents.name === 'topic-controller-activity' ) {
-                  grunt.log.writeln( 'OPT: ' );
-                  grunt.log.writeln( 'OPT: ' );
-                  grunt.log.writeln( 'OPT: ' + JSON.stringify( contents, null, 3 ) );
-                  return JSON.stringify( contents );
-               }
-            }
-         }
-         return JSON.stringify( JSON.parse( jsonContents ) );
-      }
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      /**
-       * Optimize a json schema for production, in-place.
-       *
-       * - Recursively prune all child branches that do not lead to defaults
-       * - At leaves, remove everything but the defaults
-       *
-       * @return {Boolean}
-       *   `true` if this entire branch can be pruned from the schema, because it does not contain defaults,
-       *   `false` otherwise.
-       */
-      function optimizeSchema( schema, level ) {
-         if( !schema ) {
-            return true;
-         }
-
-         function optimizeOrDelete( container, schemaKey ) {
-            var branchNeeded = optimizeSchema( container[ schemaKey ], level+1 );
-            if( !branchNeeded ) {
-               delete container[ schemaKey ];
-            }
-            return branchNeeded;
-         }
-
-         function optimizeOrSplice( container, index ) {
-            var branchNeeded = optimizeSchema( container[ index ], level+1 );
-            if( !branchNeeded ) {
-               container.splice( index, 1 );
-            }
-            return branchNeeded;
-         }
-
-         var schemaNeeded = false;
-         if( schema.type === 'object' ) {
-            Object.keys( schema.properties || {} ).forEach( function( key ) {
-               schemaNeeded = optimizeOrDelete( schema.properties, key ) || schemaNeeded;
-            } );
-
-            Object.keys( schema.patternProperties || {} ).forEach( function( key ) {
-               schemaNeeded = optimizeOrDelete( schema.patternProperties, key ) || schemaNeeded;
-            } );
-
-            if( schema.hasOwnProperty( 'additionalProperties' ) ) {
-               schemaNeeded = optimizeOrDelete( schema, 'additionalProperties' ) || schemaNeeded;
-            }
-
-            // Top-level defaults must always be inferable
-            if( level <= 1 && !schema.hasOwnProperty( 'default' ) ) {
-               schema.default = {};
-               schemaNeeded = true;
-            }
-         }
-
-         if( schema.type === 'array' ) {
-            if( Array.isArray( schema.items ) ) {
-               schema.items.forEach( function( i ) {
-                  schemaNeeded = optimizeOrSplice( schema.items, i ) || schemaNeeded
-               } );
-            }
-            else {
-               schemaNeeded = optimizeOrDelete( schema, 'items' ) || schemaNeeded;
-            }
-
-            // Top-level defaults must always be inferable
-            if( level <= 1 && !schema.hasOwnProperty( 'default' ) ) {
-               schema.default = [];
-               schemaNeeded = true;
-            }
-         }
-
-         if( schema.type === 'string' ) {
-            delete schema.format;
-         }
-
-         delete schema.axPattern;
-         delete schema.axRole;
-         delete schema.description;
-         if( level > 0 ) {
-            delete schema.type;
-         }
-
-      }
    }
 
 };
