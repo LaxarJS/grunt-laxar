@@ -259,7 +259,7 @@ module.exports = function( grunt ) {
          delete schema.axPattern;
          delete schema.axRole;
          delete schema.description;
-         if( level > 0 ) {
+         if( level > 1 ) {
             delete schema.type;
          }
 

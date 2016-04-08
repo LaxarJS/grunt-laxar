@@ -18,4 +18,3 @@ notifications:
 branches:
    except:
       - /^feature\/.*$/
-
