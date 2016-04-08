@@ -15,3 +15,7 @@ notifications:
       template:
          - "%{repository_slug} (%{commit}) [%{branch}]: %{message}"
       use_notice: true
+branches:
+   except:
+      - /^feature\/.*$/
+
