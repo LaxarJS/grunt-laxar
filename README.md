@@ -119,7 +119,7 @@ For a given flow target, generates configuration for  [*watch*](https://github.c
 
 ### ⚙ *laxar-dist-flow*
 
-For a given flow target, produces optimized assets (CSS, JavaScript) *([more](docs/tasks/internal/laxar-dist-optimize.md))*.
+For a given flow target, produces optimized assets (CSS, JavaScript) *([more](docs/tasks/internal/laxar-dist-flow.md))*.
 
 ⚙ **laxar-dist-js**
 

@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#101](https://github.com/LaxarJS/grunt-laxar/issues/101): documentation: fixed broken link
+
 
 ## v1.1.2
 
