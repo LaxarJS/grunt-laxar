@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#103](https://github.com/LaxarJS/grunt-laxar/issues/103): testing: bumped karma-phantomjs-launcher
+    + NEW FEATURE: see ticket for details
 - [#101](https://github.com/LaxarJS/grunt-laxar/issues/101): documentation: fixed broken link
 - [#93](https://github.com/LaxarJS/grunt-laxar/issues/93): widgets: add jasmine2 to requires.js generator
 - [#91](https://github.com/LaxarJS/grunt-laxar/issues/91): widgets: update infrastructure for isolated testing to better handle older LaxarJS versions

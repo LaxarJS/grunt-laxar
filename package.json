@@ -41,7 +41,7 @@
       "karma-coverage": "~0.2.6",
       "karma-junit-reporter": "~0.2.1",
       "karma-laxar": "~1.1.0-alpha.1",
-      "karma-phantomjs-launcher": "~0.1.2",
+      "karma-phantomjs-launcher": "~1.0.4",
       "laxar": "~1.0.0-beta.1",
       "laxar-dox": "~1.0.0",
       "lodash": "~2.4.1",
